@@ -1,0 +1,23 @@
+@font-face {
+    font-family: Swing;
+    src: url("../fonts/Beauty-Swing.otf");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("../fonts/Inter-Light.ttf");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: QtOpt;
+    src: url("../fonts/qtoptimumregular.ttf");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: SangSunrise;
+    src: url("../fonts//SangBleu-Sunrise.ttf");
+    font-style: normal;
+}
