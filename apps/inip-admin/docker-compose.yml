@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+  mongodb:
+    image: mongo
+    container_name: 'mongodb-INIP'
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: 'INIP'
+      MONGO_INITDB_ROOT_USERNAME: 'INIP'
+      MONGO_INITDB_ROOT_PASSWORD: '4c1ba9a0-1add-4837-bfae-7fe489f8f37c'
+      # REPLICA_SET_NAME: 'typesense-rep'
+    ports:
+      - 27017:27017
+    volumes:
+      - /Users/hellomik/Desktop/Inip:/data/db
+
+  # redis:
+  #   image: 'redis'
+  #   container_name: 'redis-timeapp'
+  #   command: redis-server --requirepass 4c1ba9a0-1add-4837-bfae-7fe489f8f37c
+  #   ports:
+  #     - 6379:6379
+  #   volumes:
+  #     - $PWD/redis-data:/var/lib/redis
+  #     - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+  #   environment:
+  #     - REDIS_REPLICATION_MODE=master
+
+  # typesense:
+  #   image: 'typesense/typesense:0.21.0'
+  #   container_name: 'typesense-timeapp'
+  #   volumes:
+  #     - /root/typesense-data:/data
+  #   ports:
+  #     - 8108:8108
+  #   command: ['\\\r\n', '--data-dir', '/data', '--api-key=xyz']
+
