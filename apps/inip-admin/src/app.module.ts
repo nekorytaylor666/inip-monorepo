@@ -12,7 +12,7 @@ import { AdminModule } from '@adminjs/nestjs';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb://INIP:4c1ba9a0-1add-4837-bfae-7fe489f8f37c@localhost:27017',
+      'mongodb://INIP:4c1ba9a0-1add-4837-bfae-7fe489f8f37c@68.183.74.222:27017/?authMechanism=DEFAULT',
       {
         dbName: 'INIP',
       },
