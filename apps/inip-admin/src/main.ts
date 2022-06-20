@@ -7,6 +7,6 @@ import { AppModule } from './app.module';
 const bootstrap = async () => {
   AdminJS.registerAdapter(AdminJSMongoose);
   const app = await NestFactory.create(AppModule);
-  await app.listen(8080);
+  await app.listen(3001);
 };
 bootstrap();

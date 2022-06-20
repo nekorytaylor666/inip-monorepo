@@ -1,8 +1,21 @@
 import { Module } from '@nestjs/common';
+import { MongooseSchemasModule } from 'src/mongoose/mongoose.module';
+import {
+  ListingsController,
+  NotificationController,
+} from './controller/nft_collection.controller';
 import { GetNftCollectionService } from './services/get_nft_collection.service';
+import { UpdateNftColectionData } from './services/update_cron_data.service';
+import { UpdateMarketPlaceService } from './services/update_market_place.service';
 
-// mongodb://INIP:4c1ba9a0-1add-4837-bfae-7fe489f8f37c@localhost:27017/?authMechanism=DEFAULT
 @Module({
-  providers: [GetNftCollectionService],
+  imports: [MongooseSchemasModule],
+  providers: [
+    GetNftCollectionService,
+    UpdateNftColectionData,
+    UpdateMarketPlaceService,
+  ],
+  controllers: [NotificationController, ListingsController],
+  exports: [],
 })
 export class NftCollectionModule {}
