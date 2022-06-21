@@ -25,17 +25,10 @@ export class UpdateMarketPlaceService {
     const marketplaceContract = sdk.getMarketplace(
       '0x3662Fff4Ecc063d3Fb1B17A0137896fb4bf3276F',
     );
-    // sdk.getContract();
+
     const listings = await marketplaceContract.getAllListings();
     this.updateAllNftCollection(listings.map((e) => e.assetContractAddress));
-    // listings.filter((e) => {
-    //   e.buyoutCurrencyValuePerToken.decimals;
-    //   return e.type == ListingType.Auction;
-    // });
-    // listings.map((e) => {});
 
-    // "0x170263bFB594EEEAAa3bFd240386b7B84381E2F3"
-    // "0x170263bFB594EEEAAa3bFd240386b7B84381E2F3"
     const bulk =
       this.listingAdapterModel.collection.initializeUnorderedBulkOp();
     for (const listing of listings) {
