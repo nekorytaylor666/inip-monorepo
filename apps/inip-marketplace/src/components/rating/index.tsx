@@ -23,21 +23,25 @@ export const Rating: React.FC = ({ ratings }) => {
                     <Flex
                         key={item.id}
                         bg={
-                            index === 1
+                            index === 0
                                 ? "linear-gradient(90deg, #7495A6 -2.86%, #B9D6E8 101.36%)"
-                                : index === 2
+                                : index === 1
                                 ? "linear-gradient(90deg, #83A8BB -2.86%, #CEE6F4 101.36%)"
-                                : "linear-gradient(90deg, #A7C2D3 -2.86%, #EDF8FF 101.36%)"
+                                : index === 2 
+                                ? "linear-gradient(90deg, #A7C2D3 -2.86%, #EDF8FF 101.36%)"
+                                : ""
                         }
                         alignItems={"center"}
                         justifyContent={"space-between"}
-                        p={"15px"}
+                        p={"15px 20px"}
+                        borderBottom={index !== 0 && index !== 1 && index !== 2 ? "1px solid #c7dce9" : ""}
                     >
                         <Flex
                             gap={"35px"}
                             alignItems={"center"}
                             fontFamily={"QtOpt"}
                             color={"#1E4257"}
+                            fontSize={"22px"}
                         >
                             {index + 1}
                             <Image
