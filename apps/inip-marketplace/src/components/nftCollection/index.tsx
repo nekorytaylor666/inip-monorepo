@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import eth from "@public/icons/homepage/ethereum.svg";
 import Image from "next/image";
+import frame from "@public/icons/community/frame.png";
 
 export const Collection: React.FC = ({ collection }) => {
     return (
@@ -22,8 +23,13 @@ export const Collection: React.FC = ({ collection }) => {
         >
             {collection.map((item) => {
                 return (
-                    <Box maxWidth={"30%"} key={item.id}>
-                        <Image src={item.image} />
+                    <Box 
+                        maxWidth={"30%"} 
+                        key={item.id}   
+                        position={"relative"}
+                    >
+                        <img src={frame.src} />
+                        <img src={item.image.src} style={{position: "absolute", top: "5%", zIndex: "0", width: "87%", left: "7%"}}/>
                         <Flex
                             color={"#1C2529"}
                             mt={"28px"}
