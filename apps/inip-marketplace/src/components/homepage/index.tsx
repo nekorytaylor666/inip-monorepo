@@ -24,8 +24,6 @@ import rating from "@public/icons/homepage/rating.svg";
 import { Collection } from "@components/nftCollection";
 import { Rating } from "../rating/index";
 import world from "@public/icons/homepage/charityWorld.svg";
-import { Carousel } from "3d-react-carousal";
-import { config } from "react-spring";
 
 export const Container: React.FC = () => {
     const dreams = [

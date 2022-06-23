@@ -1,5 +1,5 @@
 {
-    "name": "inip",
+    "name": "inip-marketplace",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -16,7 +16,6 @@
         "cypress:test": "start-server-and-test start http://localhost:3000 cypress:run"
     },
     "dependencies": {
-        "3d-react-carousal": "^5.0.0",
         "@chakra-ui/icons": "^2.0.0",
         "@chakra-ui/react": "^1.1.4",
         "@emotion/react": "^11.1.4",
@@ -34,9 +33,6 @@
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-query": "^3.5.16",
-        "react-spring": "^9.4.5",
-        "react-spring-3d-carousel": "^1.2.1",
-        "recoil": "^0.1.2",
         "styled-components": "^5.2.1",
         "styled-system": "^5.1.5",
         "web3": "^1.7.3",

@@ -8,8 +8,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import "regenerator-runtime/runtime";
 import { Hydrate } from "react-query/hydration";
-import { RecoilRoot } from "recoil";
-import { appWithTranslation } from "@i18n";
 import Head from "next/head";
 // import {themeMain} from "../src/components/theme/theme";
 import "../public/css/style.css";
@@ -48,21 +46,19 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                 >
                     <QueryClientProvider client={queryClient}>
                         <Hydrate state={pageProps.dehydratedState}>
-                            <RecoilRoot>
-                                <Head>
-                                    <link href="../public/fonts/Beauty-Swing.otf" />
-                                    <link href="../public/fonts/Inter-Light.ttf" />
-                                    <link href="../public/fonts/qtoptimumregular.ttf" />
-                                    <link href="../public/fonts/SangBleu-Sunrise.ttf" />
-                                    <link
-                                        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-                                        rel="stylesheet"
-                                        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-                                        crossOrigin="anonymous"
-                                    />
-                                </Head>
-                                {getLayout(<Component {...pageProps} />)}
-                            </RecoilRoot>
+                            <Head>
+                                <link href="../public/fonts/Beauty-Swing.otf" />
+                                <link href="../public/fonts/Inter-Light.ttf" />
+                                <link href="../public/fonts/qtoptimumregular.ttf" />
+                                <link href="../public/fonts/SangBleu-Sunrise.ttf" />
+                                <link
+                                    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+                                    rel="stylesheet"
+                                    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+                                    crossOrigin="anonymous"
+                                />
+                            </Head>
+                            {getLayout(<Component {...pageProps} />)}
                         </Hydrate>
                     </QueryClientProvider>
                 </ThirdwebProvider>
