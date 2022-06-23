@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post, Req } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { NFTCollection } from '@thirdweb-dev/sdk';
 import { Model } from 'mongoose';
@@ -33,5 +33,14 @@ export class MetaDataController {
   @Get('listings')
   async getListings(): Promise<NFTCollectionDocument[]> {
     return this.listingAdapterDocumentnModel.find();
+  }
+
+  @Get('nft_collection/:id')
+  async getNft_collection_id(
+    @Param('id') id: string,
+  ): Promise<NFTCollectionDocument[]> {
+    return this.nftCollectionModel.findOne({
+      id,
+    });
   }
 }

@@ -4,7 +4,7 @@ import { MongooseSchemasModule } from 'src/mongoose/mongoose.module';
 import { MeiliSearchService } from './service/meili_search.service';
 
 export const meiliSearchClient = new MeiliSearch({
-  host: 'http://localhost:7700',
+  host: 'http://68.183.74.222:7700',
   apiKey: 'gefest20202021',
 });
 
