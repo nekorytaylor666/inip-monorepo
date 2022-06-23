@@ -1,0 +1,21 @@
+{
+  "name": "@inip/types",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./dist/index.ts",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "marketplace.ts"
+  ],
+  "scripts": {
+    "lint": "eslint *.ts*",
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-custom": "*",
+    "tsconfig": "*",
+    "typescript": "^4.5.2"
+  }
+}

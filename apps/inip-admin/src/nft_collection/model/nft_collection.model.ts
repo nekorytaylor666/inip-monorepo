@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-
+import { INFTCollection } from '@inip/types';
 export type NFTCollectionDocument = NFTCollection & Document;
 
 @Schema()
-export class NFTCollection {
+export class NFTCollection implements INFTCollection {
   @Prop()
   address: string;
 
