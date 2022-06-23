@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.3'
 
 services:
   mongodb:
@@ -14,7 +14,16 @@ services:
       - 27017:27017
     volumes:
       - /Users/hellomik/Desktop/Inip:/data/db
-
+  # version: '3.3'  
+  meilisearch:
+      ports:
+          - '7700:7700'
+      environment:
+          - MEILI_MASTER_KEY=gefest20202021
+        #   - development
+      volumes:
+          - /Users/hellomik/Desktop/meili_data:/meili_data
+      image: getmeili/meilisearch:v0.27.2
   # redis:
   #   image: 'redis'
   #   container_name: 'redis-timeapp'

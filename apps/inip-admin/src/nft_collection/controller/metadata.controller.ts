@@ -21,7 +21,6 @@ export class MetaDataController {
 
   @Get('nft_collection')
   async getNft_collection(): Promise<NFTCollectionDocument[]> {
-    console.log('CHECL');
     return this.nftCollectionModel.find();
   }
 

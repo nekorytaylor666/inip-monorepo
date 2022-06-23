@@ -40,6 +40,7 @@
     "express": "^4.18.1",
     "express-formidable": "^1.2.0",
     "express-session": "^1.17.3",
+    "meilisearch": "^0.25.1",
     "mongoose": "^6.4.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -47,6 +48,7 @@
     "swagger-ui-express": "^4.4.0"
   },
   "devDependencies": {
+    "@inip/types": "*",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
@@ -67,8 +69,7 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.0.0",
-    "typescript": "^4.3.5",
-    "@inip/types": "*"
+    "typescript": "^4.3.5"
   },
   "jest": {
     "moduleFileExtensions": [

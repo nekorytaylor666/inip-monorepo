@@ -7250,15 +7250,6 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-custom@latest:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-custom/-/eslint-config-custom-0.0.0.tgz#7829bdd98e657a63b03377538b5675c811247cf0"
-  integrity sha512-kwCw78yisbgKdJBJ5qooPmpBYDphDfM2oxSROmtfOwBXBwXuRiSV3suO01W3mVLEFpmQZxMWd/qajKpJhkKSug==
-  dependencies:
-    eslint-config-next "^12.0.8"
-    eslint-config-prettier "^8.3.0"
-    eslint-plugin-react "7.28.0"
-
 eslint-config-next@^12.0.8:
   version "12.1.6"
   resolved "https://registry.yarnpkg.com/eslint-config-next/-/eslint-config-next-12.1.6.tgz#55097028982dce49159d8753000be3916ac55254"
@@ -11078,6 +11069,13 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==
+
+meilisearch@^0.25.1:
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.25.1.tgz#0dc25ffad64e6e50eb3da6c0691b0ff54f8578bf"
+  integrity sha512-20jO0pK9BhghxHSkOLbdoYn58h/Z0PNL3JQcRq7ipNIeqrxkAetCZZ6ttJC3uxcz0jVglmiFoSXu3Z/lEOLOLQ==
+  dependencies:
+    cross-fetch "^3.1.5"
 
 memfs@^3.4.1:
   version "3.4.4"
