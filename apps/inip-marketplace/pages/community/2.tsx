@@ -28,6 +28,7 @@ import frame from "@public/icons/community/frame.png";
 import inip from "@public/icons/community/inipicon.svg";
 import reward from "@public/icons/community/reward.svg";
 import louvre from "@public/icons/community/louvre.jpg";
+import frameCommunity from "@public/icons/community/frameCommunity.png";
 
 
 const Community = () => {
@@ -50,17 +51,17 @@ const Community = () => {
                     minH={"508px"}
                     bg={"GrayText"}
                     justifyContent={"center"}
+                    position={"relative"}
                 >
-                    {/* <Image
-                        src={frame.src}
-                        w={"210px"}
-                        h={"208px"}
-                        layout={"fill"}
-                    /> */}
+                    <img src={frameCommunity.src} style={{position: "absolute", zIndex: 0}}/>
                     <Center
                         flexDir={"column"}
                         color={"#fff"}
                         gap={"35px"}
+                        position={"absolute"}
+                        bgColor={"rgba(24, 39, 47, 0.6)"}
+                        w={"93%"}
+                        h={"87%"}
                     >
                         <Text
                             maxW={"580px"}

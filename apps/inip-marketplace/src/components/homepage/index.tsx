@@ -24,6 +24,7 @@ import rating from "@public/icons/homepage/rating.svg";
 import { Collection } from "@components/nftCollection";
 import { Rating } from "../rating/index";
 import world from "@public/icons/homepage/charityWorld.svg";
+import frame from "@public/icons/community/frame.png";
 
 export const Container: React.FC = () => {
     const dreams = [
@@ -214,7 +215,11 @@ export const Container: React.FC = () => {
                                 </Button>
                             </ButtonGroup>
                         </Box>
-                        <Box minH={"620px"}>
+                        <Box
+                            minH={"620px"}
+                            maxW={"540px"}
+                            position={"relative"}
+                        >
                             <Flex
                                 fontFamily={"QtOpt"}
                                 justifyContent={"space-between"}
@@ -229,7 +234,21 @@ export const Container: React.FC = () => {
                                     HENOCYDE
                                 </Text>
                             </Flex>
-                            <Image src={mainIcon} />
+                            {/* <Image src={mainIcon} /> */}
+                            <img
+                                src={frame.src}
+                                style={{ minHeight: "620px" }}
+                            />
+                            <img
+                                src={mainIcon.src}
+                                style={{
+                                    position: "absolute",
+                                    top: "10%",
+                                    zIndex: "0",
+                                    width: "87%",
+                                    left: "6.5%",
+                                }}
+                            />
                         </Box>
                     </Flex>
                 </Box>
