@@ -237,7 +237,11 @@ export const Container: React.FC = () => {
                             {/* <Image src={mainIcon} /> */}
                             <img
                                 src={frame.src}
-                                style={{ minHeight: "620px" }}
+                                style={
+                                    {
+                                        minHeight: "620px", 
+                                        backgroundSize: "100% 100%" 
+                                    }}
                             />
                             <img
                                 src={mainIcon.src}

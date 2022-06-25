@@ -28,7 +28,7 @@ export const Collection: React.FC = ({ collection }) => {
                         key={item.id}   
                         position={"relative"}
                     >
-                        <img src={frame.src} />
+                        <img src={frame.src} style={{backgroundSize: "100% 100%"}}/>
                         <img src={item.image.src} style={{position: "absolute", top: "5%", zIndex: "0", width: "87%", left: "7%"}}/>
                         <Flex
                             color={"#1C2529"}
