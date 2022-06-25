@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Box, Center, Text, Heading, Square } from "@chakra-ui/react";
+import { Flex, Box, Center, Text, Heading, Square, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import account from "@public/icons/header/account.svg";
 import Link from "next/link";
 import Image from "next/image";
@@ -37,49 +37,143 @@ export const Header: React.FC = () => {
             >
                 <Link href="">
                     <a>
-                        <Text mb={0} color={"#1C2529"}>
+                        <Text mb={0}>
                             Homepage
                         </Text>
                     </a>
                 </Link>
                 <Link href="">
                     <a>
-                        <Text mb={0} color={"#979391"}>
-                            Charity Projects
-                        </Text>
-                    </a>
-                </Link>
-                <Link href="">
-                    <a>
-                        <Text mb={0} color={"#D9D9D9"}>
+                        <Text mb={0}>
                             Louvre
                         </Text>
                     </a>
                 </Link>
+                
+                <Menu>
+                    <MenuButton>
+                        Charity Projects
+                    </MenuButton>
+                    <MenuList borderRadius={0} p={"25px 20px"}  color={"#979391"} fontFamily={"Inter"} fontSize={"18px"} fontWeight={500}>
+                        <MenuItem _focus={ { color: "#365262" } }>
+                            <Link href="/about-charity-project">
+                                <a>
+                                    <Text mb={0}>
+                                        About charity projects
+                                    </Text>
+                                </a>
+                            </Link>
+                        </MenuItem>
+                        <MenuItem _focus={ { color: "#365262" } }>
+                            <Link href="/">
+                                <a>
+                                    <Text mb={0}>
+                                        Projects
+                                    </Text>
+                                </a>
+                            </Link>
+                        </MenuItem>
+
+                    </MenuList>
+                </Menu>
+
+                <Menu>
+                    <MenuButton>
+                        Dreams
+                    </MenuButton>
+                    <MenuList borderRadius={0} p={"25px 20px"}  color={"#979391"} fontFamily={"Inter"} fontSize={"18px"} fontWeight={500}>
+                        <MenuItem _focus={ { color: "#365262" } }>
+                            <Link href="/dreams-come-true">
+                                <a>
+                                    <Text mb={0}>
+                                        Dreams Come True
+                                    </Text>
+                                </a>
+                            </Link>
+                        </MenuItem>
+                        <MenuItem _focus={ { color: "#365262" } }>
+                            <Link href="/dreams">
+                                <a>
+                                    <Text mb={0}>
+                                        Dreams
+                                    </Text>
+                                </a>
+                            </Link>
+                        </MenuItem>
+                    </MenuList>
+                </Menu>
+
+                <Menu>
+                    <MenuButton>
+                        Kindness Rating
+                    </MenuButton>
+                    <MenuList borderRadius={0}  p={"25px 20px"} color={"#979391"} fontFamily={"Inter"} fontSize={"18px"} fontWeight={500}>
+                        <MenuItem _focus={ { color: "#365262" } }>
+                            <Link href="/about-kindness-rating">
+                                <a>
+                                    <Text mb={0}>
+                                        About Rating
+                                    </Text>
+                                </a>
+                            </Link>
+                        </MenuItem>
+                        <MenuItem _focus={ { color: "#365262" } }>
+                            <Link href="/">
+                                <a>
+                                    <Text mb={0}>
+                                        Rating
+                                    </Text>
+                                </a>
+                            </Link>
+                        </MenuItem>
+                    </MenuList>
+                </Menu>
+
+                <Menu>
+                    <MenuButton>
+                        Community
+                    </MenuButton>
+                    <MenuList borderRadius={0} p={"25px 20px"}  color={"#979391"} fontFamily={"Inter"} fontSize={"18px"} fontWeight={500}>
+                        <MenuItem _focus={ { color: "#365262" } }>
+                            <Link href="/community/1">
+                                <a>
+                                    <Text mb={0}>
+                                        INIP Community 1
+                                    </Text>
+                                </a>
+                            </Link>
+                        </MenuItem>
+                        <MenuItem _focus={ { color: "#365262" } }>
+                            <Link href="/community/2">
+                                <a>
+                                    <Text mb={0}>
+                                        INIP Community 2
+                                    </Text>
+                                </a>
+                            </Link>
+                        </MenuItem>
+                        <MenuItem _focus={ { color: "#365262" } }>
+                            <Link href="/creator-support">
+                                <a>
+                                    <Text mb={0}>
+                                        Creator support
+                                    </Text>
+                                </a>
+                            </Link>
+                        </MenuItem>
+                    </MenuList>
+                </Menu>
+
                 <Link href="">
                     <a>
-                        <Text mb={0} color={"#D9D9D9"}>
-                            Kindness Rating
-                        </Text>
-                    </a>
-                </Link>
-                <Link href="">
-                    <a>
-                        <Text mb={0} color={"#D9D9D9"}>
-                            Community
-                        </Text>
-                    </a>
-                </Link>
-                <Link href="">
-                    <a>
-                        <Text mb={0} color={"#D9D9D9"}>
+                        <Text mb={0}>
                             INIP token
                         </Text>
                     </a>
                 </Link>
                 <Link href="">
                     <a>
-                        <Text mb={0} color={"#D9D9D9"}>
+                        <Text mb={0}>
                             Search
                         </Text>
                     </a>
@@ -90,7 +184,7 @@ export const Header: React.FC = () => {
                 <Square w={"52px"} h={"52px"} border={"1px solid #ECECEC"}>
                     <Image src={account} />
                 </Square>
-                <ConnectWalletButton></ConnectWalletButton>
+                <ConnectWalletButton isTransparent={false}></ConnectWalletButton>
             </Flex>
         </Center>
     );
@@ -145,19 +239,14 @@ export const DreamHeader: React.FC = () => {
                     gap={"20px"}
                 >
                     <Square 
-                        w={"56px"} 
-                        h={"56px"}
+                        w={"52px"} 
+                        h={"52px"}
                         border={"1px solid #ececec"}
                     >
                         <Image src={white_account}/>
                     </Square>
-                    <Square 
-                        w={"56px"} 
-                        h={"56px"}
-                        border={"1px solid #ececec"}
-                    >
-                        <Image src={white_eth}/>
-                    </Square>
+                    <ConnectWalletButton isTransparent={true}></ConnectWalletButton>
+
                 </Flex>
             </Flex>
         </Center>
