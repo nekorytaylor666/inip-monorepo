@@ -122,7 +122,7 @@ const AboutKindnessRating = () => {
                         h={"102px"} 
                         w={"100px"}
                         border={"1px solid #476676"}
-                        fontFamily={"#365262"}
+                        fontFamily={"QtOpt"}
                         fontSize={"70px"}
                         fontWeight={700}
                     >

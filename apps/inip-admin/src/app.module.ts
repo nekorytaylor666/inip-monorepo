@@ -12,6 +12,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { NftCollectionModule } from './nft_collection/nft_collection.module';
 import { NFTCollection } from './nft_collection/model/nft_collection.model';
 import { ListingAdapter } from './mongoose/listing_metadata.model';
+import { MeiliSearchModule } from './meiliSearch/meili_search.module';
 
 @Module({
   imports: [
@@ -56,6 +57,7 @@ import { ListingAdapter } from './mongoose/listing_metadata.model';
     }),
     MongooseSchemasModule,
     NftCollectionModule,
+    MeiliSearchModule,
   ],
   controllers: [],
   providers: [AppService],
