@@ -7,6 +7,11 @@ import {
     HStack,
     SimpleGrid,
     Skeleton,
+    Tab,
+    TabList,
+    TabPanel,
+    TabPanels,
+    Tabs,
     Text,
     VStack,
 } from "@chakra-ui/react";
@@ -29,6 +34,16 @@ import { CollectionMetadata } from "src/types/types";
 import whiteEth from "@public/icons/header/eth.svg";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {
+    LineChart,
+    Line,
+    CartesianGrid,
+    XAxis,
+    YAxis,
+    Tooltip,
+    Area,
+    ComposedChart,
+} from "recharts";
 
 const CollectionPage = () => {
     const marketplace = useMarketplace(
@@ -88,29 +103,118 @@ const CollectionPage = () => {
         <>
             <CollectionHeader collection={collection}></CollectionHeader>
             <Container mt="12" maxW="1440px">
-                <SimpleGrid columns={[1, null, 3]} spacing="40px">
-                    {listingLoading &&
-                        [...Array(20)].map(() => (
-                            <Skeleton isLoaded={!listingLoading}>
-                                <Box height={400}></Box>
-                            </Skeleton>
-                        ))}
-                    {listings?.map((item) => (
-                        <Link
-                            href={`/collections/${"0x1C552ebF58F6AEefaC40adf3bfD72647C169F736"}/${
-                                item.id
-                            }`}
-                        >
-                            <Box cursor={"pointer"}>
-                                <ListingItem item={item}></ListingItem>
+                <Tabs variant="unstyled">
+                    <TabList mb="12">
+                        <Tab _selected={{ color: "black", fontWeight: "bold" }}>
+                            Collection
+                        </Tab>
+                        <Tab _selected={{ color: "black", fontWeight: "bold" }}>
+                            Activity
+                        </Tab>
+                    </TabList>
+
+                    <TabPanels>
+                        <TabPanel>
+                            <SimpleGrid columns={[1, null, 3]} spacing="40px">
+                                {listingLoading &&
+                                    [...Array(20)].map(() => (
+                                        <Skeleton isLoaded={!listingLoading}>
+                                            <Box height={400}></Box>
+                                        </Skeleton>
+                                    ))}
+                                {listings?.map((item) => (
+                                    <Link
+                                        href={`/collections/${"0x1C552ebF58F6AEefaC40adf3bfD72647C169F736"}/${
+                                            item.id
+                                        }`}
+                                    >
+                                        <Box cursor={"pointer"}>
+                                            <ListingItem
+                                                item={item}
+                                            ></ListingItem>
+                                        </Box>
+                                    </Link>
+                                ))}
+                            </SimpleGrid>
+                        </TabPanel>
+                        <TabPanel>
+                            <Box w={1000} overflowX="scroll">
+                                {renderLineChart}
                             </Box>
-                        </Link>
-                    ))}
-                </SimpleGrid>
+                        </TabPanel>
+                    </TabPanels>
+                </Tabs>
             </Container>
         </>
     );
 };
+const data = [
+    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
+    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
+    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
+    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
+    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
+    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
+    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
+    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
+    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
+    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
+    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
+    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
+    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
+    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
+    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
+    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
+    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
+    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
+    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
+    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
+    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
+];
+
+const renderLineChart = (
+    <ComposedChart width={800} height={300} data={data}>
+        <defs>
+            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#9DB8C8" stopOpacity={0.1} />
+                <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.1} />
+            </linearGradient>
+        </defs>
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <CartesianGrid vertical={false} stroke="#DDD" />
+
+        <Line
+            type="monotone"
+            strokeLinecap="round"
+            strokeWidth={2}
+            dataKey="uv"
+            stroke="#748E9C"
+            dot={false}
+            legendType="none"
+        />
+        <Area
+            type="monotone"
+            dataKey="uv"
+            stroke={false}
+            strokeWidth={2}
+            fillOpacity={1}
+            fill="url(#colorUv)"
+        />
+    </ComposedChart>
+);
 
 const CollectionHeader = ({
     collection,
