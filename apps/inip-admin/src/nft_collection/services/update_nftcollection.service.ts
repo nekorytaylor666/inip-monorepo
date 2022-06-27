@@ -6,53 +6,22 @@ import {
   ListingAdapter,
   ListingAdapterDocument,
 } from 'src/mongoose/listing_metadata.model';
-// import { z } from 'zod';
 import { NFTCollectionDocument } from '../model/nft_collection.model';
 
 @Injectable()
-export class UpdateMarketPlaceService {
+export class UpdateNftcollection {
   constructor(
     @InjectModel(ListingAdapter.name)
     private listingAdapterModel: Model<ListingAdapterDocument>,
     @InjectModel(NFTCollection.name)
     private nftCollectionModel: Model<NFTCollectionDocument>,
-  ) {
-    this.init();
-  }
-
-  async init() {
-    const sdk = new ThirdwebSDK('rinkeby');
-    const marketplaceContract = sdk.getMarketplace(
-      '0x3662Fff4Ecc063d3Fb1B17A0137896fb4bf3276F',
-    );
-
-    const listings = await marketplaceContract.getAllListings();
-    this.updateAllNftCollection(listings.map((e) => e.assetContractAddress));
-
-    const bulk =
-      this.listingAdapterModel.collection.initializeUnorderedBulkOp();
-    for (const listing of listings) {
-      bulk
-        .find({
-          id: listing.id,
-        })
-        .upsert()
-        .update({
-          $set: listing,
-        });
-    }
-    await bulk.execute();
-    // listins[0].;
-  }
+  ) {}
 
   async updateAllNftCollection(contracts: string[]): Promise<void> {
     const sdk = new ThirdwebSDK('rinkeby');
-    // const _meta = await sdk
-    //   .getNFTCollection('0x1C552ebF58F6AEefaC40adf3bfD72647C169F736')
-    //   .metadata.get();
-    // console.log(_meta);
+
     const allContracts = await sdk.getContractList(
-      '0x408a8fCF014FB04975985f7b418eb4c5F91B911c',
+      '0xECd384AAaDA62eCeD2f0e2BEc6B803611064fca0',
     );
     const myAllNftCollections = allContracts
       .filter((e) => e.contractType == 'nft-collection')
@@ -67,10 +36,9 @@ export class UpdateMarketPlaceService {
       };
     });
     const allNftCollections = await Promise.all(collectionPromises);
-    // allNftCollections[0].description;
+
     const bulk = this.nftCollectionModel.collection.initializeUnorderedBulkOp();
     for (const nftCollection of allNftCollections) {
-      // nftCollection.metadata.description
       bulk.find({ address: nftCollection.address }).upsert().update({
         $set: nftCollection,
       });

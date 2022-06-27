@@ -13,6 +13,9 @@ import { NftCollectionModule } from './nft_collection/nft_collection.module';
 import { NFTCollection } from './nft_collection/model/nft_collection.model';
 import { ListingAdapter } from './mongoose/listing_metadata.model';
 import { MeiliSearchModule } from './meiliSearch/meili_search.module';
+import { MetadataModule } from './metadata/metadata.module';
+import { MarketPlaceModule } from './marketplace/marketplace.module';
+import { StatiscticModule } from './statistics/statistic.module';
 
 @Module({
   imports: [
@@ -47,7 +50,7 @@ import { MeiliSearchModule } from './meiliSearch/meili_search.module';
         auth: {
           authenticate: async (email, password) =>
             email == 'toha' && password == '123456789'
-              ? Promise.resolve({ email: 'toha PIDR' })
+              ? Promise.resolve({ email: 'toha' })
               : null,
           cookieName: 'world12',
           cookiePassword: 'testPass',
@@ -58,6 +61,9 @@ import { MeiliSearchModule } from './meiliSearch/meili_search.module';
     MongooseSchemasModule,
     NftCollectionModule,
     MeiliSearchModule,
+    MetadataModule,
+    MarketPlaceModule,
+    StatiscticModule,
   ],
   controllers: [],
   providers: [AppService],
