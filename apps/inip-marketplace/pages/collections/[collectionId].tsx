@@ -50,7 +50,7 @@ const CollectionPage = () => {
         "0x58b363FD0c4cA8020e714D1297611eF72af4110c",
     );
     const router = useRouter();
-    const collectionId = "0x1C552ebF58F6AEefaC40adf3bfD72647C169F736";
+    const collectionId = router.query.collectionId as string;
     console.log(collectionId);
     const nftCollection = useNFTCollection(collectionId ?? "");
     console.log(nftCollection);
@@ -74,7 +74,10 @@ const CollectionPage = () => {
     const getActiveListings = async () => {
         try {
             setListingLoading(true);
-            const list = await marketplace?.getActiveListings();
+            const tokenAddress = nftCollection?.getAddress();
+            const list = await marketplace?.getActiveListings({
+                tokenContract: tokenAddress,
+            });
             setListings(list);
             setListingLoading(false);
         } catch (error) {
@@ -124,9 +127,7 @@ const CollectionPage = () => {
                                     ))}
                                 {listings?.map((item) => (
                                     <Link
-                                        href={`/collections/${"0x1C552ebF58F6AEefaC40adf3bfD72647C169F736"}/${
-                                            item.id
-                                        }`}
+                                        href={`/collections/${collectionId}/${item.id}`}
                                     >
                                         <Box cursor={"pointer"}>
                                             <ListingItem

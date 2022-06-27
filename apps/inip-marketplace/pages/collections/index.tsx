@@ -26,6 +26,7 @@ import {
     Pagination,
 } from "react-instantsearch-dom";
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
+import Link from "next/link";
 const CollectionsPage = () => {
     const { data, isLoading, isError, error } = useQuery(
         "collections",
@@ -131,7 +132,11 @@ const CollectionItem = ({ collection }: { collection: INFTCollection }) => (
 const CustomSearchBox = connectSearchBox(SearchBox);
 
 const renderCollectionItem = (collection: INFTCollection) => (
-    <CollectionItem collection={collection}></CollectionItem>
+    <Link href={`/collections/${collection.address}`}>
+        <Box cursor={"pointer"}>
+            <CollectionItem collection={collection}></CollectionItem>
+        </Box>
+    </Link>
 );
 const Hits: React.FC = ({ hits, ...props }: { hits: any[] }) => (
     <SimpleGrid columns={"3"} gap={"8"} {...props}>
@@ -140,9 +145,13 @@ const Hits: React.FC = ({ hits, ...props }: { hits: any[] }) => (
 );
 const CustomHits = connectHits(Hits);
 
-const Hit = ({ hit }) => (
+const Hit = ({ hit }: { hit: INFTCollection }) => (
     <>
-        <CollectionItem collection={hit} />
+        <Link href={`/collections/${hit.address}`}>
+            <Box cursor={"pointer"}>
+                <CollectionItem collection={hit} />
+            </Box>
+        </Link>
     </>
 );
 

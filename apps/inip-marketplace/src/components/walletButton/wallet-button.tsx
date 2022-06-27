@@ -13,12 +13,13 @@ import { truncateString } from "src/utils/helpers";
 import Web3 from "web3";
 import eth from "@public/icons/header/eth.svg";
 import Image from "next/image";
+import { ethers } from "ethers";
 
 export const ConnectWalletButton: React.FC = () => {
     const connectWithMetamask = useMetamask();
     const address = useAddress();
     const disconnect = useDisconnect();
-    const [balance, setBalance] = useState(-1);
+    const [balance, setBalance] = useState("");
 
     useEffect(() => {
         getBalance();
@@ -29,7 +30,8 @@ export const ConnectWalletButton: React.FC = () => {
             const web3 = new Web3(window.ethereum);
             if (address !== undefined) {
                 const balance = await web3.eth.getBalance(address);
-                setBalance(parseInt(balance));
+                const balanceInEth = ethers.utils.formatEther(balance);
+                setBalance(balanceInEth);
             }
         }
     };

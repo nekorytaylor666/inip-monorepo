@@ -13,13 +13,17 @@ import Head from "next/head";
 import "../public/css/style.css";
 import { NextPage } from "next";
 import Layout from "@components/layout/default-layout";
-
+import { initializeAlchemy, Network } from "@alch/alchemy-sdk";
 type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode;
 };
 
 type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout;
+};
+const chainRpc = {
+    [ChainId.Rinkeby]:
+        "https://eth-rinkeby.alchemyapi.io/v2/uCzPq-Nhfd_Ne3eu5OYRqkS8ziXyv17x",
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
@@ -37,10 +41,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
         <ChakraProvider theme={theme}>
             <StyledThemeProvider>
                 <ThirdwebProvider
-                    chainRpc={{
-                        [ChainId.Rinkeby]:
-                            "https://rinkeby.infura.io/v3/6ecb82aeefcc47fe86b238ecca88afba",
-                    }}
+                    chainRpc={chainRpc}
                     autoConnect
                     desiredChainId={ChainId.Rinkeby}
                 >
