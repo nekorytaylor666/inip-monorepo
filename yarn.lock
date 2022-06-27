@@ -3749,6 +3749,11 @@
   resolved "https://registry.yarnpkg.com/@thirdweb-dev/contracts/-/contracts-2.3.14.tgz#46cb582b5593a4f2fd49d953894729aa6ec42f35"
   integrity sha512-aQ7NGvU+1JDLh1Ha13m3DQpqfhmHzJUcbOOS93I0nKJOLKNUaQL2oQpg+3GBpMzZWIsScDztlfqwJ3wltaNYgQ==
 
+"@thirdweb-dev/contracts@2.3.15-0":
+  version "2.3.15-0"
+  resolved "https://registry.yarnpkg.com/@thirdweb-dev/contracts/-/contracts-2.3.15-0.tgz#9ea4aa8500b213356acc1772c18222c8085087c0"
+  integrity sha512-hm6qK5GSp776ctXV3NeA6jvHHfkolJjTLXQ/ed9gZVBLVD5Bl1ofLRZ30wG3lf8eMMxFoJCEqOsoQlB95M+qOw==
+
 "@thirdweb-dev/react@^2.2.6":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@thirdweb-dev/react/-/react-2.4.2.tgz#f816317bb4369e90e57e420c0574058615c76140"
@@ -3770,6 +3775,23 @@
   integrity sha512-jo868pMYCg80VZDJvLn/R4rssHvvZGg/e5AtPLSnFjqH8vJ3ClX9Wtn0r6k6M3Sn64yi9dNiO3uA3GBDIyQ2EQ==
   dependencies:
     "@thirdweb-dev/contracts" "2.3.14"
+    "@web-std/file" "^3.0.0"
+    cbor "^8.1.0"
+    cross-fetch "^3.1.5"
+    eventemitter3 "^4.0.7"
+    fast-deep-equal "^3.1.3"
+    form-data "^4.0.0"
+    multihashes "^4.0.3"
+    tiny-invariant "^1.2.0"
+    uuid "^8.3.2"
+    zod "^3.11.6"
+
+"@thirdweb-dev/sdk@^2.3.19":
+  version "2.3.19"
+  resolved "https://registry.yarnpkg.com/@thirdweb-dev/sdk/-/sdk-2.3.19.tgz#290a202f58d96d365ab7d4b3f60cd36baa45f5ef"
+  integrity sha512-NHOXmoedQRPEImQ9QocXhu+h0AH6Nqie3E/E+eQ/Rw3uGqfyyjnyCzSOJ+RqYMbIEZWV/mE/PkoD5RzjR8w27w==
+  dependencies:
+    "@thirdweb-dev/contracts" "2.3.15-0"
     "@web-std/file" "^3.0.0"
     cbor "^8.1.0"
     cross-fetch "^3.1.5"
