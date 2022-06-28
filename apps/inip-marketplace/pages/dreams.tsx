@@ -35,7 +35,7 @@ export interface DreamsNFT {
 
 const Dreams = () => {
 
-    const [showCriteria, setShowCriteria] = useState(false);
+    const [showCriteria, setShowCriteria] = useState(true);
 
     const dreams: DreamsNFT[] = [
         {

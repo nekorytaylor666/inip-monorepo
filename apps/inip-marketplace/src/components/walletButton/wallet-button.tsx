@@ -14,7 +14,7 @@ import Web3 from "web3";
 import eth from "@public/icons/header/eth.svg";
 import Image from "next/image";
 
-export const ConnectWalletButton: React.FC = (isTransparent : boolean) => {
+export const ConnectWalletButton: React.FC = ({isTransparent}) => {
     const connectWithMetamask = useMetamask();
     const address = useAddress();
     const disconnect = useDisconnect();

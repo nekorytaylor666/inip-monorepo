@@ -25,32 +25,29 @@ export const Footer: React.FC = () => {
         <Center 
             bg={'#394348'} 
             py={10}
-            p={'100px 0 120px'}
+            p={'100px 200px 120px'}
             color={'rgba(255, 255, 255, 0.5)'}
             flexDirection={'column'}
         >
-            <Box
-                // maxWidth={'80%'}
-                width={'80%'}
-            >
+            <Box width={'100%'}>
                 <Flex
                     justifyContent={'space-between'}
                 >
-                    <Box
-                    >
+                    <Box>
                         <Heading
                             color={'#fff'}
-                        >Be with us.</Heading>
+                        >
+                            Be with us.
+                        </Heading>
                         <Text
                             maxWidth={'500px'}
-                        >Subscribe our mailing list to get daily news about Charity Projects, 
-                            Dreams, Kindness Rating, Community and other stuff.</Text>    
+                        >
+                            Subscribe our mailing list to get daily news about Charity Projects, 
+                            Dreams, Kindness Rating, Community and other stuff.
+                        </Text>    
                     </Box>
 
-                    <HStack
-                        color={'white'}
-                    >
-
+                    <HStack color={'white'}>
                         <Square
                             size={'40px'}
                             border={'2px solid #FFFFFF'}
@@ -64,11 +61,8 @@ export const Footer: React.FC = () => {
                         >
                             RU
                         </Square>
-
                     </HStack>
-                    
                 </Flex>
-
                 <Flex
                     justifyContent={'space-between'}
                     minHeight={'63px'}
@@ -121,7 +115,8 @@ export const Footer: React.FC = () => {
 
             <Flex
                 pt={'100px'}
-                width={'80%'}
+                width={'100%'}
+                gap={"25px"}
                 justifyContent={'space-between'}
             >
                 <Flex

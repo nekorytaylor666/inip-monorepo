@@ -33,6 +33,7 @@ import CustomLayout from "../src/components/layout/custom-layout";
 import sky from "@public/icons/dreams-come-true/sky.jpg";
 import stars from "@public/icons/dreams-come-true/stars.svg";
 import play from "@public/icons/dreams-come-true/play.svg";
+import Partners from "@components/partners";
 
 const DreamsComeTrue = () => {
 
@@ -62,6 +63,10 @@ const DreamsComeTrue = () => {
             img: henocyde,
         },
     ];
+
+
+    const partners = [0, 1, 2, 3, 4, 5];
+
 
     return (
         <Box>
@@ -269,56 +274,7 @@ const DreamsComeTrue = () => {
 
                 <Box p={"120px 0"}>
                     <Heading fontFamily={"QtOpt"} fontWeight={700} color={"#365262"}>our partners.</Heading>
-                    <Flex 
-                        gap={"40px"}
-                        w={"100%"}
-                        scrollSnapType={"x mandatory"}
-                        overflow={"scroll"}
-                        p={"30px 0"}
-                    >
-                        <Center
-                            minW={"239px"}
-                            minH={"139px"}
-                            bg={"radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.4) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"}
-                        >
-
-                        </Center>
-                        <Center
-                            minW={"239px"}
-                            minH={"139px"}
-                            bg={"radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.4) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"}
-                        >
-
-                        </Center>
-                        <Center
-                            minW={"239px"}
-                            minH={"139px"}
-                            bg={"radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.4) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"}
-                        >
-
-                        </Center>
-                        <Center
-                            minW={"239px"}
-                            minH={"139px"}
-                            bg={"radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.4) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"}
-                        >
-
-                        </Center>
-                        <Center
-                            minW={"239px"}
-                            minH={"139px"}
-                            bg={"radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.4) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"}
-                        >
-
-                        </Center>
-                        <Center
-                            minW={"239px"}
-                            minH={"139px"}
-                            bg={"radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.4) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"}
-                        >
-
-                        </Center>
-                    </Flex>
+                    <Partners partners={partners}/>
                 </Box>
             </Box>
         </Box>
