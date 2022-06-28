@@ -32,6 +32,7 @@ const CollectionsPage = () => {
         "collections",
         getCollections,
     );
+
     if (isLoading) {
         return <div>loading</div>;
     }

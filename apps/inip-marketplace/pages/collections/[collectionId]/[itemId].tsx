@@ -25,16 +25,18 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import eth from "@public/icons/homepage/ethereum.svg";
 import Image from "next/image";
-import whiteEth from "@public/icons/header/eth.svg";
-
+import { SellTokenEntityInterface } from "@inip/types";
+import { useMutation } from "react-query";
+import { api } from "src/api/axios";
 const ItemPage = () => {
     const router = useRouter();
     const itemId = router.query.itemId as string;
     const collectionId = router.query.collectionId as string;
     const nftCollection = useNFTCollection(collectionId);
     const marketplace = useMarketplace(
-        "0x58b363FD0c4cA8020e714D1297611eF72af4110c",
+        "0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f",
     );
+
     const [listing, setListings] = useState<
         (AuctionListing | DirectListing) | undefined
     >();
@@ -69,10 +71,26 @@ const ItemPage = () => {
     }
 
     const buyoutListing = async () => {
-        setLoadingBuying(true);
-        await marketplace?.buyoutListing(itemId, 1);
-        router.push("/collections/123");
-        setLoadingBuying(false);
+        try {
+            setLoadingBuying(true);
+            const buyoutRes = await marketplace?.buyoutListing(itemId, 1);
+            if (!buyoutRes) throw "Failed to buy";
+            const sellData: SellTokenEntityInterface = {
+                buyoutCurrencyValuePerToken:
+                    listing.buyoutCurrencyValuePerToken,
+                buyoutPrice: listing.buyoutPrice,
+                contractAddress: buyoutRes?.receipt.contractAddress ?? "",
+                from: buyoutRes?.receipt.from,
+                to: buyoutRes?.receipt.to,
+                tokenId: itemId,
+                transactionHash: buyoutRes?.receipt.transactionHash,
+            };
+            api.post("/sell_token/sell", sellData);
+            router.push("/collections/123");
+            setLoadingBuying(false);
+        } catch (error) {
+            console.log(error);
+        }
     };
     return (
         <>

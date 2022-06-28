@@ -4,6 +4,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "@definitions/chakra/theme";
 import { StyledThemeProvider } from "@definitions/styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
 // import { ThirdwebWeb3Provider } from "@3rdweb/hooks";
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import "regenerator-runtime/runtime";
@@ -14,16 +16,13 @@ import "../public/css/style.css";
 import { NextPage } from "next";
 import Layout from "@components/layout/default-layout";
 import { initializeAlchemy, Network } from "@alch/alchemy-sdk";
+import { chainRpc } from "src/api/thirdweb";
 type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode;
 };
 
 type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout;
-};
-const chainRpc = {
-    [ChainId.Rinkeby]:
-        "https://eth-rinkeby.alchemyapi.io/v2/uCzPq-Nhfd_Ne3eu5OYRqkS8ziXyv17x",
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
@@ -46,7 +45,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                     desiredChainId={ChainId.Rinkeby}
                 >
                     <QueryClientProvider client={queryClient}>
-                        <Hydrate state={pageProps.dehydratedState}>
+                        <>
                             <Head>
                                 <link href="../public/fonts/Beauty-Swing.otf" />
                                 <link href="../public/fonts/Inter-Light.ttf" />
@@ -60,7 +59,8 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                                 />
                             </Head>
                             {getLayout(<Component {...pageProps} />)}
-                        </Hydrate>
+                            <ReactQueryDevtools initialIsOpen={false} />
+                        </>
                     </QueryClientProvider>
                 </ThirdwebProvider>
             </StyledThemeProvider>
