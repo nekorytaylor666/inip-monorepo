@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import { Model } from 'mongoose';
+import { marketPlaceAddress } from 'src/main';
 import {
   ListingAdapter,
   ListingAdapterDocument,
@@ -21,15 +22,12 @@ export class UpdateMarketPlaceService {
 
   async init() {
     const sdk = new ThirdwebSDK('rinkeby');
-    const marketplaceContract = sdk.getMarketplace(
-      '0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f',
-    );
+    const marketplaceContract = sdk.getMarketplace(marketPlaceAddress);
 
     const listings = await marketplaceContract.getAllListings();
     this.updateNftcollection.updateAllNftCollection(
       listings.map((e) => e.assetContractAddress),
     );
-    console.log(listings);
 
     const bulk =
       this.listingAdapterModel.collection.initializeUnorderedBulkOp();
@@ -37,12 +35,15 @@ export class UpdateMarketPlaceService {
       bulk
         .find({
           id: listing.id,
+          assetContractAddress: listing.assetContractAddress,
         })
         .upsert()
         .update({
           $set: listing,
         });
     }
+    if (!bulk.batches.length) return;
+
     await bulk.execute();
   }
 }

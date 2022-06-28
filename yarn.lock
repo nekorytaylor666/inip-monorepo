@@ -3744,6 +3744,11 @@
   resolved "https://registry.yarnpkg.com/@thirdweb-dev/contracts/-/contracts-2.3.15-0.tgz#9ea4aa8500b213356acc1772c18222c8085087c0"
   integrity sha512-hm6qK5GSp776ctXV3NeA6jvHHfkolJjTLXQ/ed9gZVBLVD5Bl1ofLRZ30wG3lf8eMMxFoJCEqOsoQlB95M+qOw==
 
+"@thirdweb-dev/contracts@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@thirdweb-dev/contracts/-/contracts-2.4.0.tgz#081e31d49deda002d0cb713f8d31be69c3816593"
+  integrity sha512-ItYPCuiPPyI1RY5QzrxFSL7/xxVm2OuCWZ07ObsDI4e5q9dZt///UlO8KY9jjoDOTaOQ6W/6CkvClFJ4kRRW1w==
+
 "@thirdweb-dev/react@^2.2.6":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@thirdweb-dev/react/-/react-2.4.2.tgz#f816317bb4369e90e57e420c0574058615c76140"

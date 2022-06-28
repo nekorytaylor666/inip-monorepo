@@ -10,7 +10,7 @@ import { MongooseSchemasModule } from './mongoose/mongoose.module';
 import { AdminModule } from '@adminjs/nestjs';
 import { ScheduleModule } from '@nestjs/schedule';
 import { NftCollectionModule } from './nft_collection/nft_collection.module';
-import { NFTCollection } from './nft_collection/model/nft_collection.model';
+import { NFTCollectionEntity } from './nft_collection/model/nft_collection.model';
 import { ListingAdapter } from './mongoose/listing_metadata.model';
 import { MeiliSearchModule } from './meiliSearch/meili_search.module';
 import { MetadataModule } from './metadata/metadata.module';
@@ -30,12 +30,12 @@ import { StatiscticModule } from './statistics/statistic.module';
       imports: [MongooseSchemasModule],
       inject: [
         getModelToken('Token'),
-        getModelToken('NFTCollection'),
+        getModelToken('NFTCollectionEntity'),
         getModelToken('ListingAdapter'),
       ],
       useFactory: (
         tokenModel: Model<Token>,
-        nftColelctionModel: Model<NFTCollection>,
+        nftColelctionModel: Model<NFTCollectionEntity>,
         listingAdapterModel: Model<ListingAdapter>,
       ) => ({
         adminJsOptions: {

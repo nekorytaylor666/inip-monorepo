@@ -1,26 +1,27 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import { ThirdwebSDK } from '@thirdweb-dev/sdk';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { ContractMetadata, ThirdwebSDK } from '@thirdweb-dev/sdk';
+import { BigNumber } from 'ethers';
+import { Model } from 'mongoose';
+import { marketPlaceAddress } from 'src/main';
+import { ListingAdapter } from 'src/mongoose/listing_metadata.model';
+import { NFTCollectionEntity } from '../model/nft_collection.model';
+import { NftCollectionFloorPriceService } from '../services/get_floor_price.service';
 
-@Controller()
+const sdk = new ThirdwebSDK('rinkeby');
+@Controller('marketplace')
 export class NftCollectionController {
-  @Get('floorprice/:address')
-  async getFloorPrice(@Param('address') address: string) {
-    try {
-      const sdk = new ThirdwebSDK('rinkeby');
-      // const nftCollection = sdk.getNFTCollection(address);
-      // const yee = await sdk.getMarketplace('').buyoutListing('');
-      // yee.receipt.contractAddress
-      const allListing = await sdk
-        .getMarketplace('0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f')
-        .getAllListings();
-      console.log(allListing);
-      // allListing[0].buyoutCurrencyValuePerToken
-    } catch (e) {
-      console.log(e);
-    }
-    // const allTokens = await nftCollection.getAll();
-    // (await sdk.getTokenDrop('').claimConditions.getAll()).;
-    // const tokens = allTokens.map((e) => e.metadata.id);
-    // allTokens.reduce(()=>{}, allTokens[0])
+  constructor(
+    @InjectModel(NFTCollectionEntity.name)
+    private nftCollectionModel: Model<NFTCollectionEntity>,
+
+    @InjectModel(ListingAdapter.name)
+    private listingAdapterModel: Model<ListingAdapter>,
+    private nftCollectionFloorPriceService: NftCollectionFloorPriceService,
+  ) {}
+
+  @Post()
+  async createCollectionListing() {
+    // await sdk.getMarketplace(marketPlaceAddress).direct.createListing
   }
 }

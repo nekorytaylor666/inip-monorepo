@@ -19,7 +19,6 @@ export class SellTokenController {
     body: SellTokenEntity,
   ) {
     const check = await this.sellTokenEnityModel.create(body);
-    console.log(check);
     return check;
   }
 }
