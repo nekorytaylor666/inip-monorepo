@@ -18,17 +18,26 @@ import {
     Checkbox
 } from "@chakra-ui/react";
 import henocyde from "@public/icons/homepage/henocyde.jpg";
-import eth from "@public/icons/homepage/ethereum.svg";
 import upward from "@public/icons/upward.svg";
 import downward from "@public/icons/downward.svg";
+import DreamsLayout from "@components/layout/dreams-layout";
+import DreamsCollection from "@components/dreams-collection";
 
 
+export interface DreamsNFT {
+    id: string,
+    author: string,
+    desc: string,
+    price: number,
+    name: string
+    img: StaticImageData,
+}
 
 const Dreams = () => {
 
     const [showCriteria, setShowCriteria] = useState(false);
 
-    const dreams = [
+    const dreams: DreamsNFT[] = [
         {
             id: "1",
             author: "Binsky",
@@ -114,9 +123,8 @@ const Dreams = () => {
             </Box>
 
             <Box 
-                mt={"180px"}
-                pb={"150px"}    
-                p={"0 200px"}
+                mt={"180px"}  
+                p={"0 200px 300px"}
             >
                 <Flex
                     pb={"30px"}
@@ -159,68 +167,20 @@ const Dreams = () => {
                         All dreams
                     </Box>
                 </Flex>
-                <Flex
-                    flexWrap={"wrap"}
-                    gap={"45px"}
-                >
-                    {dreams.map((item, index) => {
-
-                        return <Box 
-                                key={item.id}
-                                minH={"647px"}
-                                maxW={"465px"}
-                            >
-                                <Image src={item.img}/>
-                                <Flex 
-                                    pt={"10px"} 
-                                    justifyContent={"space-between"}
-                                    color={"#1c2529"}
-                                    alignItems={"center"}
-                                >
-                                    <Heading fontSize={"20px"} fontWeight={700} fontFamily={"QtOpt"}>{item.name}</Heading>
-                                    <Flex
-                                        fontWeight={600}
-                                        fontFamily={"Inter"}
-                                        fontSize={"24px"}
-                                        gap={"12px"}
-                                    >
-                                        5468
-                                        <Image src={eth}/>
-                                    </Flex>
-                                </Flex>
-                                <Text
-                                    color={"#979391"}
-                                    fontWeight={500}
-                                    fontFamily={"QtOpt"}
-                                >
-                                    {item.desc}
-                                </Text>
-                                <Button
-                                    w={"100%"}
-                                    minH={"74px"}
-                                    borderRadius={0}
-                                    color={"#fff"}
-                                    fontSize={"20px"}
-                                    fontWeight={700}
-                                    fontFamily={"Inter"}
-                                    bg={
-                                        (index + 1) % 3 === 1 
-                                        ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
-                                        : (
-                                            (index + 1) % 3 === 2
-                                            ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #9DB1BC"
-                                            : "radial-gradient(43.08% 63.75% at 50% 50%, rgba(240, 249, 255, 0.5) 0%, rgba(241, 250, 255, 0) 100%), #B8BEC1"
-                                        )
-                                    }
-                                >
-                                    Succeed by {item.author}
-                                </Button>
-                            </Box>
-                    })}
-                </Flex>
+                <DreamsCollection dreams={dreams}/>
             </Box>
         </Box>
     );
+}
+
+
+Dreams.getLayout = function getLayout(page: ReactElement){
+
+    return <DreamsLayout>
+        <>
+            {page}
+        </>
+    </DreamsLayout>;
 }
 
 

@@ -49,12 +49,6 @@ import { useQuery } from "react-query";
 import { sdk } from "src/api/thirdweb";
 
 const CollectionPage = () => {
-    const marketplace = useMarketplace(
-        "0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f",
-    );
-    const router = useRouter();
-    const collectionId = router.query.collectionId as string;
-
     return (
         <>
             <CollectionHeader></CollectionHeader>
@@ -363,43 +357,50 @@ const NFTItemsGrid = () => {
 
     const router = useRouter();
     const collectionId = router.query.collectionId as string;
+    const collection = useNFTCollection(collectionId);
+    const marketplace = useMarketplace(
+        "0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f",
+    );
 
-    const {
-        data,
-        isLoading: isListingLoading,
-        isError: isMetadataError,
-        error,
-    } = useQuery(`collectionMeta:${collectionId}`, async () => {
-        const tokenContract = sdk.getNFTCollection(collectionId);
-        console.log(tokenContract);
-        const res = await marketplace?.getActiveListings({ tokenContract });
-        console.log("Listings res:", res);
-        return res;
-    });
+    const [listings, setListings] = useState([]);
+    const [isListingsLoading, setIsListingsLoading] = useState(false);
+    const getActiveListing = async () => {
+        setIsListingsLoading(true);
+        const tokenContract = collection?.getAddress();
+        const listings = await sdk
+            .getMarketplace("0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f")
+            .getActiveListings({
+                tokenContract,
+            });
+        setListings(listings);
+        setIsListingsLoading(false);
+    };
+    useEffect(() => {
+        getActiveListing();
+    }, []);
 
-    if (isListingLoading || !data)
+    if (isListingsLoading || !listings)
         return (
-            <>
+            <SimpleGrid columns={[1, null, 3]} spacing="40px">
                 {[...Array(20)].map(() => (
-                    <Skeleton isLoaded={!isListingLoading}>
+                    <Skeleton isLoaded={!isListingsLoading}>
                         <Box height={400}></Box>
                     </Skeleton>
                 ))}
-            </>
+            </SimpleGrid>
         );
 
-    if (isMetadataError) return <Box>{error}</Box>;
+    // if (isMetadataError) return <Box>{error}</Box>;
 
     return (
         <SimpleGrid columns={[1, null, 3]} spacing="40px">
-            {/* {listings?.map((item) => (
+            {listings?.map((item) => (
                 <Link href={`/collections/${collectionId}/${item.id}`}>
                     <Box cursor={"pointer"}>
                         <ListingItem item={item}></ListingItem>
                     </Box>
                 </Link>
-            ))} */}
-            {JSON.stringify(data)}
+            ))}
         </SimpleGrid>
     );
 };

@@ -9,4 +9,8 @@ export interface INFTCollection {
     seller_fee_basis_points: number;
     fee_recipient: string;
   };
+  floorPrice?: {
+    type: string;
+    hex: string;
+  };
 }

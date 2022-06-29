@@ -1,10 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { INFTCollection } from '@inip/types';
-export type NFTCollectionDocument = NFTCollection & Document;
+import { BigNumber } from 'ethers';
+export type NFTCollectionEntityDocument = NFTCollectionEntity & Document;
 
 @Schema()
-export class NFTCollection implements INFTCollection {
+export class NFTCollectionEntity implements INFTCollection {
   @Prop()
   address: string;
 
@@ -28,6 +29,15 @@ export class NFTCollection implements INFTCollection {
     seller_fee_basis_points: number;
     fee_recipient: string;
   };
+
+  @Prop({
+    type: {
+      type: String,
+      hex: String,
+    },
+  })
+  floorPrice?: BigNumber;
 }
 
-export const NFTCollectionSchema = SchemaFactory.createForClass(NFTCollection);
+export const NFTCollectionEntitySchema =
+  SchemaFactory.createForClass(NFTCollectionEntity);
