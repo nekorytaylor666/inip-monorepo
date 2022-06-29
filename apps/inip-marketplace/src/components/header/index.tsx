@@ -185,12 +185,18 @@ export const Header: React.FC = () => {
             </Box>
 
             <Flex gap={"18px"}>
-                <Square w={"52px"} h={"52px"} border={"1px solid #ECECEC"}>
-                    <Image src={account} />
-                </Square>
-                <ConnectWalletButton
-                    isTransparent={false}
-                ></ConnectWalletButton>
+                <Link href="/profile">
+                    <a>
+                        <Square
+                            w={"52px"}
+                            h={"52px"}
+                            border={"1px solid #ECECEC"}
+                        >
+                            <Image src={account} />
+                        </Square>
+                    </a>
+                </Link>
+                <ConnectWalletButton isTransparent={false} />
             </Flex>
         </Center>
     );
@@ -225,7 +231,7 @@ export const DreamHeader: React.FC = () => {
                 alignItems={"center"}
             >
                 <Flex gap={"40px"}>
-                    <Link href="/">
+                    <Link href="/dreams-come-true">
                         <Box fontFamily={"SangSunrise"} fontWeight={700}>
                             <a>DREAMS COME TRUE</a>
                         </Box>
@@ -240,9 +246,7 @@ export const DreamHeader: React.FC = () => {
                     <Square w={"52px"} h={"52px"} border={"1px solid #ececec"}>
                         <Image src={white_account} />
                     </Square>
-                    <ConnectWalletButton
-                        isTransparent={true}
-                    ></ConnectWalletButton>
+                    <ConnectWalletButton isTransparent />
                 </Flex>
             </Flex>
         </Center>

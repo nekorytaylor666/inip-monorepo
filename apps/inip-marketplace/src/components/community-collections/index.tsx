@@ -26,8 +26,6 @@ const CommunityCollections = ({communityCollection}: Collection[]) => {
             {collection.map((item) => {
 
                 return <CollectionItem key={item.id} item={item} />
-
-                // return <Box>{item.name}</Box>
             })}
         </Flex>
     );

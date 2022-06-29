@@ -24,9 +24,9 @@ import Link from "next/link";
 
 
 
-const DreamsCollection = (dreams: DreamsNFT[]) => {
+const DreamsCollection = (props) => {
 
-    const [dreamsNFT, setDreamsNFT] = useState([dreams]); 
+    const [dreamsNFT, setDreamsNFT] = useState(props.dreams); 
 
     return (
         
@@ -39,9 +39,10 @@ const DreamsCollection = (dreams: DreamsNFT[]) => {
                     return <Box 
                             key={item.id}
                             minH={"647px"}
+                            maxH={"680px"}
                             maxW={"465px"}
                         >
-                            <Image src={item.img}/>
+                            <Image width={"500px"} height={"500px"} src={item.img.src}/>
                             <Flex 
                                 pt={"10px"} 
                                 justifyContent={"space-between"}
@@ -93,7 +94,3 @@ const DreamsCollection = (dreams: DreamsNFT[]) => {
 }
 
 export default DreamsCollection;
-
-
-
-
