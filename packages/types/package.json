@@ -17,5 +17,9 @@
     "eslint-config-custom": "*",
     "tsconfig": "*",
     "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "@thirdweb-dev/sdk": "^2.3.19",
+    "ethers": "^5.6.9"
   }
 }

@@ -6,16 +6,16 @@ import {
   ListingAdapterDocument,
 } from 'src/mongoose/listing_metadata.model';
 import {
-  NFTCollection,
-  NFTCollectionDocument,
+  NFTCollectionEntity,
+  NFTCollectionEntityDocument,
 } from 'src/nft_collection/model/nft_collection.model';
 import { meiliSearchClient } from '../meili_search.module';
 
 @Injectable()
 export class MeiliSearchService {
   constructor(
-    @InjectModel(NFTCollection.name)
-    private nftCollectionModel: Model<NFTCollectionDocument>,
+    @InjectModel(NFTCollectionEntity.name)
+    private nftCollectionModel: Model<NFTCollectionEntityDocument>,
     @InjectModel(ListingAdapter.name)
     private listingAdapterDocumentnModel: Model<ListingAdapterDocument>,
   ) {
@@ -23,15 +23,9 @@ export class MeiliSearchService {
   }
 
   async init() {
-    //  await this.nftCollectionModel.find({});
-    // console.log(docs);
     const _cursor = this.nftCollectionModel.collection.find();
     const docs = await _cursor.toArray();
     _cursor.close();
-    // await meiliSearchClient.index('collection').deleteAllDocuments();
-    // ;
-    // ;
-    // ;
 
     const _dataAdded = docs.map((data) => {
       const e = data;
@@ -49,8 +43,5 @@ export class MeiliSearchService {
       searchableAttributes: ['name', 'address'],
       distinctAttribute: 'id',
     });
-    console.log(_dataAdded);
-    // await meiliSearchClient.index('collection').addDocuments(docs);
-    console.log('DATA ADDED');
   }
 }

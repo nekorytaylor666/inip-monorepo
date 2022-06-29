@@ -1,44 +1,40 @@
-import { Controller, Get, Param, Post, Req } from '@nestjs/common';
+import { Controller, Get, Inject, Param, Post } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { NFTCollection } from '@thirdweb-dev/sdk';
 import { Model } from 'mongoose';
+import { UpdateMarketPlaceService } from 'src/marketplace/services/update_marektplace.service';
 import {
   ListingAdapter,
   ListingAdapterDocument,
 } from 'src/mongoose/listing_metadata.model';
-import { NFTCollectionDocument } from '../model/nft_collection.model';
-import { UpdateMarketPlaceService } from '../services/update_market_place.service';
+import {
+  NFTCollectionEntity,
+  NFTCollectionEntityDocument,
+} from 'src/nft_collection/model/nft_collection.model';
 
 @Controller()
 export class MetaDataController {
   constructor(
-    @InjectModel(NFTCollection.name)
-    private nftCollectionModel: Model<NFTCollectionDocument>,
+    @InjectModel(NFTCollectionEntity.name)
+    private nftCollectionModel: Model<NFTCollectionEntityDocument>,
     @InjectModel(ListingAdapter.name)
     private listingAdapterDocumentnModel: Model<ListingAdapterDocument>,
-    private updateMarketPlaceService: UpdateMarketPlaceService,
   ) {}
 
   @Get('nft_collection')
-  async getNft_collection(): Promise<NFTCollectionDocument[]> {
+  async getNft_collection(): Promise<NFTCollectionEntityDocument[]> {
     return this.nftCollectionModel.find();
   }
 
-  @Post('update')
-  async update(): Promise<NFTCollectionDocument[]> {
-    this.updateMarketPlaceService.init();
-    return null;
-  }
-
   @Get('listings')
-  async getListings(): Promise<NFTCollectionDocument[]> {
+  async getListings(): Promise<NFTCollectionEntityDocument[]> {
     return this.listingAdapterDocumentnModel.find();
   }
 
   @Get('nft_collection/:id')
   async getNft_collection_id(
     @Param('id') id: string,
-  ): Promise<NFTCollectionDocument[]> {
+  ): Promise<NFTCollectionEntityDocument[]> {
     return this.nftCollectionModel.findOne({
       id,
     });
