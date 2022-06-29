@@ -25,6 +25,8 @@ import { Collection } from "@components/nftCollection";
 import { Rating } from "../rating/index";
 import world from "@public/icons/homepage/charityWorld.svg";
 import frame from "@public/icons/community/frame.png";
+import Benefits from "@components/benefits";
+import Partners from "@components/partners";
 
 export const Container: React.FC = () => {
     const dreams = [
@@ -159,6 +161,9 @@ export const Container: React.FC = () => {
         <iframe src={"https://www.youtube.com/embed/QhBnZ6NPOY0"} />,
     ];
 
+    const partners = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+
     return (
         <Box mt={"100px"}>
             <Box
@@ -234,10 +239,13 @@ export const Container: React.FC = () => {
                                     HENOCYDE
                                 </Text>
                             </Flex>
-                            {/* <Image src={mainIcon} /> */}
                             <img
                                 src={frame.src}
-                                style={{ minHeight: "620px" }}
+                                style={
+                                    {
+                                        minHeight: "620px", 
+                                        backgroundSize: "100% 100%" 
+                                    }}
                             />
                             <img
                                 src={mainIcon.src}
@@ -293,7 +301,6 @@ export const Container: React.FC = () => {
                                 colorScheme={
                                     "linear-gradient(90deg, #6C8693 -15.57%, #A7C2D3 117.18%)"
                                 }
-                                // bgGradient={"linear-gradient(90deg, #6C8693 -15.57%, #A7C2D3 117.18%)"}
                                 sx={{
                                     div: {
                                         background:
@@ -321,6 +328,7 @@ export const Container: React.FC = () => {
                                     color={"#fff"}
                                     height={"100%"}
                                     width={"100%"}
+                                    borderRadius={0}
                                 >
                                     Contribute
                                 </Button>
@@ -425,7 +433,7 @@ export const Container: React.FC = () => {
                         Explore our Louvre and collect digital art.
                     </Text>
                 </Box>
-                <Collection collection={collection} />
+                <Collection collection={collection}/>
                 <Flex justifyContent={"center"}>
                     <Button
                         background={"rgba(255, 255, 255, 0.1)"}
@@ -450,27 +458,7 @@ export const Container: React.FC = () => {
                         getting better.
                     </Text>
                 </Box>
-                <Flex
-                    gap={"35px"}
-                    justifyContent={"center"}
-                    textAlign={"center"}
-                    color={"#476676"}
-                >
-                    {charity.map((item) => {
-                        return (
-                            <Box key={item.id} maxWidth={"350px"}>
-                                <Image src={item.image} />
-                                <Heading as="h4" fontSize={"20px"} mt={"35px"}>
-                                    {item.title}
-                                </Heading>
-
-                                <Text mt={"15px"} fontWeight={"500"}>
-                                    {item.description}
-                                </Text>
-                            </Box>
-                        );
-                    })}
-                </Flex>
+                <Benefits charity={charity}/>
             </Flex>
 
             <Box flexDirection={"column"} p={"120px 200px 50px"}>
@@ -527,104 +515,11 @@ export const Container: React.FC = () => {
                     </Button>
                 </Flex>
             </Box>
-
-            {/* <Carousel
-                showNavigation
-                slides={videos}
-                goToSlide={0}
-                offsetRadius={2}
-                animationConfig={config.gentle}
-            /> */}
-            {/* <Box
-                p={"100px 0"}
-            >
-                <Carousel 
-                    slides={videos} 
-                    // autoplay={true} 
-                    interval={1000} 
-                    // onSlideChange={callback}
-                    
-                />
-            </Box> */}
-
             <Center flexDirection={"column"} p={"50px 0 150px"}>
                 <Heading fontWeight={900} fontFamily={"SangSunrise"}>
                     our partners.
                 </Heading>
-                <Flex
-                    mt={"50px"}
-                    scrollSnapType={"x mandatory"}
-                    width={"100%"}
-                    height={"250px"}
-                    gap={"30px"}
-                    overflow={"scroll"}
-                >
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                    <Box
-                        minW={"250px"}
-                        height={"160px"}
-                        backgroundColor={"#748E9C"}
-                    ></Box>
-                </Flex>
+                <Partners partners={partners}/>
             </Center>
         </Box>
     );
