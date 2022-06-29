@@ -15,7 +15,13 @@ import eth from "@public/icons/header/eth.svg";
 import Image from "next/image";
 import { ethers } from "ethers";
 
-export const ConnectWalletButton: React.FC = (isTransparent : boolean) => {
+interface ConnectWalletButtonProps {
+    isTransparent: boolean;
+}
+
+export const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({
+    isTransparent,
+}) => {
     const connectWithMetamask = useMetamask();
     const address = useAddress();
     const disconnect = useDisconnect();
@@ -71,12 +77,12 @@ export const ConnectWalletButton: React.FC = (isTransparent : boolean) => {
         <Menu>
             {({ isOpen }) => (
                 <>
-                    <MenuButton 
+                    <MenuButton
                         isActive={isOpen}
                         bg={
                             !isTransparent
-                            ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
-                            : "transparent"
+                                ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
+                                : "transparent"
                         }
                         border={isTransparent ? "1px solid #ececec" : ""}
                     >
@@ -96,8 +102,8 @@ export const ConnectWalletButton: React.FC = (isTransparent : boolean) => {
                                 borderRadius={0}
                                 bg={
                                     !isTransparent
-                                    ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
-                                    : "transparent"
+                                        ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
+                                        : "transparent"
                                 }
                                 aria-label="Search database"
                                 icon={<Image src={eth} />}
