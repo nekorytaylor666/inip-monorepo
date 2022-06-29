@@ -1,14 +1,15 @@
 import React, { CSSProperties } from "react";
-import { 
-    Box, 
-    Flex, 
-    Center, 
-    Heading, 
-    Text, 
-    Input, 
+import {
+    Box,
+    Flex,
+    Center,
+    Heading,
+    Text,
+    Input,
     Button,
     HStack,
     Square,
+    Container,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -17,13 +18,10 @@ import yt from "@public/icons/homepage/yt.svg";
 import twitter from "@public/icons/homepage/twitter.svg";
 import inst from "@public/icons/homepage/instagram.svg";
 
-
 export const Footer: React.FC = () => {
-    
-
     return (
-        <Center 
-            bg={'#394348'} 
+        <Center
+            bg={"#394348"}
             py={10}
             p={'100px 200px 120px'}
             color={'rgba(255, 255, 255, 0.5)'}
@@ -31,7 +29,9 @@ export const Footer: React.FC = () => {
         >
             <Box width={'100%'}>
                 <Flex
-                    justifyContent={'space-between'}
+                    pt={"100px"}
+                    width={"80%"}
+                    justifyContent={"space-between"}
                 >
                     <Box>
                         <Heading
@@ -88,24 +88,81 @@ export const Footer: React.FC = () => {
 
                             onClick={() => console.log('asd')}
                         >
-                            Submit
-                        </Button>
+                            © 2022
+                        </Box>
                     </Flex>
-
-                    <Flex
-                        gap={'50px'}
+                    <Box
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="space-between"
+                        gap={"60px"}
+                        fontSize={"18px"}
+                        fontFamily={"Inter"}
+                        fontWeight={"500"}
                     >
                         <Link href="">
-                            <Image src={yt}/>
+                            <a>
+                                <Text mb={0} color={"#fff"}>
+                                    Homepage
+                                </Text>
+                            </a>
                         </Link>
                         <Link href="">
-                            <Image src={twitter}/>
+                            <a>
+                                <Text mb={0} color={"rgba(255, 255, 255, 0.5)"}>
+                                    Charity Projects
+                                </Text>
+                            </a>
                         </Link>
                         <Link href="">
-                            <Image src={discord}/>
+                            <a>
+                                <Text
+                                    mb={0}
+                                    color={"#rgba(255, 255, 255, 0.5)"}
+                                >
+                                    Search
+                                </Text>
+                            </a>
                         </Link>
                         <Link href="">
-                            <Image src={inst}/>
+                            <a>
+                                <Text
+                                    mb={0}
+                                    color={"#rgba(255, 255, 255, 0.5)"}
+                                >
+                                    Kindness Rating
+                                </Text>
+                            </a>
+                        </Link>
+                        <Link href="">
+                            <a>
+                                <Text
+                                    mb={0}
+                                    color={"#rgba(255, 255, 255, 0.5)"}
+                                >
+                                    Community
+                                </Text>
+                            </a>
+                        </Link>
+                        <Link href="">
+                            <a>
+                                <Text
+                                    mb={0}
+                                    color={"#rgba(255, 255, 255, 0.5)"}
+                                >
+                                    INIP token
+                                </Text>
+                            </a>
+                        </Link>
+                        <Link href="">
+                            <a>
+                                <Text
+                                    mb={0}
+                                    color={"#rgba(255, 255, 255, 0.5)"}
+                                >
+                                    Louvre
+                                </Text>
+                            </a>
                         </Link>
                     </Flex>
                     
@@ -145,53 +202,7 @@ export const Footer: React.FC = () => {
                         ©  2022
                     </Box>
                 </Flex>
-
-                <Box 
-                    display="flex" 
-                    alignItems="center" 
-                    justifyContent="space-between" 
-                    gap={"60px"} 
-                    fontSize={"18px"} 
-                    fontFamily={"Inter"} 
-                    fontWeight={"500"}
-                >
-                    <Link href="">
-                        <a>
-                            <Text mb={0} color={"#fff"}>Homepage</Text>
-                        </a>
-                    </Link>
-                    <Link href="">
-                        <a>
-                            <Text mb={0} color={"rgba(255, 255, 255, 0.5)"}>Charity Projects</Text>
-                        </a>
-                    </Link>
-                    <Link href="">
-                        <a>
-                            <Text mb={0} color={"#rgba(255, 255, 255, 0.5)"}>Search</Text>
-                        </a>
-                    </Link>
-                    <Link href="">
-                        <a>
-                            <Text mb={0} color={"#rgba(255, 255, 255, 0.5)"}>Kindness Rating</Text>
-                        </a>
-                    </Link>
-                    <Link href="">
-                        <a>
-                            <Text mb={0} color={"#rgba(255, 255, 255, 0.5)"}>Community</Text>
-                        </a>
-                    </Link>
-                    <Link href="">
-                        <a>
-                            <Text mb={0} color={"#rgba(255, 255, 255, 0.5)"}>INIP token</Text>
-                        </a>
-                    </Link>
-                    <Link href="">
-                        <a>
-                            <Text mb={0} color={"#rgba(255, 255, 255, 0.5)"}>Louvre</Text>
-                        </a>
-                    </Link>
-                </Box>
-            </Flex>
+            </Container>
         </Center>
     );
 };

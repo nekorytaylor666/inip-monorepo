@@ -3,6 +3,7 @@ import { extendTheme } from "@chakra-ui/react";
 import styles from "./styles";
 
 import colors from "./foundations/colors";
+import sizes from "./foundations/sizes";
 
 import fontSizes from "./foundations/fontSizes";
 
@@ -16,10 +17,12 @@ import fontSizes from "./foundations/fontSizes";
 const overrides = {
     ...styles,
     colors,
+    sizes,
     fonts: {
         heading: `'QtOpt', sans-serif`,
         body: `'Inter', sans-serif`,
     },
+
     fontSizes,
 };
 
