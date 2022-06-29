@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
             <Box width={'100%'}>
                 <Flex
                     pt={"100px"}
-                    width={"80%"}
+                    width={"100%"}
                     justifyContent={"space-between"}
                 >
                     <Box>
@@ -88,82 +88,8 @@ export const Footer: React.FC = () => {
 
                             onClick={() => console.log('asd')}
                         >
-                            © 2022
-                        </Box>
-                    </Flex>
-                    <Box
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="space-between"
-                        gap={"60px"}
-                        fontSize={"18px"}
-                        fontFamily={"Inter"}
-                        fontWeight={"500"}
-                    >
-                        <Link href="">
-                            <a>
-                                <Text mb={0} color={"#fff"}>
-                                    Homepage
-                                </Text>
-                            </a>
-                        </Link>
-                        <Link href="">
-                            <a>
-                                <Text mb={0} color={"rgba(255, 255, 255, 0.5)"}>
-                                    Charity Projects
-                                </Text>
-                            </a>
-                        </Link>
-                        <Link href="">
-                            <a>
-                                <Text
-                                    mb={0}
-                                    color={"#rgba(255, 255, 255, 0.5)"}
-                                >
-                                    Search
-                                </Text>
-                            </a>
-                        </Link>
-                        <Link href="">
-                            <a>
-                                <Text
-                                    mb={0}
-                                    color={"#rgba(255, 255, 255, 0.5)"}
-                                >
-                                    Kindness Rating
-                                </Text>
-                            </a>
-                        </Link>
-                        <Link href="">
-                            <a>
-                                <Text
-                                    mb={0}
-                                    color={"#rgba(255, 255, 255, 0.5)"}
-                                >
-                                    Community
-                                </Text>
-                            </a>
-                        </Link>
-                        <Link href="">
-                            <a>
-                                <Text
-                                    mb={0}
-                                    color={"#rgba(255, 255, 255, 0.5)"}
-                                >
-                                    INIP token
-                                </Text>
-                            </a>
-                        </Link>
-                        <Link href="">
-                            <a>
-                                <Text
-                                    mb={0}
-                                    color={"#rgba(255, 255, 255, 0.5)"}
-                                >
-                                    Louvre
-                                </Text>
-                            </a>
-                        </Link>
+                            Submit
+                        </Button>
                     </Flex>
                     
                 </Flex>
@@ -202,7 +128,83 @@ export const Footer: React.FC = () => {
                         ©  2022
                     </Box>
                 </Flex>
-            </Container>
+
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    gap={"60px"}
+                    fontSize={"18px"}
+                    fontFamily={"Inter"}
+                    fontWeight={"500"}
+                >
+                    <Link href="">
+                        <a>
+                            <Text mb={0} color={"#fff"}>
+                                Homepage
+                            </Text>
+                        </a>
+                    </Link>
+                    <Link href="">
+                        <a>
+                            <Text mb={0} color={"rgba(255, 255, 255, 0.5)"}>
+                                Charity Projects
+                            </Text>
+                        </a>
+                    </Link>
+                    <Link href="">
+                        <a>
+                            <Text
+                                mb={0}
+                                color={"#rgba(255, 255, 255, 0.5)"}
+                            >
+                                Search
+                            </Text>
+                        </a>
+                    </Link>
+                    <Link href="">
+                        <a>
+                            <Text
+                                mb={0}
+                                color={"#rgba(255, 255, 255, 0.5)"}
+                            >
+                                Kindness Rating
+                            </Text>
+                        </a>
+                    </Link>
+                    <Link href="">
+                        <a>
+                            <Text
+                                mb={0}
+                                color={"#rgba(255, 255, 255, 0.5)"}
+                            >
+                                Community
+                            </Text>
+                        </a>
+                    </Link>
+                    <Link href="">
+                        <a>
+                            <Text
+                                mb={0}
+                                color={"#rgba(255, 255, 255, 0.5)"}
+                            >
+                                INIP token
+                            </Text>
+                        </a>
+                    </Link>
+                    <Link href="">
+                        <a>
+                            <Text
+                                mb={0}
+                                color={"#rgba(255, 255, 255, 0.5)"}
+                            >
+                                Louvre
+                            </Text>
+                        </a>
+                    </Link>
+                </Box>
+                
+            </Flex>
         </Center>
     );
 };
