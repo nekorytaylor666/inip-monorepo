@@ -74,19 +74,20 @@ const ItemPage = () => {
         try {
             setLoadingBuying(true);
             const buyoutRes = await marketplace?.buyoutListing(itemId, 1);
+
             if (!buyoutRes) throw "Failed to buy";
             const sellData: SellTokenEntityInterface = {
                 buyoutCurrencyValuePerToken:
                     listing.buyoutCurrencyValuePerToken,
                 buyoutPrice: listing.buyoutPrice,
-                contractAddress: buyoutRes?.receipt.contractAddress ?? "",
+                contractAddress: listing.assetContractAddress,
                 from: buyoutRes?.receipt.from,
                 to: buyoutRes?.receipt.to,
                 tokenId: itemId,
                 transactionHash: buyoutRes?.receipt.transactionHash,
             };
             api.post("/sell_token/sell", sellData);
-            router.push("/collections/123");
+            router.push("/collections");
             setLoadingBuying(false);
         } catch (error) {
             console.log(error);

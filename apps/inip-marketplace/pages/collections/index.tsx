@@ -5,6 +5,7 @@ import {
     Heading,
     Input,
     SimpleGrid,
+    Spinner,
     styled,
     Text,
 } from "@chakra-ui/react";
@@ -24,6 +25,7 @@ import {
     connectHits,
     Configure,
     Pagination,
+    connectStateResults,
 } from "react-instantsearch-dom";
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
 import Link from "next/link";
@@ -52,8 +54,10 @@ const CollectionsPage = () => {
             </Heading>
             <InstantSearch indexName="collection" searchClient={searchClient}>
                 <CustomSearchBox />
-                <Configure hitsPerPage={9}></Configure>
-                <CustomHits mt={8} hitComponent={Hit} />
+                <Loading>
+                    <Configure hitsPerPage={9}></Configure>
+                    <CustomHits mt={8} hitComponent={Hit} />
+                </Loading>
             </InstantSearch>
         </Container>
     );
@@ -155,6 +159,20 @@ const Hit = ({ hit }: { hit: INFTCollection }) => (
         </Link>
     </>
 );
+
+const Loading = connectStateResults(({ searching, children }) => (
+    <>
+        <Center
+            w="full"
+            mt={4}
+            style={{ display: searching ? "block" : "none" }}
+        >
+            <Spinner size="xl" />
+        </Center>
+
+        <div style={{ display: searching ? "none" : "block" }}>{children}</div>
+    </>
+));
 
 CollectionsPage.getLayout = (page: NextPage) => <Layout>{page}</Layout>;
 
