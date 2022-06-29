@@ -14,7 +14,7 @@ import Web3 from "web3";
 import eth from "@public/icons/header/eth.svg";
 import Image from "next/image";
 
-export const ConnectWalletButton: React.FC = () => {
+export const ConnectWalletButton: React.FC = (isTransparent : boolean) => {
     const connectWithMetamask = useMetamask();
     const address = useAddress();
     const disconnect = useDisconnect();
@@ -69,7 +69,15 @@ export const ConnectWalletButton: React.FC = () => {
         <Menu>
             {({ isOpen }) => (
                 <>
-                    <MenuButton isActive={isOpen}>
+                    <MenuButton 
+                        isActive={isOpen}
+                        bg={
+                            !isTransparent
+                            ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
+                            : "transparent"
+                        }
+                        border={isTransparent ? "1px solid #ececec" : ""}
+                    >
                         {isOpen ? (
                             <IconButton
                                 w={"52px"}
@@ -83,10 +91,12 @@ export const ConnectWalletButton: React.FC = () => {
                             <IconButton
                                 w={"52px"}
                                 h={"52px"}
-                                bg={
-                                    "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%) #748E9C"
-                                }
                                 borderRadius={0}
+                                bg={
+                                    !isTransparent
+                                    ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
+                                    : "transparent"
+                                }
                                 aria-label="Search database"
                                 icon={<Image src={eth} />}
                             />

@@ -22,9 +22,65 @@ import promo from "@public/icons/creator-support/promo.svg";
 import resources from "@public/icons/creator-support/resources.svg";
 import support from "@public/icons/creator-support/support.jpg";
 import heno from "@public/icons/creator-support/heno.jpg";
+import CommunityCollections from "../src/components/community-collections/index";
 
+export interface Collection {
+    id: string,
+    name: string,
+    author: string,
+    price: number,
+    image: StaticImageData
+};
 
 const CreatorSupport = () => {
+
+
+    const communityCollection: Collection[] = [
+
+        {
+            id: "1",
+            name: "HENOCYDE",
+            author: "Binsky",
+            price: 29, 
+            image: heno.src
+        },
+        {
+            id: "2",
+            name: "HENOCYDE",
+            author: "Binsky",
+            price: 29, 
+            image: heno.src
+        },
+        {
+            id: "3",
+            name: "HENOCYDE",
+            author: "Binsky",
+            price: 29, 
+            image: heno.src
+        },
+        {
+            id: "4",
+            name: "HENOCYDE",
+            author: "Binsky",
+            price: 29, 
+            image: heno.src
+        },
+        {
+            id: "5",
+            name: "HENOCYDE",
+            author: "Binsky",
+            price: 29, 
+            image: heno.src
+        },
+        {
+            id: "6",
+            name: "HENOCYDE",
+            author: "Binsky",
+            price: 29, 
+            image: heno.src
+        }
+
+    ];
 
     return (
         <Box>
@@ -193,9 +249,7 @@ const CreatorSupport = () => {
                 </Center>
             </Box>
 
-            <Box
-                p={"0 200px 100px"}
-            >
+            <Box p={"0 200px 100px"}>
                 <Heading
                     pb={"50px"}
                     fontWeight={700}
@@ -204,176 +258,14 @@ const CreatorSupport = () => {
                 >
                     collections supported by INIP.
                 </Heading>
-
-                <Flex flexWrap={"wrap"} gap={"40px"}>
-                    <Flex
-                        w={"31%"}
-                        minH={"570px"}
-                        p={"20px"}
-                        flexDirection={"column"}
-                        justifyContent={"end"}
-                        bgImage={heno.src}
-                        color={"#fff"}
-                    >
-                        <Flex
-                            justifyContent={"space-between"}
-                        >
-                            <Box>
-                                <Heading>
-                                    HENOCYDE
-                                </Heading>
-                                <Text fontWeight={700} fontFamily={"QtOpt"} fontSize={"20px"}>by Binsky</Text>
-                            </Box>
-                            <Text 
-                                fontSize={"20px"} 
-                                fontWeight={700}
-                                mt={"5px"}
-                            >
-                                29 NFTs
-                            </Text>
-                        </Flex>
-                    </Flex>
-                    <Flex
-                        w={"31%"}
-                        minH={"570px"}
-                        p={"20px"}
-                        flexDirection={"column"}
-                        justifyContent={"end"}
-                        bgImage={heno.src}
-                        color={"#fff"}
-                    >
-                        <Flex
-                            justifyContent={"space-between"}
-                        >
-                            <Box>
-                                <Heading>
-                                    HENOCYDE
-                                </Heading>
-                                <Text fontWeight={700} fontFamily={"QtOpt"} fontSize={"20px"}>by Binsky</Text>
-                            </Box>
-                            <Text 
-                                fontSize={"20px"} 
-                                fontWeight={700}
-                                mt={"5px"}
-                            >
-                                29 NFTs
-                            </Text>
-                        </Flex>
-                    </Flex>
-                    <Flex
-                        w={"31%"}
-                        minH={"570px"}
-                        p={"20px"}
-                        flexDirection={"column"}
-                        justifyContent={"end"}
-                        bgImage={heno.src}
-                        color={"#fff"}
-                    >
-                        <Flex
-                            justifyContent={"space-between"}
-                        >
-                            <Box>
-                                <Heading>
-                                    HENOCYDE
-                                </Heading>
-                                <Text fontWeight={700} fontFamily={"QtOpt"} fontSize={"20px"}>by Binsky</Text>
-                            </Box>
-                            <Text 
-                                fontSize={"20px"} 
-                                fontWeight={700}
-                                mt={"5px"}
-                            >
-                                29 NFTs
-                            </Text>
-                        </Flex>
-                    </Flex>
-                    <Flex
-                        w={"31%"}
-                        minH={"570px"}
-                        p={"20px"}
-                        flexDirection={"column"}
-                        justifyContent={"end"}
-                        bgImage={heno.src}
-                        color={"#fff"}
-                    >
-                        <Flex
-                            justifyContent={"space-between"}
-                        >
-                            <Box>
-                                <Heading>
-                                    HENOCYDE
-                                </Heading>
-                                <Text fontWeight={700} fontFamily={"QtOpt"} fontSize={"20px"}>by Binsky</Text>
-                            </Box>
-                            <Text 
-                                fontSize={"20px"} 
-                                fontWeight={700}
-                                mt={"5px"}
-                            >
-                                29 NFTs
-                            </Text>
-                        </Flex>
-                    </Flex>
-                    <Flex
-                        w={"31%"}
-                        minH={"570px"}
-                        p={"20px"}
-                        flexDirection={"column"}
-                        justifyContent={"end"}
-                        bgImage={heno.src}
-                        color={"#fff"}
-                    >
-                        <Flex
-                            justifyContent={"space-between"}
-                        >
-                            <Box>
-                                <Heading>
-                                    HENOCYDE
-                                </Heading>
-                                <Text fontWeight={700} fontFamily={"QtOpt"} fontSize={"20px"}>by Binsky</Text>
-                            </Box>
-                            <Text 
-                                fontSize={"20px"} 
-                                fontWeight={700}
-                                mt={"5px"}
-                            >
-                                29 NFTs
-                            </Text>
-                        </Flex>
-                    </Flex>
-                    <Flex
-                        w={"31%"}
-                        minH={"570px"}
-                        p={"20px"}
-                        flexDirection={"column"}
-                        justifyContent={"end"}
-                        bgImage={heno.src}
-                        color={"#fff"}
-                    >
-                        <Flex
-                            justifyContent={"space-between"}
-                        >
-                            <Box>
-                                <Heading>
-                                    HENOCYDE
-                                </Heading>
-                                <Text fontWeight={700} fontFamily={"QtOpt"} fontSize={"20px"}>by Binsky</Text>
-                            </Box>
-                            <Text 
-                                fontSize={"20px"} 
-                                fontWeight={700}
-                                mt={"5px"}
-                            >
-                                29 NFTs
-                            </Text>
-                        </Flex>
-                    </Flex>
-                </Flex>
+                <CommunityCollections communityCollection={communityCollection}/>
+                
                 <Center pt={"70px"}>
                     <Button
                         minH={"74px"}
                         w={"271px"}
                         border={"1px solid #c2d5de"}
+                        borderRadius={0}
                         color={"#365262"}
                         bg={"transparent"}
                     >
