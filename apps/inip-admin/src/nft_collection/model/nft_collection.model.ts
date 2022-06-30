@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { INFTCollection } from '@inip/types';
 import { BigNumber } from 'ethers';
+import { NFTMetadata } from '@thirdweb-dev/sdk';
 export type NFTCollectionEntityDocument = NFTCollectionEntity & Document;
 
 @Schema()
@@ -20,15 +21,7 @@ export class NFTCollectionEntity implements INFTCollection {
       fee_recipient: String,
     },
   })
-  metadata: {
-    description: string;
-    image: string;
-    external_link: string;
-    symbol: string;
-    name: string;
-    seller_fee_basis_points: number;
-    fee_recipient: string;
-  };
+  metadata: NFTMetadata;
 
   @Prop({
     type: {

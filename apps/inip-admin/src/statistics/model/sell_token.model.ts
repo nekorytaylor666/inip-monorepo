@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { CurrencyValue } from '@thirdweb-dev/sdk';
+import { CurrencyValue, NFTMetadata } from '@thirdweb-dev/sdk';
 import { BigNumberish } from 'ethers';
-import { SellTokenEntityInterface } from '@inip/types';
+import { INftCollectionMetadata, SellTokenEntityInterface } from '@inip/types';
 
 export type SellTokenEntityDocument = SellTokenEntity & Document;
 
@@ -35,6 +35,15 @@ export class SellTokenEntity implements SellTokenEntityInterface {
 
   @Prop()
   tokenId: string;
+
+  @Prop()
+  createDate?: Date;
+
+  @Prop({ type: Object })
+  tokenMetadata: NFTMetadata;
+
+  @Prop({ type: Object })
+  contractMetadata: INftCollectionMetadata;
 }
 
 export const SellTokenEntitySchema =

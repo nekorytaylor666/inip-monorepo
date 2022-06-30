@@ -7,6 +7,7 @@ import { marketPlaceAddress } from 'src/main';
 import { ListingAdapter } from 'src/mongoose/listing_metadata.model';
 import { NFTCollectionEntity } from 'src/nft_collection/model/nft_collection.model';
 import { FloorPriceStatsEntity } from 'src/statistics/model/floor_price.model';
+import { INftCollectionMetadata } from '@inip/types';
 
 const sdk = new ThirdwebSDK('rinkeby');
 
