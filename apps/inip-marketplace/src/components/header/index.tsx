@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Box, Center, Text, Heading, Square, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import {
+    Flex,
+    Box,
+    Center,
+    Text,
+    Heading,
+    Square,
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+} from "@chakra-ui/react";
 import account from "@public/icons/header/account.svg";
 import Link from "next/link";
 import Image from "next/image";
@@ -37,66 +48,63 @@ export const Header: React.FC = () => {
             >
                 <Link href="">
                     <a>
-                        <Text mb={0}>
-                            Homepage
-                        </Text>
+                        <Text mb={0}>Homepage</Text>
                     </a>
                 </Link>
-                <Link href="">
+                <Link href="/collections">
                     <a>
-                        <Text mb={0}>
-                            Louvre
-                        </Text>
+                        <Text mb={0}>Louvre</Text>
                     </a>
                 </Link>
-                
+
                 <Menu>
-                    <MenuButton>
-                        Charity Projects
-                    </MenuButton>
-                    <MenuList borderRadius={0} p={"25px 20px"}  color={"#979391"} fontFamily={"Inter"} fontSize={"18px"} fontWeight={500}>
-                        <MenuItem _focus={ { color: "#365262" } }>
+                    <MenuButton>Charity Projects</MenuButton>
+                    <MenuList
+                        borderRadius={0}
+                        p={"25px 20px"}
+                        color={"#979391"}
+                        fontFamily={"Inter"}
+                        fontSize={"18px"}
+                        fontWeight={500}
+                    >
+                        <MenuItem _focus={{ color: "#365262" }}>
                             <Link href="/about-charity-project">
                                 <a>
-                                    <Text mb={0}>
-                                        About charity projects
-                                    </Text>
+                                    <Text mb={0}>About charity projects</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={ { color: "#365262" } }>
+                        <MenuItem _focus={{ color: "#365262" }}>
                             <Link href="/">
                                 <a>
-                                    <Text mb={0}>
-                                        Projects
-                                    </Text>
+                                    <Text mb={0}>Projects</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-
                     </MenuList>
                 </Menu>
 
                 <Menu>
-                    <MenuButton>
-                        Dreams
-                    </MenuButton>
-                    <MenuList borderRadius={0} p={"25px 20px"}  color={"#979391"} fontFamily={"Inter"} fontSize={"18px"} fontWeight={500}>
-                        <MenuItem _focus={ { color: "#365262" } }>
+                    <MenuButton>Dreams</MenuButton>
+                    <MenuList
+                        borderRadius={0}
+                        p={"25px 20px"}
+                        color={"#979391"}
+                        fontFamily={"Inter"}
+                        fontSize={"18px"}
+                        fontWeight={500}
+                    >
+                        <MenuItem _focus={{ color: "#365262" }}>
                             <Link href="/dreams-come-true">
                                 <a>
-                                    <Text mb={0}>
-                                        Dreams Come True
-                                    </Text>
+                                    <Text mb={0}>Dreams Come True</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={ { color: "#365262" } }>
+                        <MenuItem _focus={{ color: "#365262" }}>
                             <Link href="/dreams">
                                 <a>
-                                    <Text mb={0}>
-                                        Dreams
-                                    </Text>
+                                    <Text mb={0}>Dreams</Text>
                                 </a>
                             </Link>
                         </MenuItem>
@@ -104,25 +112,26 @@ export const Header: React.FC = () => {
                 </Menu>
 
                 <Menu>
-                    <MenuButton>
-                        Kindness Rating
-                    </MenuButton>
-                    <MenuList borderRadius={0}  p={"25px 20px"} color={"#979391"} fontFamily={"Inter"} fontSize={"18px"} fontWeight={500}>
-                        <MenuItem _focus={ { color: "#365262" } }>
+                    <MenuButton>Kindness Rating</MenuButton>
+                    <MenuList
+                        borderRadius={0}
+                        p={"25px 20px"}
+                        color={"#979391"}
+                        fontFamily={"Inter"}
+                        fontSize={"18px"}
+                        fontWeight={500}
+                    >
+                        <MenuItem _focus={{ color: "#365262" }}>
                             <Link href="/about-kindness-rating">
                                 <a>
-                                    <Text mb={0}>
-                                        About Rating
-                                    </Text>
+                                    <Text mb={0}>About Rating</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={ { color: "#365262" } }>
+                        <MenuItem _focus={{ color: "#365262" }}>
                             <Link href="/">
                                 <a>
-                                    <Text mb={0}>
-                                        Rating
-                                    </Text>
+                                    <Text mb={0}>Rating</Text>
                                 </a>
                             </Link>
                         </MenuItem>
@@ -130,34 +139,33 @@ export const Header: React.FC = () => {
                 </Menu>
 
                 <Menu>
-                    <MenuButton>
-                        Community
-                    </MenuButton>
-                    <MenuList borderRadius={0} p={"25px 20px"}  color={"#979391"} fontFamily={"Inter"} fontSize={"18px"} fontWeight={500}>
-                        <MenuItem _focus={ { color: "#365262" } }>
+                    <MenuButton>Community</MenuButton>
+                    <MenuList
+                        borderRadius={0}
+                        p={"25px 20px"}
+                        color={"#979391"}
+                        fontFamily={"Inter"}
+                        fontSize={"18px"}
+                        fontWeight={500}
+                    >
+                        <MenuItem _focus={{ color: "#365262" }}>
                             <Link href="/community/1">
                                 <a>
-                                    <Text mb={0}>
-                                        INIP Community 1
-                                    </Text>
+                                    <Text mb={0}>INIP Community 1</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={ { color: "#365262" } }>
+                        <MenuItem _focus={{ color: "#365262" }}>
                             <Link href="/community/2">
                                 <a>
-                                    <Text mb={0}>
-                                        INIP Community 2
-                                    </Text>
+                                    <Text mb={0}>INIP Community 2</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={ { color: "#365262" } }>
+                        <MenuItem _focus={{ color: "#365262" }}>
                             <Link href="/creator-support">
                                 <a>
-                                    <Text mb={0}>
-                                        Creator support
-                                    </Text>
+                                    <Text mb={0}>Creator support</Text>
                                 </a>
                             </Link>
                         </MenuItem>
@@ -166,16 +174,12 @@ export const Header: React.FC = () => {
 
                 <Link href="">
                     <a>
-                        <Text mb={0}>
-                            INIP token
-                        </Text>
+                        <Text mb={0}>INIP token</Text>
                     </a>
                 </Link>
-                <Link href="">
+                <Link href="/collections">
                     <a>
-                        <Text mb={0}>
-                            Search
-                        </Text>
+                        <Text mb={0}>Search</Text>
                     </a>
                 </Link>
             </Box>
@@ -183,40 +187,42 @@ export const Header: React.FC = () => {
             <Flex gap={"18px"}>
                 <Link href="/profile">
                     <a>
-                        <Square w={"52px"} h={"52px"} border={"1px solid #ECECEC"}>
+                        <Square
+                            w={"52px"}
+                            h={"52px"}
+                            border={"1px solid #ECECEC"}
+                        >
                             <Image src={account} />
                         </Square>
                     </a>
                 </Link>
-                <ConnectWalletButton/>
+                <ConnectWalletButton isTransparent={false} />
             </Flex>
         </Center>
     );
 };
 
-
 export const DreamHeader: React.FC = () => {
-
     return (
-        <Center 
+        <Center
             p={"30px 200px 20px"}
             gap={"50px"}
             bgImage={sky.src}
             bgSize={"cover"}
             color={"#fff"}
         >
-            <Center 
+            <Center
                 minW={"265px"}
                 minH={"56px"}
                 border={"1px solid #ececec"}
-                bg={"radial-gradient(43.08% 63.75% at 50% 50%, rgba(230, 234, 233, 0.2) 0%, rgba(255, 244, 231, 0) 100%)"}
+                bg={
+                    "radial-gradient(43.08% 63.75% at 50% 50%, rgba(230, 234, 233, 0.2) 0%, rgba(255, 244, 231, 0) 100%)"
+                }
                 fontFamily={"Inter"}
                 fontWeight={900}
             >
                 <Link href="/">
-                    <a>
-                        Back to INIP Marketplace
-                    </a>
+                    <a>Back to INIP Marketplace</a>
                 </Link>
             </Center>
             <Flex
@@ -224,10 +230,7 @@ export const DreamHeader: React.FC = () => {
                 justifyContent={"space-between"}
                 alignItems={"center"}
             >
-                <Flex
-                    gap={"40px"}
-                >
-
+                <Flex gap={"40px"}>
                     <Link href="/dreams-come-true">
                         <Box fontFamily={"SangSunrise"} fontWeight={700}>
                             <a>DREAMS COME TRUE</a>
@@ -239,18 +242,11 @@ export const DreamHeader: React.FC = () => {
                         </Box>
                     </Link>
                 </Flex>
-                <Flex
-                    gap={"20px"}
-                >
-                    <Square 
-                        w={"52px"} 
-                        h={"52px"}
-                        border={"1px solid #ececec"}
-                    >
-                        <Image src={white_account}/>
+                <Flex gap={"20px"}>
+                    <Square w={"52px"} h={"52px"} border={"1px solid #ececec"}>
+                        <Image src={white_account} />
                     </Square>
-                    <ConnectWalletButton isTransparent/>
-
+                    <ConnectWalletButton isTransparent />
                 </Flex>
             </Flex>
         </Center>

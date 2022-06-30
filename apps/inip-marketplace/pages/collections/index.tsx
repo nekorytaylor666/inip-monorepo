@@ -5,6 +5,7 @@ import {
     Heading,
     Input,
     SimpleGrid,
+    Spinner,
     styled,
     Text,
 } from "@chakra-ui/react";
@@ -24,13 +25,16 @@ import {
     connectHits,
     Configure,
     Pagination,
+    connectStateResults,
 } from "react-instantsearch-dom";
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
+import Link from "next/link";
 const CollectionsPage = () => {
     const { data, isLoading, isError, error } = useQuery(
         "collections",
         getCollections,
     );
+
     if (isLoading) {
         return <div>loading</div>;
     }
@@ -50,8 +54,10 @@ const CollectionsPage = () => {
             </Heading>
             <InstantSearch indexName="collection" searchClient={searchClient}>
                 <CustomSearchBox />
-                <Configure hitsPerPage={9}></Configure>
-                <CustomHits mt={8} hitComponent={Hit} />
+                <Loading>
+                    <Configure hitsPerPage={9}></Configure>
+                    <CustomHits mt={8} hitComponent={Hit} />
+                </Loading>
             </InstantSearch>
         </Container>
     );
@@ -131,7 +137,11 @@ const CollectionItem = ({ collection }: { collection: INFTCollection }) => (
 const CustomSearchBox = connectSearchBox(SearchBox);
 
 const renderCollectionItem = (collection: INFTCollection) => (
-    <CollectionItem collection={collection}></CollectionItem>
+    <Link href={`/collections/${collection.address}`}>
+        <Box cursor={"pointer"}>
+            <CollectionItem collection={collection}></CollectionItem>
+        </Box>
+    </Link>
 );
 const Hits: React.FC = ({ hits, ...props }: { hits: any[] }) => (
     <SimpleGrid columns={"3"} gap={"8"} {...props}>
@@ -140,11 +150,29 @@ const Hits: React.FC = ({ hits, ...props }: { hits: any[] }) => (
 );
 const CustomHits = connectHits(Hits);
 
-const Hit = ({ hit }) => (
+const Hit = ({ hit }: { hit: INFTCollection }) => (
     <>
-        <CollectionItem collection={hit} />
+        <Link href={`/collections/${hit.address}`}>
+            <Box cursor={"pointer"}>
+                <CollectionItem collection={hit} />
+            </Box>
+        </Link>
     </>
 );
+
+const Loading = connectStateResults(({ searching, children }) => (
+    <>
+        <Center
+            w="full"
+            mt={4}
+            style={{ display: searching ? "block" : "none" }}
+        >
+            <Spinner size="xl" />
+        </Center>
+
+        <div style={{ display: searching ? "none" : "block" }}>{children}</div>
+    </>
+));
 
 CollectionsPage.getLayout = (page: NextPage) => <Layout>{page}</Layout>;
 

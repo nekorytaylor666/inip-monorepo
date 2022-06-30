@@ -163,7 +163,6 @@ export const Container: React.FC = () => {
 
     const partners = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-
     return (
         <Box mt={"100px"}>
             <Box
@@ -241,11 +240,10 @@ export const Container: React.FC = () => {
                             </Flex>
                             <img
                                 src={frame.src}
-                                style={
-                                    {
-                                        minHeight: "620px", 
-                                        backgroundSize: "100% 100%" 
-                                    }}
+                                style={{
+                                    minHeight: "620px",
+                                    backgroundSize: "100% 100%",
+                                }}
                             />
                             <img
                                 src={mainIcon.src}
@@ -433,7 +431,7 @@ export const Container: React.FC = () => {
                         Explore our Louvre and collect digital art.
                     </Text>
                 </Box>
-                <Collection collection={collection}/>
+                <Collection collection={collection} />
                 <Flex justifyContent={"center"}>
                     <Button
                         background={"rgba(255, 255, 255, 0.1)"}
@@ -458,7 +456,7 @@ export const Container: React.FC = () => {
                         getting better.
                     </Text>
                 </Box>
-                <Benefits charity={charity}/>
+                <Benefits charity={charity} />
             </Flex>
 
             <Box flexDirection={"column"} p={"120px 200px 50px"}>
@@ -519,7 +517,7 @@ export const Container: React.FC = () => {
                 <Heading fontWeight={900} fontFamily={"SangSunrise"}>
                     our partners.
                 </Heading>
-                <Partners partners={partners}/>
+                <Partners partners={partners} />
             </Flex>
         </Box>
     );

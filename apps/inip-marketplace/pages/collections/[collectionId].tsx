@@ -44,64 +44,14 @@ import {
     Area,
     ComposedChart,
 } from "recharts";
+import { getNFTCollection, marketplace } from "src/api/collections";
+import { useQuery } from "react-query";
+import { sdk } from "src/api/thirdweb";
 
 const CollectionPage = () => {
-    const marketplace = useMarketplace(
-        "0x58b363FD0c4cA8020e714D1297611eF72af4110c",
-    );
-    const router = useRouter();
-    const collectionId = "0x1C552ebF58F6AEefaC40adf3bfD72647C169F736";
-    console.log(collectionId);
-    const nftCollection = useNFTCollection(collectionId ?? "");
-    console.log(nftCollection);
-    const [nfts, setNFTs] = useState<NFTMetadataOwner[] | undefined>([]);
-    const [collection, setCollection] = useState<CollectionMetadata>();
-    const [listings, setListings] = useState<
-        (AuctionListing | DirectListing)[] | undefined
-    >([]);
-    const [listingLoading, setListingLoading] = useState(false);
-
-    const getCollectionMetadata = async () => {
-        const collectionMetadata = await nftCollection?.metadata.get();
-        console.log(collectionMetadata);
-        setCollection(collectionMetadata);
-    };
-    const getNFTs = async () => {
-        const nftsRes = await nftCollection?.getAll();
-        setNFTs(nftsRes);
-    };
-
-    const getActiveListings = async () => {
-        try {
-            setListingLoading(true);
-            const list = await marketplace?.getActiveListings();
-            setListings(list);
-            setListingLoading(false);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-    useEffect(() => {
-        getNFTs();
-        getActiveListings();
-        getCollectionMetadata();
-    }, []);
-    if (!collection) {
-        return (
-            <Skeleton
-                height="100vh"
-                width="100vw"
-                style={{
-                    backgroundColor: "white",
-                    borderRadius: "10px",
-                    border: "1px solid lightgray",
-                }}
-            />
-        );
-    }
     return (
         <>
-            <CollectionHeader collection={collection}></CollectionHeader>
+            <CollectionHeader></CollectionHeader>
             <Container mt="12" maxW="1440px">
                 <Tabs variant="unstyled">
                     <TabList mb="12">
@@ -115,27 +65,7 @@ const CollectionPage = () => {
 
                     <TabPanels>
                         <TabPanel>
-                            <SimpleGrid columns={[1, null, 3]} spacing="40px">
-                                {listingLoading &&
-                                    [...Array(20)].map(() => (
-                                        <Skeleton isLoaded={!listingLoading}>
-                                            <Box height={400}></Box>
-                                        </Skeleton>
-                                    ))}
-                                {listings?.map((item) => (
-                                    <Link
-                                        href={`/collections/${"0x1C552ebF58F6AEefaC40adf3bfD72647C169F736"}/${
-                                            item.id
-                                        }`}
-                                    >
-                                        <Box cursor={"pointer"}>
-                                            <ListingItem
-                                                item={item}
-                                            ></ListingItem>
-                                        </Box>
-                                    </Link>
-                                ))}
-                            </SimpleGrid>
+                            <NFTItemsGrid />
                         </TabPanel>
                         <TabPanel>
                             <Box w={1000} overflowX="scroll">
@@ -216,11 +146,35 @@ const renderLineChart = (
     </ComposedChart>
 );
 
-const CollectionHeader = ({
-    collection,
-}: {
-    collection: CollectionMetadata;
-}) => {
+const CollectionHeader = () => {
+    const router = useRouter();
+    const collectionId = router.query.collectionId as string;
+    const {
+        data: collectionMetadata,
+        isLoading: isCollectionMetadataLoading,
+        isError: isMetadataError,
+        error,
+    } = useQuery(`collectionMeta:${collectionId}`, () =>
+        sdk.getNFTCollection(collectionId).metadata.get(),
+    );
+
+    if (isCollectionMetadataLoading) {
+        return (
+            <Skeleton
+                height="100vh"
+                width="100vw"
+                style={{
+                    backgroundColor: "white",
+                    borderRadius: "10px",
+                    border: "1px solid lightgray",
+                }}
+            />
+        );
+    }
+
+    if (isMetadataError || !collectionMetadata) {
+        return <Box>{error}</Box>;
+    }
     return (
         <Box overflow={"hidden"} position={"relative"}>
             <Container height={"xl"} zIndex={10} maxW="1440px">
@@ -232,10 +186,13 @@ const CollectionHeader = ({
                                 alignItems={"start"}
                                 maxW={800}
                             >
-                                <Heading>{collection.name}</Heading>
+                                <Heading>{collectionMetadata.name}</Heading>
                                 <HStack w="full" justify={"space-between"}>
                                     <VStack align={"start"}>
-                                        <Text m={0}> Collection of</Text>
+                                        <Text m={0}>
+                                            {" "}
+                                            collectionMetadata of
+                                        </Text>
                                         <Text
                                             fontSize={"xl"}
                                             m={0}
@@ -253,7 +210,7 @@ const CollectionHeader = ({
                                             m={0}
                                             fontWeight={"bold"}
                                         >
-                                            {collection.fee_recipient}
+                                            {collectionMetadata.fee_recipient}
                                         </Text>
                                     </VStack>
                                     <VStack align={"start"}>
@@ -292,7 +249,7 @@ const CollectionHeader = ({
                                     </VStack>
                                 </HStack>
                                 <Text fontSize={"xl"} fontWeight={"semibold"}>
-                                    {collection.description}
+                                    {collectionMetadata.description}
                                 </Text>
                             </VStack>
                         </Box>
@@ -300,7 +257,7 @@ const CollectionHeader = ({
                             <MediaRenderer
                                 width="500"
                                 height="500"
-                                src={collection.image}
+                                src={collectionMetadata.image}
                                 alt="A mp4 video"
                             />
                         </Box>
@@ -322,7 +279,7 @@ const CollectionHeader = ({
                         objectFit: "cover",
                     }}
                     width="100%"
-                    src={collection.image}
+                    src={collectionMetadata.image}
                     alt="A mp4 video"
                 />
             </Box>
@@ -393,4 +350,58 @@ const ListingItem = ({ item }: { item: AuctionListing | DirectListing }) => {
     );
 };
 
+const NFTItemsGrid = () => {
+    //  listingLoading: boolean,
+    // listings: (AuctionListing | DirectListing)[] | undefined,
+    // collectionId: string,
+
+    const router = useRouter();
+    const collectionId = router.query.collectionId as string;
+    const collection = useNFTCollection(collectionId);
+    const marketplace = useMarketplace(
+        "0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f",
+    );
+
+    const [listings, setListings] = useState([]);
+    const [isListingsLoading, setIsListingsLoading] = useState(false);
+    const getActiveListing = async () => {
+        setIsListingsLoading(true);
+        const tokenContract = collection?.getAddress();
+        const listings = await sdk
+            .getMarketplace("0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f")
+            .getActiveListings({
+                tokenContract,
+            });
+        setListings(listings);
+        setIsListingsLoading(false);
+    };
+    useEffect(() => {
+        getActiveListing();
+    }, []);
+
+    if (isListingsLoading || !listings)
+        return (
+            <SimpleGrid columns={[1, null, 3]} spacing="40px">
+                {[...Array(20)].map(() => (
+                    <Skeleton isLoaded={!isListingsLoading}>
+                        <Box height={400}></Box>
+                    </Skeleton>
+                ))}
+            </SimpleGrid>
+        );
+
+    // if (isMetadataError) return <Box>{error}</Box>;
+
+    return (
+        <SimpleGrid columns={[1, null, 3]} spacing="40px">
+            {listings?.map((item) => (
+                <Link href={`/collections/${collectionId}/${item.id}`}>
+                    <Box cursor={"pointer"}>
+                        <ListingItem item={item}></ListingItem>
+                    </Box>
+                </Link>
+            ))}
+        </SimpleGrid>
+    );
+};
 export default CollectionPage;

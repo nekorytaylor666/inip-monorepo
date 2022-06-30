@@ -4,6 +4,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "@definitions/chakra/theme";
 import { StyledThemeProvider } from "@definitions/styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
 // import { ThirdwebWeb3Provider } from "@3rdweb/hooks";
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import "regenerator-runtime/runtime";
@@ -13,7 +15,8 @@ import Head from "next/head";
 import "../public/css/style.css";
 import { NextPage } from "next";
 import Layout from "@components/layout/default-layout";
-
+import { initializeAlchemy, Network } from "@alch/alchemy-sdk";
+import { chainRpc } from "src/api/thirdweb";
 type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode;
 };
@@ -37,15 +40,12 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
         <ChakraProvider theme={theme}>
             <StyledThemeProvider>
                 <ThirdwebProvider
-                    chainRpc={{
-                        [ChainId.Rinkeby]:
-                            "https://rinkeby.infura.io/v3/6ecb82aeefcc47fe86b238ecca88afba",
-                    }}
+                    chainRpc={chainRpc}
                     autoConnect
                     desiredChainId={ChainId.Rinkeby}
                 >
                     <QueryClientProvider client={queryClient}>
-                        <Hydrate state={pageProps.dehydratedState}>
+                        <>
                             <Head>
                                 <link href="../public/fonts/Beauty-Swing.otf" />
                                 <link href="../public/fonts/Inter-Light.ttf" />
@@ -59,7 +59,8 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                                 />
                             </Head>
                             {getLayout(<Component {...pageProps} />)}
-                        </Hydrate>
+                            <ReactQueryDevtools initialIsOpen={false} />
+                        </>
                     </QueryClientProvider>
                 </ThirdwebProvider>
             </StyledThemeProvider>

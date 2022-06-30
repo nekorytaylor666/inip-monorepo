@@ -16,6 +16,7 @@
         "cypress:test": "start-server-and-test start http://localhost:3000 cypress:run"
     },
     "dependencies": {
+        "@alch/alchemy-sdk": "^1.0.4",
         "@chakra-ui/icons": "^2.0.0",
         "@chakra-ui/react": "^1.1.4",
         "@emotion/react": "^11.1.4",

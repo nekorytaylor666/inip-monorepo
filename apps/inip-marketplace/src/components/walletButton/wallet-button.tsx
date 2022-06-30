@@ -13,12 +13,19 @@ import { truncateString } from "src/utils/helpers";
 import Web3 from "web3";
 import eth from "@public/icons/header/eth.svg";
 import Image from "next/image";
+import { ethers } from "ethers";
 
-export const ConnectWalletButton: React.FC = ({isTransparent}) => {
+interface ConnectWalletButtonProps {
+    isTransparent: boolean;
+}
+
+export const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({
+    isTransparent,
+}) => {
     const connectWithMetamask = useMetamask();
     const address = useAddress();
     const disconnect = useDisconnect();
-    const [balance, setBalance] = useState(-1);
+    const [balance, setBalance] = useState("");
 
     useEffect(() => {
         getBalance();
@@ -29,7 +36,8 @@ export const ConnectWalletButton: React.FC = ({isTransparent}) => {
             const web3 = new Web3(window.ethereum);
             if (address !== undefined) {
                 const balance = await web3.eth.getBalance(address);
-                setBalance(parseInt(balance));
+                const balanceInEth = ethers.utils.formatEther(balance);
+                setBalance(balanceInEth);
             }
         }
     };
@@ -69,12 +77,12 @@ export const ConnectWalletButton: React.FC = ({isTransparent}) => {
         <Menu>
             {({ isOpen }) => (
                 <>
-                    <MenuButton 
+                    <MenuButton
                         isActive={isOpen}
                         bg={
                             !isTransparent
-                            ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
-                            : "transparent"
+                                ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
+                                : "transparent"
                         }
                         border={isTransparent ? "1px solid #ececec" : ""}
                     >
@@ -94,8 +102,8 @@ export const ConnectWalletButton: React.FC = ({isTransparent}) => {
                                 borderRadius={0}
                                 bg={
                                     !isTransparent
-                                    ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
-                                    : "transparent"
+                                        ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
+                                        : "transparent"
                                 }
                                 aria-label="Search database"
                                 icon={<Image src={eth} />}
