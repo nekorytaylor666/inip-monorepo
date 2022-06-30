@@ -1,19 +1,26 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { objectIdWithTimestamp } from 'src/utils/object_id_with_timestamp';
-import { FloorPriceStatsEntity } from '../model/floor_price.model';
+
 import { SellTokenEntity } from '../model/sell_token.model';
+import { GetFloorPriceInterface } from '@inip/types';
+import { NFTCollectionEntity } from 'src/nft_collection/model/nft_collection.model';
+import { BigNumber } from 'ethers';
 
 @Controller()
 export class FlootPriceIntervalController {
   constructor(
     @InjectModel(SellTokenEntity.name)
     private sellTokenEntity: Model<SellTokenEntity>,
+    @InjectModel(NFTCollectionEntity.name)
+    private nftCollectionEntity: Model<NFTCollectionEntity>,
+
+    @InjectModel(SellTokenEntity.name)
+    private sellTokenEntitymodel: Model<SellTokenEntity>,
   ) {}
 
   @Post('get_sell')
-  async getFloorPrices(
+  async getSells(
     @Body()
     body: {
       startTime: string;
@@ -60,5 +67,33 @@ export class FlootPriceIntervalController {
     ]);
 
     return [...getAllEll[0], ...getAllEll[1], ...getAllEll[2]];
+  }
+
+  @Post('get_floor_price')
+  async getFloorPrices(
+    @Body()
+    body: GetFloorPriceInterface,
+  ) {
+    return (
+      await this.nftCollectionEntity.findOne({
+        address: body.contractAddress,
+      })
+    ).floorPrice;
+  }
+
+  @Post('totalSales')
+  async totalSales(
+    @Body()
+    body: GetFloorPriceInterface,
+  ) {
+    const sales = await this.sellTokenEntitymodel.find({
+      contractAddress: body.contractAddress,
+    });
+    if (!sales.length) return 0;
+
+    return sales.reduce((prevValue, currentValue) => {
+      return prevValue.add(BigNumber.from(currentValue.buyoutPrice));
+      // return prevValue + BigNumber.from(currentValue.buyoutPrice).toNumber();
+    }, BigNumber.from(0));
   }
 }

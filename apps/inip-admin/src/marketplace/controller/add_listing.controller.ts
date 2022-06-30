@@ -33,19 +33,11 @@ export class AddListingController {
       .getMarketplace(marketPlaceAddress)
       .getListing(listingId);
 
-    const collection = await this.nftCollectionModel.findOne({
-      address: listing.assetContractAddress,
+    this.updateSingleListingService.updateFloorPrice({
+      buyoutPrice: listing.buyoutPrice,
+      contractAddress: listing.assetContractAddress,
     });
-    const floorPrice = BigNumber.isBigNumber(collection.floorPrice)
-      ? BigNumber.from(collection.floorPrice)
-      : listing.buyoutPrice;
 
-    if (listing.buyoutPrice.lte(floorPrice)) {
-      this.updateSingleListingService.updateFloorPrice({
-        buyoutPrice: listing.buyoutPrice,
-        contractAddress: listing.assetContractAddress,
-      });
-    }
     await this.updateSingleListingService.updateSingleListing({
       listing,
     });

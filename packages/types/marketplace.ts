@@ -10,7 +10,7 @@ export interface INFTCollection {
     fee_recipient: string;
   };
   floorPrice?: {
-    type: string;
-    hex: string;
+    _hex: string;
+    _isBigNumber: boolean;
   };
 }
