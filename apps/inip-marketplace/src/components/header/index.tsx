@@ -61,6 +61,7 @@ export const Header: React.FC = () => {
                     <MenuButton>Charity Projects</MenuButton>
                     <MenuList
                         borderRadius={0}
+                        borderTop={"0px"}
                         p={"25px 20px"}
                         color={"#979391"}
                         fontFamily={"Inter"}
@@ -88,6 +89,7 @@ export const Header: React.FC = () => {
                     <MenuButton>Dreams</MenuButton>
                     <MenuList
                         borderRadius={0}
+                        borderTop={"0px"}
                         p={"25px 20px"}
                         color={"#979391"}
                         fontFamily={"Inter"}
@@ -115,6 +117,7 @@ export const Header: React.FC = () => {
                     <MenuButton>Kindness Rating</MenuButton>
                     <MenuList
                         borderRadius={0}
+                        borderTop={"0px"}
                         p={"25px 20px"}
                         color={"#979391"}
                         fontFamily={"Inter"}
@@ -142,6 +145,7 @@ export const Header: React.FC = () => {
                     <MenuButton>Community</MenuButton>
                     <MenuList
                         borderRadius={0}
+                        borderTop={"0px"}
                         p={"25px 20px"}
                         color={"#979391"}
                         fontFamily={"Inter"}

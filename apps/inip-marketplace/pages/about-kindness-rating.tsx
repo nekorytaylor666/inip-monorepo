@@ -105,6 +105,7 @@ const AboutKindnessRating = () => {
                         maxW={"249px"}
                         minH={"80px"}
                         bg={"radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"}
+                        borderRadius={0}
                         color={"#fff"}
                         fontSize={"20px"}
                         fontFamily={"Inter"}
@@ -122,6 +123,7 @@ const AboutKindnessRating = () => {
                         h={"102px"} 
                         w={"100px"}
                         border={"1px solid #476676"}
+                        color={"#365262"}
                         fontFamily={"QtOpt"}
                         fontSize={"70px"}
                         fontWeight={700}
@@ -154,7 +156,6 @@ const AboutKindnessRating = () => {
                         <Flex
                             flexDir={"column"}
                             gap={"21px"}
-
                         >
                             <Heading
                                 fontWeight={700} 
@@ -165,7 +166,6 @@ const AboutKindnessRating = () => {
                                 Quantitive
                             </Heading>
                             <Text fontWeight={400} fontSize={"18px"} fontFamily={"Inter"}>
-
                                 The ranking is based 
                                 on the number of 
                                 persons assisted by the person. 
@@ -193,7 +193,9 @@ const AboutKindnessRating = () => {
                                 fontSize={"30px"} 
                                 fontFamily={"QtOpt"}
                                 color={"#476676"}    
-                            >Financial</Heading>
+                            >
+                                Financial
+                            </Heading>
                             <Text fontWeight={400} fontSize={"18px"} fontFamily={"Inter"}>
                                 The rating is based on the amount of 
                                 money that the person ultimately 
@@ -239,64 +241,67 @@ const AboutKindnessRating = () => {
                 </Flex>
             </Box>
 
-            <Box
+            <Flex
                 p={"60px 200px 80px"}
+                gap={"85px"}
                 bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(167, 194, 211, 0) 100%), #6C8693"}
                 color={"#fff"}
             >
 
-                <Heading>rewards.</Heading>
-                <Text maxW={"754px"} mt={"20px"} fontFamily={"Inter"} fontWeight={100} fontSize={"20px"}>The rating is updated every month. Points from all three sectors are summed up and a full number of your points is obtained.</Text>
-
-                <Flex pt={"50px"} justifyContent={"space-between"}>
-                    <Flex
-                        flexWrap={"wrap"}
-                        gap={"20px"}
-                    >
+                <Box>
+                    <Heading>rewards.</Heading>
+                    <Text maxW={"754px"} mt={"20px"} fontFamily={"Inter"} fontWeight={100} fontSize={"20px"}>The rating is updated every month. Points from all three sectors are summed up and a full number of your points is obtained.</Text>
+                    <Flex pt={"50px"} justifyContent={"space-between"}>
                         <Flex
-                            minW={"594px"}
-                            minH={"190px"}
-                            flexDir={"column"}
-                            border={"1px solid #b1d0d8"}
-                            p={"35px"}
-                            gap={"25px"}
+                            flexWrap={"wrap"}
+                            gap={"20px"}
                         >
-                            <Heading>
-                                Surrounding one in a billion
-                            </Heading>
+                            <Flex
+                                minW={"594px"}
+                                minH={"190px"}
+                                flexDir={"column"}
+                                border={"1px solid #b1d0d8"}
+                                p={"35px"}
+                                gap={"25px"}
+                            >
+                                <Heading>
+                                    Surrounding one in a billion
+                                </Heading>
 
-                            <Text maxW={"400px"}>
-                                Get into the top 50 and get access to a community 
-                                that will change the whole world!
-                            </Text>
+                                <Text maxW={"400px"}>
+                                    Get into the top 50 and get access to a community 
+                                    that will change the whole world!
+                                </Text>
+                            </Flex>
+                            <Flex
+                                minW={"594px"}
+                                minH={"190px"}
+                                flexDir={"column"}
+                                border={"1px solid #b1d0d8"}
+                                p={"35px"}
+                                gap={"25px"}
+                            >
+                                <Heading>
+                                    AirDrops & Private Sales
+                                </Heading>
+
+                                <Text maxW={"400px"}>
+                                    Get into the top 50 and get access to a community 
+                                    that will change the whole world!
+                                </Text>
+                            </Flex>
+                        
+
                         </Flex>
-                        <Flex
-                            minW={"594px"}
-                            minH={"190px"}
-                            flexDir={"column"}
-                            border={"1px solid #b1d0d8"}
-                            p={"35px"}
-                            gap={"25px"}
-                        >
-                            <Heading>
-                                AirDrops & Private Sales
-                            </Heading>
-
-                            <Text maxW={"400px"}>
-                                Get into the top 50 and get access to a community 
-                                that will change the whole world!
-                            </Text>
-                        </Flex>
-                       
-
                     </Flex>
-                    <Flex
-                        alignItems={"center"}
-                    >
-                        <Image src={reward}/>
-                    </Flex>
+                </Box>
+                <Flex
+                    alignItems={"center"}
+                >
+                    <Image src={reward}/>
                 </Flex>
-            </Box>
+
+            </Flex>
 
             <Box
                 p={"120px 200px"}
@@ -352,7 +357,7 @@ const AboutKindnessRating = () => {
                 <Box mt={"50px"}>
                     <Rating ratings={kindness}/>
 
-                    <Center>
+                    <Center mt={"70px"}>
                         <Button 
                             minW={"316px"} 
                             minH={"80px"} 
