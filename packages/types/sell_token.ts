@@ -1,6 +1,6 @@
 import { CurrencyValue, NFTMetadata } from "@thirdweb-dev/sdk";
 import { BigNumberish } from "ethers";
-import { INftCollectionMetadata } from "nft_colleection_metadata";
+import { INftCollectionMetadata } from "./nft_colleection_metadata";
 
 export interface SellTokenEntityInterface {
   buyoutPrice: BigNumberish; // BigNumberish
@@ -11,6 +11,6 @@ export interface SellTokenEntityInterface {
   contractAddress: string;
   tokenId: string;
   createDate?: Date;
-  metadata: NFTMetadata;
+  tokenMetadata: NFTMetadata;
   contractMetadata: INftCollectionMetadata;
 }
