@@ -16,16 +16,29 @@ import {
     TabPanel,
     TabPanels,
     Tabs,
+    Spinner,
+    SimpleGrid,
+    useToast,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import twitter from "@public/icons/profile/twitter.svg";
 import discord from "@public/icons/profile/discord.svg";
 import profile from "@public/icons/profile/profile.jpg";
+import { MediaRenderer, useAddress, useMarketplace } from "@thirdweb-dev/react";
+import axios from "axios";
+import { api } from "src/api/axios";
+import { useQuery } from "react-query";
+import { OwnedNft, OwnedNftsResponse } from "@alch/alchemy-sdk";
+import { truncateString } from "src/utils/helpers";
+import {
+    DREAMS_COME_TRUE_COLLECTION_ADDRESS,
+    MARKETPLACE_ADDRESS,
+} from "src/utils/const";
+import { sdk } from "src/api/thirdweb";
+import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
 
 const Profile = () => {
-    const [category, setCategory] = useState("creations");
-
     return (
         <Box p={"100px 200px"}>
             <Box pb={"70px"}>
@@ -199,7 +212,11 @@ const Profile = () => {
                             <NFTGrid />
                         </TabPanel>
                         <TabPanel>
-                            <p>two!</p>
+                            <NFTGrid
+                                tokenAddress={
+                                    DREAMS_COME_TRUE_COLLECTION_ADDRESS
+                                }
+                            />
                         </TabPanel>
                     </TabPanels>
                 </Tabs>
@@ -208,8 +225,125 @@ const Profile = () => {
     );
 };
 
-const NFTGrid = () => {
-    return <></>;
+const NFTGrid = ({ tokenAddress }: { tokenAddress?: string }) => {
+    const walletAddress = useAddress();
+    console.log(!!walletAddress);
+    const { data, isLoading } = useQuery(
+        `nftsByOwner:${walletAddress}`,
+        async () => {
+            const res = await axios.get<OwnedNftsResponse>(
+                `/api/nfts-by-owner/${walletAddress}`,
+            );
+            return res.data;
+        },
+        {
+            enabled: !!walletAddress,
+        },
+    );
+    if (isLoading) return <Spinner></Spinner>;
+
+    const items = data?.ownedNfts;
+    const filteredItem = items?.filter((el) => {
+        //!TODO: NOT SAFE CODE!!! We should send issue to alchemy and thirdweb that contract address of one contract differs on their platforms
+        return (
+            !tokenAddress ||
+            el.contract.address.toLowerCase() === tokenAddress.toLowerCase()
+        );
+    });
+    return (
+        <SimpleGrid columns={[3]} gap={8}>
+            {filteredItem?.map((el) => (
+                <OwnedNFTItem item={el}></OwnedNFTItem>
+            ))}
+        </SimpleGrid>
+    );
+};
+
+const OwnedNFTItem = ({ item }: { item: OwnedNft }) => {
+    const toast = useToast();
+    const marketplace = useMarketplace(MARKETPLACE_ADDRESS);
+    const [listingLoading, setListingLoading] = useState(false);
+    const onListingClick = async () => {
+        try {
+            setListingLoading(true);
+            const listing = {
+                assetContractAddress: item.contract.address,
+                // token ID of the asset you want to list
+                tokenId: item.tokenId,
+                // when should the listing open up for offers
+                startTimestamp: new Date(),
+                // how long the listing will be open for
+                listingDurationInSeconds: 86400,
+                // how many of the asset you want to list
+                quantity: 1,
+                // address of the currency contract that will be used to pay for the listing
+                currencyContractAddress: NATIVE_TOKEN_ADDRESS,
+                // how much the asset will be sold for
+                buyoutPricePerToken: "0.001",
+            };
+            const listingRes = await marketplace?.direct.createListing(listing);
+            api.post("/addListing", { listingId: listingRes?.id });
+            toast({
+                title: "Listing created.",
+                description: "We've created listing on our marketplace.",
+                status: "success",
+                duration: 9000,
+                isClosable: true,
+            });
+            setListingLoading(false);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    return (
+        <Box>
+            <Box>
+                <MediaRenderer
+                    style={{ objectFit: "cover", width: 500, height: 500 }}
+                    src={item.rawMetadata?.image}
+                    alt="A mp4 video"
+                />
+            </Box>
+            <Flex
+                color={"#1C2529"}
+                mt={"28px"}
+                justifyContent={"space-between"}
+                direction="column"
+                gap={2}
+            >
+                <Flex
+                    w={"full"}
+                    justifyContent="space-between"
+                    alignItems="center"
+                >
+                    <Text
+                        fontFamily={"QtOpt"}
+                        m={0}
+                        fontSize={"20px"}
+                        fontWeight={700}
+                    >
+                        {item.rawMetadata?.name}
+                    </Text>
+                    <Button
+                        isLoading={listingLoading}
+                        onClick={() => onListingClick()}
+                        variant={"outline"}
+                    >
+                        List
+                    </Button>
+                </Flex>
+                <Flex alignItems={"center"} color={"#1C2529"}>
+                    <Text
+                        flex={1}
+                        noOfLines={2}
+                        fontSize={"14px"}
+                        fontWeight={500}
+                    ></Text>
+                    <Text fontSize={"14px"} textAlign={"end"} flex={1}></Text>
+                </Flex>
+            </Flex>
+        </Box>
+    );
 };
 
 const ProfileTab: React.FC = ({ children }) => (

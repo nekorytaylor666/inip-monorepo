@@ -9,6 +9,7 @@ import {
     SimpleGrid,
     Skeleton,
     Text,
+    useToast,
     VStack,
 } from "@chakra-ui/react";
 import {
@@ -28,20 +29,20 @@ import Image from "next/image";
 import { SellTokenEntityInterface } from "@inip/types";
 import { useMutation } from "react-query";
 import { api } from "src/api/axios";
+import { MARKETPLACE_ADDRESS } from "src/utils/const";
 const ItemPage = () => {
     const router = useRouter();
     const itemId = router.query.itemId as string;
     const collectionId = router.query.collectionId as string;
     const nftCollection = useNFTCollection(collectionId);
-    const marketplace = useMarketplace(
-        "0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f",
-    );
+    const marketplace = useMarketplace(MARKETPLACE_ADDRESS);
 
     const [listing, setListings] = useState<
         (AuctionListing | DirectListing) | undefined
     >();
     const [listingLoading, setListingLoading] = useState(false);
     const [loadingBuying, setLoadingBuying] = useState(false);
+    const toast = useToast();
     useEffect(() => {
         getActiveListing();
     }, [itemId]);
@@ -83,10 +84,17 @@ const ItemPage = () => {
                 contractAddress: listing.assetContractAddress,
                 from: buyoutRes?.receipt.from,
                 to: buyoutRes?.receipt.to,
-                tokenId: itemId,
+                tokenId: listing.tokenId,
                 transactionHash: buyoutRes?.receipt.transactionHash,
             };
             api.post("/sell_token/sell", sellData);
+            toast({
+                title: "Buy success.",
+                description: "You've bought NFT!",
+                status: "success",
+                duration: 9000,
+                isClosable: true,
+            });
             router.push("/collections");
             setLoadingBuying(false);
         } catch (error) {

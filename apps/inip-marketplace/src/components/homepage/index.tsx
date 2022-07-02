@@ -6,11 +6,9 @@ import {
     Center,
     Text,
     Heading,
-    Square,
     Button,
     ButtonGroup,
     Progress,
-    LinkBox,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import mainIcon from "@public/icons/homepage/mainIcon.svg";
@@ -20,7 +18,6 @@ import louvre from "@public/icons/homepage/louvre.jpg";
 import eth from "@public/icons/homepage/ethereum.svg";
 import charityImg from "@public/icons/homepage/charity.jpg";
 import kindnessImg from "@public/icons/homepage/kindness.jpg";
-import rating from "@public/icons/homepage/rating.svg";
 import { Collection } from "@components/nftCollection";
 import { Rating } from "../rating/index";
 import world from "@public/icons/homepage/charityWorld.svg";
