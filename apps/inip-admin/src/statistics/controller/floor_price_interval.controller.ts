@@ -66,7 +66,10 @@ export class FlootPriceIntervalController {
         .limit(1),
     ]);
 
-    return [...getAllEll[0], ...getAllEll[1], ...getAllEll[2]];
+    return [...getAllEll[0], ...getAllEll[1], ...getAllEll[2]].map((e) => ({
+      ...e,
+      createDate: e._id.getTimestamp(),
+    }));
   }
 
   @Post('get_floor_price')
@@ -89,6 +92,14 @@ export class FlootPriceIntervalController {
     const sales = await this.sellTokenEntitymodel.find({
       contractAddress: body.contractAddress,
     });
+    // sales[0].metadata
+    // name?: string;
+    // description?: string;
+    // image?: string;
+    // external_url?: string;
+    // animation_url?: string;
+    // uri: string;
+    // id: BigNumber;
     if (!sales.length) return 0;
 
     return sales.reduce((prevValue, currentValue) => {

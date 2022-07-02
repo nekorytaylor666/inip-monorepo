@@ -336,10 +336,6 @@ const Community = () => {
                                 Other bonuses
                             </Heading>
 
-                            <Text maxW={"400px"}>
-                                Get into the top 50 and get access to a community 
-                                that will change the whole world!
-                            </Text>
                         </Flex>
 
                     </Flex>
@@ -358,10 +354,11 @@ const Community = () => {
                     flexDir={"column"}
                     gap={"50px"}
                 >
-                    <Heading>answer one question.</Heading>
+                    <Heading color={"#365262"}>answer one question.</Heading>
 
                     <Box
                         minW={"910px"}
+                        color={"#476676"}
                     >
                         <Text>If you had endless possibilities, what would you bring the world?</Text>
                         <Textarea 
