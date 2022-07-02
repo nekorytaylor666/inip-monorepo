@@ -33,7 +33,7 @@ export class SellTokenEntity implements SellTokenEntityInterface {
   @Prop()
   contractAddress: string;
 
-  @Prop()
+  @Prop({ type: Object })
   tokenId: string;
 
   @Prop()
