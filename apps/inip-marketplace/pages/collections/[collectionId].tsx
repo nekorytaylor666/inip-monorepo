@@ -34,7 +34,7 @@ import {
     NFTMetadataOwner,
 } from "@thirdweb-dev/sdk";
 import Image from "next/image";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import eth from "@public/icons/homepage/ethereum.svg";
 import { truncateString } from "src/utils/helpers";
 import { CollectionMetadata } from "src/types/types";
@@ -55,7 +55,7 @@ import { getNFTCollection, marketplace } from "src/api/collections";
 import { useQuery } from "react-query";
 import { sdk } from "src/api/thirdweb";
 import { api } from "src/api/axios";
-import { subDays } from "date-fns";
+import { format, subDays } from "date-fns";
 import { SellTokenEntityInterface } from "@inip/types";
 import { ethers } from "ethers";
 import { MARKETPLACE_ADDRESS } from "src/utils/const";
@@ -80,54 +80,25 @@ const CollectionPage = () => {
                         <TabPanel>
                             <NFTItemsGrid />
                         </TabPanel>
-                        {/* <TabPanel>
+                        <TabPanel>
                             <ActivityTab></ActivityTab>
-                        </TabPanel> */}
+                        </TabPanel>
                     </TabPanels>
                 </Tabs>
             </Container>
         </>
     );
 };
-const mockChartData = [
-    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
-    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
-    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
-    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
-    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
-];
 
-const ActivityChart = () => {
+interface ChartDataItem {
+    date: string;
+    price: string;
+}
+
+const ActivityChart = ({ data }: { data: ChartDataItem[] }) => {
     return (
         <Box w={1000} overflowX="scroll">
-            <ComposedChart width={1000} height={300} data={mockChartData}>
+            <ComposedChart width={1000} height={300} data={data}>
                 <defs>
                     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                         <stop
@@ -142,8 +113,8 @@ const ActivityChart = () => {
                         />
                     </linearGradient>
                 </defs>
-                <XAxis dataKey="name" />
-                <YAxis />
+                <XAxis dataKey="date" />
+                <YAxis dataKey="price" />
                 <Tooltip />
                 <CartesianGrid vertical={false} stroke="#DDD" />
 
@@ -151,14 +122,14 @@ const ActivityChart = () => {
                     type="monotone"
                     strokeLinecap="round"
                     strokeWidth={2}
-                    dataKey="uv"
+                    dataKey="price"
                     stroke="#748E9C"
                     dot={false}
                     legendType="none"
                 />
                 <Area
                     type="monotone"
-                    dataKey="uv"
+                    dataKey="price"
                     stroke={false}
                     strokeWidth={2}
                     fillOpacity={1}
@@ -201,16 +172,50 @@ const ActivityTab = () => {
             return res.data as SellTokenEntityInterface[];
         },
     );
-    if (isLoading) return <Spinner></Spinner>;
+
+    const dataToChartItems = (
+        data: SellTokenEntityInterface[],
+    ): ChartDataItem[] => {
+        return data
+            .map((el) => {
+                const price = ethers.utils.formatEther(el.buyoutPrice);
+                const date = format(
+                    new Date(el.createDate ?? ""),
+                    "HH:mm, dd MMM yyyy",
+                );
+                return {
+                    date,
+                    price,
+                };
+            })
+            .reverse();
+    };
+
+    const chartData = useMemo(() => {
+        return dataToChartItems(data ?? []);
+    }, [data]);
+
     const dataToTableRow = (row: SellTokenEntityInterface) => {
         const price = ethers.utils.formatEther(row.buyoutPrice);
+        const tokenId = ethers.utils.formatEther(row.tokenId);
         return (
             <Tr>
-                ``
                 <Td fontWeight={"bold"}>
-                    <Text isTruncated w="150px">
-                        {row.contractAddress}
-                    </Text>
+                    <Flex alignItems={"center"} justifyContent="center" gap={4}>
+                        <MediaRenderer
+                            style={{
+                                width: 80,
+                                height: 80,
+                                objectFit: "cover",
+                                borderRadius: "0.5rem",
+                            }}
+                            src={row.tokenMetadata.image}
+                            alt="A mp4 video"
+                        />
+                        <Text isTruncated w="150px">
+                            {row.tokenMetadata.name}
+                        </Text>
+                    </Flex>
                 </Td>
                 <Td fontWeight={"bold"}>
                     <Text isTruncated w="150px">
@@ -224,26 +229,28 @@ const ActivityTab = () => {
                 </Td>
                 <Td fontWeight={"bold"}>
                     <Text isTruncated w="150px">
+                        {row.contractAddress}
+                    </Text>
+                </Td>
+                <Td fontWeight={"bold"}>
+                    <Text isTruncated w="150px">
                         {price}
                     </Text>
                 </Td>
                 <Td fontWeight={"bold"}>
                     <Text isTruncated w="150px">
-                        {row.transactionHash}
-                    </Text>
-                </Td>
-                <Td fontWeight={"bold"}>
-                    <Text isTruncated w="150px">
-                        {row.tokenId}
+                        {format(new Date(row.createDate), "HH:mm, dd MMM yyyy")}
                     </Text>
                 </Td>
             </Tr>
         );
     };
+    if (isLoading) return <Spinner></Spinner>;
+
     return (
         <Box>
-            <ActivityChart></ActivityChart>
-            <Box>
+            <ActivityChart data={chartData ?? []}></ActivityChart>
+            <Box mt={8}>
                 <Heading fontSize={"2xl"}>Sales history.</Heading>
                 <TableContainer mt={4}>
                     <Table variant="simple">
@@ -252,7 +259,7 @@ const ActivityTab = () => {
                                 <CustomTh>Artwork</CustomTh>
                                 <CustomTh>From</CustomTh>
                                 <CustomTh>To</CustomTh>
-                                <CustomTh>Type</CustomTh>
+                                <CustomTh>Contract address</CustomTh>
                                 <CustomTh>Price</CustomTh>
                                 <CustomTh>Date</CustomTh>
                             </Tr>
@@ -283,7 +290,7 @@ const CollectionHeader = () => {
             .then(({ data }) => data),
     );
 
-    const { data: floorPrice } = useQuery(`totalSales:${collectionId}`, () =>
+    const { data: floorPrice } = useQuery(`floorPrice:${collectionId}`, () =>
         api
             .post("/get_floor_price", { contractAddress: collectionId })
             .then(({ data }) => data),

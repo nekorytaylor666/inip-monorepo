@@ -19,6 +19,17 @@ import {
     Spinner,
     SimpleGrid,
     useToast,
+    FormControl,
+    FormLabel,
+    Input,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay,
+    useDisclosure,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,6 +48,7 @@ import {
 } from "src/utils/const";
 import { sdk } from "src/api/thirdweb";
 import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
+import { useFormik } from "formik";
 
 const Profile = () => {
     return (
@@ -263,6 +275,16 @@ const OwnedNFTItem = ({ item }: { item: OwnedNft }) => {
     const toast = useToast();
     const marketplace = useMarketplace(MARKETPLACE_ADDRESS);
     const [listingLoading, setListingLoading] = useState(false);
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const initialRef = React.useRef(null);
+    const finalRef = React.useRef(null);
+    const { values, handleChange } = useFormik({
+        initialValues: { price: 0 },
+        onSubmit() {
+            console.log();
+        },
+    });
     const onListingClick = async () => {
         try {
             setListingLoading(true);
@@ -279,7 +301,7 @@ const OwnedNFTItem = ({ item }: { item: OwnedNft }) => {
                 // address of the currency contract that will be used to pay for the listing
                 currencyContractAddress: NATIVE_TOKEN_ADDRESS,
                 // how much the asset will be sold for
-                buyoutPricePerToken: "0.001",
+                buyoutPricePerToken: values.price,
             };
             const listingRes = await marketplace?.direct.createListing(listing);
             api.post("/addListing", { listingId: listingRes?.id });
@@ -296,53 +318,101 @@ const OwnedNFTItem = ({ item }: { item: OwnedNft }) => {
         }
     };
     return (
-        <Box>
+        <>
             <Box>
-                <MediaRenderer
-                    style={{ objectFit: "cover", width: 500, height: 500 }}
-                    src={item.rawMetadata?.image}
-                    alt="A mp4 video"
-                />
-            </Box>
-            <Flex
-                color={"#1C2529"}
-                mt={"28px"}
-                justifyContent={"space-between"}
-                direction="column"
-                gap={2}
-            >
+                <Box>
+                    <MediaRenderer
+                        style={{ objectFit: "cover", width: 500, height: 500 }}
+                        src={item.rawMetadata?.image}
+                        alt="A mp4 video"
+                    />
+                </Box>
                 <Flex
-                    w={"full"}
-                    justifyContent="space-between"
-                    alignItems="center"
+                    color={"#1C2529"}
+                    mt={"28px"}
+                    justifyContent={"space-between"}
+                    direction="column"
+                    gap={2}
                 >
-                    <Text
-                        fontFamily={"QtOpt"}
-                        m={0}
-                        fontSize={"20px"}
-                        fontWeight={700}
+                    <Flex
+                        w={"full"}
+                        justifyContent="space-between"
+                        alignItems="center"
                     >
-                        {item.rawMetadata?.name}
-                    </Text>
-                    <Button
-                        isLoading={listingLoading}
-                        onClick={() => onListingClick()}
-                        variant={"outline"}
-                    >
-                        List
-                    </Button>
+                        <Text
+                            fontFamily={"QtOpt"}
+                            m={0}
+                            fontSize={"20px"}
+                            fontWeight={700}
+                        >
+                            {item.rawMetadata?.name}
+                        </Text>
+                        <Button
+                            isLoading={listingLoading}
+                            onClick={onOpen}
+                            variant={"outline"}
+                        >
+                            List
+                        </Button>
+                    </Flex>
+                    <Flex alignItems={"center"} color={"#1C2529"}>
+                        <Text
+                            flex={1}
+                            noOfLines={2}
+                            fontSize={"14px"}
+                            fontWeight={500}
+                        ></Text>
+                        <Text
+                            fontSize={"14px"}
+                            textAlign={"end"}
+                            flex={1}
+                        ></Text>
+                    </Flex>
                 </Flex>
-                <Flex alignItems={"center"} color={"#1C2529"}>
-                    <Text
-                        flex={1}
-                        noOfLines={2}
-                        fontSize={"14px"}
-                        fontWeight={500}
-                    ></Text>
-                    <Text fontSize={"14px"} textAlign={"end"} flex={1}></Text>
-                </Flex>
-            </Flex>
-        </Box>
+            </Box>
+            <Modal
+                initialFocusRef={initialRef}
+                finalFocusRef={finalRef}
+                isOpen={isOpen}
+                onClose={onClose}
+            >
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>
+                        <Heading fontSize={"2xl"}>Listing Details</Heading>
+                    </ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody pb={6}>
+                        <FormControl>
+                            <FormLabel>Listing price</FormLabel>
+                            <Input
+                                name="price"
+                                onChange={handleChange}
+                                ref={initialRef}
+                                placeholder="Listing price"
+                            />
+                        </FormControl>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button
+                            isLoading={listingLoading}
+                            onClick={onListingClick}
+                            mr={3}
+                        >
+                            List
+                        </Button>
+                        <Button
+                            disabled={listingLoading}
+                            colorScheme={"red"}
+                            onClick={onClose}
+                        >
+                            Cancel
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+        </>
     );
 };
 
