@@ -67,7 +67,7 @@ export class FlootPriceIntervalController {
     ]);
 
     return [...getAllEll[0], ...getAllEll[1], ...getAllEll[2]].map((e) => ({
-      ...e,
+      ...e.toObject(),
       createDate: e._id.getTimestamp(),
     }));
   }
