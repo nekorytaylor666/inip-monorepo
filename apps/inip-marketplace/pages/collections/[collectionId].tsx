@@ -1,18 +1,25 @@
 import {
     Box,
-    Center,
     Container,
     Flex,
     Heading,
     HStack,
     SimpleGrid,
     Skeleton,
+    Spinner,
     Tab,
+    Table,
+    TableContainer,
     TabList,
     TabPanel,
     TabPanels,
     Tabs,
+    Tbody,
+    Td,
     Text,
+    Th,
+    Thead,
+    Tr,
     VStack,
 } from "@chakra-ui/react";
 import {
@@ -27,7 +34,7 @@ import {
     NFTMetadataOwner,
 } from "@thirdweb-dev/sdk";
 import Image from "next/image";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import eth from "@public/icons/homepage/ethereum.svg";
 import { truncateString } from "src/utils/helpers";
 import { CollectionMetadata } from "src/types/types";
@@ -47,6 +54,12 @@ import {
 import { getNFTCollection, marketplace } from "src/api/collections";
 import { useQuery } from "react-query";
 import { sdk } from "src/api/thirdweb";
+import { api } from "src/api/axios";
+import { format, subDays } from "date-fns";
+import { SellTokenEntityInterface } from "@inip/types";
+import { ethers } from "ethers";
+import { MARKETPLACE_ADDRESS } from "src/utils/const";
+import axios from "axios";
 
 const CollectionPage = () => {
     return (
@@ -68,9 +81,7 @@ const CollectionPage = () => {
                             <NFTItemsGrid />
                         </TabPanel>
                         <TabPanel>
-                            <Box w={1000} overflowX="scroll">
-                                {renderLineChart}
-                            </Box>
+                            <ActivityTab></ActivityTab>
                         </TabPanel>
                     </TabPanels>
                 </Tabs>
@@ -78,73 +89,188 @@ const CollectionPage = () => {
         </>
     );
 };
-const data = [
-    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
-    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
-    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
-    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.12.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.13.21", uv: 600, pv: 2400, amt: 2400 },
-    { name: "2021.14.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.15.21", uv: 700, pv: 2400, amt: 2400 },
-    { name: "2021.16.21", uv: 400, pv: 2400, amt: 2400 },
-    { name: "2021.17.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.18.21", uv: 500, pv: 2400, amt: 2400 },
-    { name: "2021.19.21", uv: 600, pv: 2400, amt: 2400 },
-];
 
-const renderLineChart = (
-    <ComposedChart width={800} height={300} data={data}>
-        <defs>
-            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#9DB8C8" stopOpacity={0.1} />
-                <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.1} />
-            </linearGradient>
-        </defs>
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <CartesianGrid vertical={false} stroke="#DDD" />
+interface ChartDataItem {
+    date: string;
+    price: string;
+}
 
-        <Line
-            type="monotone"
-            strokeLinecap="round"
-            strokeWidth={2}
-            dataKey="uv"
-            stroke="#748E9C"
-            dot={false}
-            legendType="none"
-        />
-        <Area
-            type="monotone"
-            dataKey="uv"
-            stroke={false}
-            strokeWidth={2}
-            fillOpacity={1}
-            fill="url(#colorUv)"
-        />
-    </ComposedChart>
+const ActivityChart = ({ data }: { data: ChartDataItem[] }) => {
+    return (
+        <Box w={1000} overflowX="scroll">
+            <ComposedChart width={1000} height={300} data={data}>
+                <defs>
+                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                        <stop
+                            offset="5%"
+                            stopColor="#9DB8C8"
+                            stopOpacity={0.1}
+                        />
+                        <stop
+                            offset="95%"
+                            stopColor="#FFFFFF"
+                            stopOpacity={0.1}
+                        />
+                    </linearGradient>
+                </defs>
+                <XAxis dataKey="date" />
+                <YAxis dataKey="price" />
+                <Tooltip />
+                <CartesianGrid vertical={false} stroke="#DDD" />
+
+                <Line
+                    type="monotone"
+                    strokeLinecap="round"
+                    strokeWidth={2}
+                    dataKey="price"
+                    stroke="#748E9C"
+                    dot={false}
+                    legendType="none"
+                />
+                <Area
+                    type="monotone"
+                    dataKey="price"
+                    stroke={false}
+                    strokeWidth={2}
+                    fillOpacity={1}
+                    fill="url(#colorUv)"
+                />
+            </ComposedChart>
+        </Box>
+    );
+};
+
+const CustomTh: React.FC = ({ children }) => (
+    <Th color="#979391" fontWeight={"bold"} fontFamily={"body"}>
+        {children}
+    </Th>
 );
+
+const CustomTd: React.FC = ({ children, ...props }) => (
+    <Td {...props} fontWeight={"bold"}>
+        {children}
+    </Td>
+);
+
+const ActivityTab = () => {
+    const router = useRouter();
+    const collectionId = router.query.collectionId as string;
+
+    const { data, isLoading } = useQuery(
+        `activity:${collectionId}`,
+        async () => {
+            const contractAddress = sdk
+                .getNFTCollection(collectionId)
+                .getAddress();
+            const today = new Date();
+            const startTime = subDays(today, 100);
+            const activityReqParams = {
+                startTime,
+                contractAddress,
+            };
+            const res = await api.post("/get_sell", activityReqParams);
+            return res.data as SellTokenEntityInterface[];
+        },
+    );
+
+    const dataToChartItems = (
+        data: SellTokenEntityInterface[],
+    ): ChartDataItem[] => {
+        return data
+            .map((el) => {
+                const price = ethers.utils.formatEther(el.buyoutPrice);
+                const date = format(
+                    new Date(el.createDate ?? ""),
+                    "HH:mm, dd MMM yyyy",
+                );
+                return {
+                    date,
+                    price,
+                };
+            })
+            .reverse();
+    };
+
+    const chartData = useMemo(() => {
+        return dataToChartItems(data ?? []);
+    }, [data]);
+
+    const dataToTableRow = (row: SellTokenEntityInterface) => {
+        const price = ethers.utils.formatEther(row.buyoutPrice);
+        const tokenId = ethers.utils.formatEther(row.tokenId);
+        return (
+            <Tr>
+                <Td fontWeight={"bold"}>
+                    <Flex alignItems={"center"} justifyContent="center" gap={4}>
+                        <MediaRenderer
+                            style={{
+                                width: 80,
+                                height: 80,
+                                objectFit: "cover",
+                                borderRadius: "0.5rem",
+                            }}
+                            src={row.tokenMetadata.image}
+                            alt="A mp4 video"
+                        />
+                        <Text isTruncated w="150px">
+                            {row.tokenMetadata.name}
+                        </Text>
+                    </Flex>
+                </Td>
+                <Td fontWeight={"bold"}>
+                    <Text isTruncated w="150px">
+                        {row.from}
+                    </Text>
+                </Td>
+                <Td fontWeight={"bold"}>
+                    <Text isTruncated w="150px">
+                        {row.to}
+                    </Text>
+                </Td>
+                <Td fontWeight={"bold"}>
+                    <Text isTruncated w="150px">
+                        {row.contractAddress}
+                    </Text>
+                </Td>
+                <Td fontWeight={"bold"}>
+                    <Text isTruncated w="150px">
+                        {price}
+                    </Text>
+                </Td>
+                <Td fontWeight={"bold"}>
+                    <Text isTruncated w="150px">
+                        {format(new Date(row.createDate), "HH:mm, dd MMM yyyy")}
+                    </Text>
+                </Td>
+            </Tr>
+        );
+    };
+    if (isLoading) return <Spinner></Spinner>;
+
+    return (
+        <Box>
+            <ActivityChart data={chartData ?? []}></ActivityChart>
+            <Box mt={8}>
+                <Heading fontSize={"2xl"}>Sales history.</Heading>
+                <TableContainer mt={4}>
+                    <Table variant="simple">
+                        <Thead>
+                            <Tr>
+                                <CustomTh>Artwork</CustomTh>
+                                <CustomTh>From</CustomTh>
+                                <CustomTh>To</CustomTh>
+                                <CustomTh>Contract address</CustomTh>
+                                <CustomTh>Price</CustomTh>
+                                <CustomTh>Date</CustomTh>
+                            </Tr>
+                        </Thead>
+                        <Tbody>{data?.map((row) => dataToTableRow(row))}</Tbody>
+                    </Table>
+                </TableContainer>
+            </Box>
+        </Box>
+    );
+};
 
 const CollectionHeader = () => {
     const router = useRouter();
@@ -156,6 +282,26 @@ const CollectionHeader = () => {
         error,
     } = useQuery(`collectionMeta:${collectionId}`, () =>
         sdk.getNFTCollection(collectionId).metadata.get(),
+    );
+
+    const { data: totalSales } = useQuery(`totalSales:${collectionId}`, () =>
+        api
+            .post("/totalSales", { contractAddress: collectionId })
+            .then(({ data }) => data),
+    );
+
+    const { data: floorPrice } = useQuery(`floorPrice:${collectionId}`, () =>
+        api
+            .post("/get_floor_price", { contractAddress: collectionId })
+            .then(({ data }) => data),
+    );
+
+    const { data: contractMetadata } = useQuery(
+        `contractMetada:${collectionId}`,
+        () =>
+            axios
+                .get(`/api/collection-supply/${collectionId}`)
+                .then(({ data }) => data),
     );
 
     if (isCollectionMetadataLoading) {
@@ -189,16 +335,14 @@ const CollectionHeader = () => {
                                 <Heading>{collectionMetadata.name}</Heading>
                                 <HStack w="full" justify={"space-between"}>
                                     <VStack align={"start"}>
-                                        <Text m={0}>
-                                            {" "}
-                                            collectionMetadata of
-                                        </Text>
+                                        <Text m={0}>Supply</Text>
                                         <Text
                                             fontSize={"xl"}
                                             m={0}
                                             fontWeight={"bold"}
                                         >
-                                            666
+                                            {contractMetadata?.totalSupply ??
+                                                "Unavailable"}
                                         </Text>
                                     </VStack>
                                     <VStack align={"start"}>
@@ -226,7 +370,9 @@ const CollectionHeader = () => {
                                                 m={0}
                                                 fontWeight={"bold"}
                                             >
-                                                666
+                                                {ethers.utils.formatEther(
+                                                    floorPrice,
+                                                )}
                                             </Text>
                                         </HStack>
                                     </VStack>
@@ -243,7 +389,9 @@ const CollectionHeader = () => {
                                                 m={0}
                                                 fontWeight={"bold"}
                                             >
-                                                666
+                                                {ethers.utils.formatEther(
+                                                    totalSales,
+                                                )}
                                             </Text>
                                         </HStack>
                                     </VStack>
@@ -290,13 +438,13 @@ const CollectionHeader = () => {
 const ListingItem = ({ item }: { item: AuctionListing | DirectListing }) => {
     return (
         <Box>
-            <MediaRenderer
-                width="500"
-                height="500"
-                style={{ objectFit: "cover" }}
-                src={item.asset.image}
-                alt="A mp4 video"
-            />
+            <Box>
+                <MediaRenderer
+                    style={{ objectFit: "cover", width: 500, height: 500 }}
+                    src={item.asset.image}
+                    alt="A mp4 video"
+                />
+            </Box>
             <Flex
                 color={"#1C2529"}
                 mt={"28px"}
@@ -358,17 +506,15 @@ const NFTItemsGrid = () => {
     const router = useRouter();
     const collectionId = router.query.collectionId as string;
     const collection = useNFTCollection(collectionId);
-    const marketplace = useMarketplace(
-        "0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f",
-    );
 
     const [listings, setListings] = useState([]);
     const [isListingsLoading, setIsListingsLoading] = useState(false);
     const getActiveListing = async () => {
         setIsListingsLoading(true);
         const tokenContract = collection?.getAddress();
+        if (!tokenContract) return;
         const listings = await sdk
-            .getMarketplace("0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f")
+            .getMarketplace(MARKETPLACE_ADDRESS)
             .getActiveListings({
                 tokenContract,
             });
@@ -377,7 +523,7 @@ const NFTItemsGrid = () => {
     };
     useEffect(() => {
         getActiveListing();
-    }, []);
+    }, [collection]);
 
     if (isListingsLoading || !listings)
         return (
@@ -389,8 +535,6 @@ const NFTItemsGrid = () => {
                 ))}
             </SimpleGrid>
         );
-
-    // if (isMetadataError) return <Box>{error}</Box>;
 
     return (
         <SimpleGrid columns={[1, null, 3]} spacing="40px">

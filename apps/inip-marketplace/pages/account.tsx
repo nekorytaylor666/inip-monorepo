@@ -5,7 +5,6 @@ import React, { useEffect } from "react";
 const AccountPage = () => {
     const getNftsForAddress = async () => {
         const res = await axios.get("/api/nfts-by-owner");
-        console.log(res);
     };
     useEffect(() => {
         getNftsForAddress();
