@@ -42,17 +42,21 @@ export class FlootPriceIntervalController {
         })
         .sort({ _id: -1 })
         .limit(1),
-      this.sellTokenEntity.find({
-        _id: {
-          $gte: Types.ObjectId.createFromTime(
-            new Date(body.startTime).getTime() / 1000,
-          ),
-          $lte: Types.ObjectId.createFromTime(
-            new Date(endTime).getTime() / 1000,
-          ),
-        },
-        contractAddress,
-      }),
+      this.sellTokenEntity
+        .find({
+          _id: {
+            $gte: Types.ObjectId.createFromTime(
+              new Date(body.startTime).getTime() / 1000,
+            ),
+            $lte: Types.ObjectId.createFromTime(
+              new Date(endTime).getTime() / 1000,
+            ),
+          },
+          contractAddress,
+        })
+        .sort({
+          _id: -1,
+        }),
       this.sellTokenEntity
         .find({
           _id: {
