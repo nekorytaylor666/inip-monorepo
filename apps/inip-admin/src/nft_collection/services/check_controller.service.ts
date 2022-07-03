@@ -1,10 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import { Model } from 'mongoose';
 import {
   NFTCollectionEntity,
   NFTCollectionEntityDocument,
 } from '../model/nft_collection.model';
+import { meiliSearchClient } from '../../meiliSearch/meili_search.module';
+
+const sdk = new ThirdwebSDK('rinkeby');
 
 @Injectable()
 export class NftCollectionCheckService {
@@ -17,9 +21,25 @@ export class NftCollectionCheckService {
     const check = await this.nftCollectionModel.findOne({
       address: contractAddress,
     });
-    if (check) {
-    }
-    console.log('WTF');
+    if (check) return;
+    const metadata =
+      (await sdk.getNFTCollection(contractAddress).metadata.get()) ??
+      (await sdk.getNFTDrop(contractAddress).metadata.get());
+    const good = await this.nftCollectionModel.create({
+      address: contractAddress,
+      metadata: metadata,
+    });
+    await meiliSearchClient.index('collection').addDocuments([
+      {
+        metadata: metadata,
+        id: good._id,
+        address: contractAddress,
+        name: metadata.name,
+      },
+    ]);
+    // sdk.getNFTCollection(contractAddress);
+    // (await sdk.getNFTCollection(e).metadata.get()) ??
+    //       (await sdk.getNFTDrop(e).metadata.get()),
   }
 }
 

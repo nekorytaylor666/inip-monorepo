@@ -34,7 +34,9 @@ export class AddListingController {
     const listing = await sdk
       .getMarketplace(marketPlaceAddress)
       .getListing(listingId);
-
+    await this.nftCollectionCheckService.checkExistNftCollectionOrCreate(
+      listing.assetContractAddress,
+    );
     this.updateSingleListingService.updateFloorPrice({
       buyoutPrice: listing.buyoutPrice,
       contractAddress: listing.assetContractAddress,
@@ -52,9 +54,6 @@ export class AddListingController {
       collectionId: string;
     },
   ) {
-    await this.nftCollectionCheckService.checkExistNftCollectionOrCreate(
-      body.collectionId,
-    );
     // const listingId = BigNumber.from(body.listingId);
     // const listing = await sdk
     //   .getMarketplace(marketPlaceAddress)
