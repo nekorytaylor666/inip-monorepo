@@ -1,8 +1,10 @@
 import {
     Box,
     Button,
+    ButtonGroup,
     Container,
     Flex,
+    Center,
     Grid,
     Heading,
     HStack,
@@ -11,6 +13,14 @@ import {
     Text,
     useToast,
     VStack,
+    TableContainer,
+    Table,
+    Thead,
+    Tr,
+    Th,
+    Td,
+    Tbody, 
+    Tfoot
 } from "@chakra-ui/react";
 import {
     MediaRenderer,
@@ -29,7 +39,13 @@ import Image from "next/image";
 import { SellTokenEntityInterface } from "@inip/types";
 import { useMutation } from "react-query";
 import { api } from "src/api/axios";
-import { MARKETPLACE_ADDRESS } from "src/utils/const";
+import like from "@public/icons/nftpage/like.svg";
+import views from "@public/icons/nftpage/views.svg";
+import upward from "@public/icons/upward.svg";
+import downward from "@public/icons/downward.svg";
+
+
+
 const ItemPage = () => {
     const router = useRouter();
     const itemId = router.query.itemId as string;
@@ -42,7 +58,10 @@ const ItemPage = () => {
     >();
     const [listingLoading, setListingLoading] = useState(false);
     const [loadingBuying, setLoadingBuying] = useState(false);
-    const toast = useToast();
+    const [listingShowed, setListingShowed] = useState(false);
+    const [listOffersShowed, setlistOffersShowed] = useState(false);
+
+
     useEffect(() => {
         getActiveListing();
     }, [itemId]);
@@ -101,9 +120,12 @@ const ItemPage = () => {
             console.log(error);
         }
     };
+
+
+
     return (
         <>
-            <Container mt="12" maxW="1440px">
+            <Container mt="12" maxW="1440px" pb={"200px"}>
                 <Grid templateColumns={"500px 1fr"} gap="100px">
                     <Box>
                         <MediaRenderer
@@ -153,16 +175,64 @@ const ItemPage = () => {
                         </VStack>
                     </Box>
                     <Box>
-                        <Heading>{listing?.asset.name}</Heading>
-                        <HStack my={4}>
-                            <Image width={30} height={40} src={eth} />
-                            <Text fontWeight={"extrabold"} fontSize={"2xl"}>
-                                {
-                                    listing?.buyoutCurrencyValuePerToken
-                                        .displayValue
-                                }
-                            </Text>
-                        </HStack>
+                        <Flex justifyContent={"space-between"}>
+                            <Box>
+                                <Heading>{listing?.asset.name}</Heading>
+                                <HStack my={4}>
+                                    <Image width={30} height={40} src={eth} />
+                                    <Text fontWeight={"extrabold"} fontSize={"2xl"}>
+                                        {
+                                            listing?.buyoutCurrencyValuePerToken
+                                                .displayValue
+                                        }
+                                    </Text>
+                                </HStack>
+                            </Box>
+                            <Flex gap={"30px"}>
+                                <Flex alignItems={"center"} gap={"15px"}>
+                                    <Image src={views}/>
+                                    <Box>
+                                        <Heading 
+                                            fontWeight={400} 
+                                            fontSize={"20px"} 
+                                            fontFamily={"Inter"}
+                                            color={"#828384"}
+                                        >
+                                            Views
+                                        </Heading>
+                                        <Text 
+                                            color={"#1c2529"}
+                                            fontWeight={600}
+                                            fontSize={"24px"}
+                                            mb={0}
+                                        >
+                                            0
+                                        </Text>
+                                    </Box>
+                                </Flex>
+                                <Flex alignItems={"center"} gap={"15px"}>
+                                    <Image src={like}/>
+                                    <Box>
+                                        <Heading 
+                                            fontWeight={400} 
+                                            fontSize={"20px"} 
+                                            fontFamily={"Inter"}
+                                            color={"#828384"}
+                                        >
+                                            Favorites
+                                        </Heading>
+                                        <Text 
+                                            color={"#1c2529"}
+                                            fontWeight={600}
+                                            fontSize={"24px"}
+                                            mb={0}
+                                        >
+                                            0
+                                        </Text>
+                                    </Box>
+                                </Flex>
+                            </Flex>
+                        </Flex>
                         <VStack
                             gap={12}
                             mt={12}
@@ -207,24 +277,360 @@ const ItemPage = () => {
                                 </Text>
                             </VStack>
                         </VStack>
-                        <Button
-                            isLoading={loadingBuying}
-                            onClick={buyoutListing}
+                        <ButtonGroup 
                             mt={12}
                             h={"80px"}
-                            w={"200px"}
-                            bg={
-                                "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%) #748E9C"
-                            }
-                            color={"#fff"}
-                            fontSize={"20px"}
-                            borderRadius={"0"}
+                            gap={"15px"}
                         >
-                            Buy for{" "}
-                            {listing?.buyoutCurrencyValuePerToken.displayValue}{" "}
-                            eth
-                        </Button>
+                            <Button
+                                isLoading={loadingBuying}
+                                onClick={buyoutListing}
+                                w={"250px"}
+                                h={"100%"}
+                                bg={
+                                    "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%) #748E9C"
+                                }
+                                color={"#fff"}
+                                fontSize={"20px"}
+                                borderRadius={"0"}
+                                fontSize={"16px"}
+                            >
+                                Buy for{" "}
+                                {listing?.buyoutCurrencyValuePerToken.displayValue}{" "}
+                                ETH
+                            </Button>
+
+                            <Button
+                                minW={"200px"}
+                                h={"100%"}
+                                borderRadius={0}
+                                border={"2px solid #dedede"}
+                                bg={"transparent"}
+                            >
+                                Make offer
+                            </Button>
+                        </ButtonGroup>
+                        <Text 
+                            font={"18px 'Inter' 700"}
+                            color={"#828384"}
+                        >
+                            3% comission goes to the charity pool
+                        </Text>
+                        <Box>
+                            <Flex gap={"30px"} alignItems={"center"}>
+                                <Center
+                                    w={"54px"}
+                                    h={"54px"}
+                                    onClick={() => setListingShowed(!listingShowed)}
+                                    border={"1px solid #dedede"}
+                                >
+                                    <Image src={listingShowed ? upward : downward}/>
+                                </Center>
+                                <Heading>
+                                    Listing
+                                </Heading>
+                            </Flex>
+                            {listingShowed && <TableContainer mt={"50px"}>
+                                <Table w={"100%"}>
+                                    <Thead>
+                                        <Tr>
+                                            <Th
+                                                color={"#828384"}
+                                                fontWeight={400}
+                                                fontFamily={"Inter"}
+                                                fontSize={"18px"}
+                                            >
+                                                Price
+                                            </Th>
+                                            <Th
+                                                color={"#828384"}
+                                                fontWeight={400}
+                                                fontFamily={"Inter"}
+                                                fontSize={"18px"}
+                                            >
+                                                USD Price
+                                            </Th>
+                                            <Th
+                                                color={"#828384"}
+                                                fontWeight={400}
+                                                fontFamily={"Inter"}
+                                                fontSize={"18px"}
+                                            >
+                                                Expiration
+                                            </Th>
+                                            <Th
+                                                color={"#828384"}
+                                                fontWeight={400}
+                                                fontFamily={"Inter"}
+                                                fontSize={"18px"}
+                                            >
+                                                From
+                                            </Th>
+                                            <Th></Th>
+                                        </Tr>
+                                    </Thead>
+
+                                    <Tbody>
+                                        <Tr>
+                                            <Td>
+                                                <Flex
+                                                    alignItems={"center"}
+                                                    gap={"10px"}
+                                                >
+                                                    <Image src={eth}/>
+                                                    <Text mb={0}>0.00001 ETH</Text>
+                                                </Flex>
+                                            </Td>
+                                            <Td>
+                                                <Text>$54689</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>26 days</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>Binsky</Text>
+                                            </Td>
+                                            <Td>
+                                                <Button 
+                                                    border={"1px solid #c2d5de"}
+                                                    borderRadius={0}
+                                                    color={"#365262"}
+                                                    w={"130px"}
+                                                    h={"60px"} 
+                                                    bg={"transparent"}   
+                                                >
+                                                    Buy
+                                                </Button>
+                                            </Td>
+                                        </Tr>
+                                        <Tr>
+                                            <Td>
+                                                <Flex
+                                                    alignItems={"center"}
+                                                    gap={"10px"}
+                                                >
+                                                    <Image src={eth}/>
+                                                    <Text mb={0}>0.00001 ETH</Text>
+                                                </Flex>
+                                            </Td>
+                                            <Td>
+                                                <Text>$54689</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>26 days</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>Binsky</Text>
+                                            </Td>
+                                            <Td>
+                                                <Button 
+                                                    border={"1px solid #c2d5de"}
+                                                    borderRadius={0}
+                                                    color={"#365262"}
+                                                    w={"130px"}
+                                                    h={"60px"}   
+                                                    bg={"transparent"}   
+                                                >
+                                                    Buy
+                                                </Button>
+                                            </Td>
+                                        </Tr>
+                                        <Tr>
+                                            <Td>
+                                                <Flex
+                                                    alignItems={"center"}
+                                                    gap={"10px"}
+                                                >
+                                                    <Image src={eth}/>
+                                                    <Text mb={0}>0.00001 ETH</Text>
+                                                </Flex>
+                                            </Td>
+                                            <Td>
+                                                <Text>$54689</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>26 days</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>Binsky</Text>
+                                            </Td>
+                                            <Td>
+                                                <Button 
+                                                    border={"1px solid #c2d5de"}
+                                                    borderRadius={0}
+                                                    color={"#365262"}
+                                                    w={"130px"}
+                                                    h={"60px"}  
+                                                    bg={"transparent"}
+                                                >
+                                                    Buy
+                                                </Button>
+                                            </Td>
+                                        </Tr>
+
+                                    </Tbody>
+                                </Table>
+                            </TableContainer>}
+                        </Box>
+                        <Box mt={"150px"}>
+                            <Flex gap={"30px"} alignItems={"center"}>
+                                <Center
+                                    w={"54px"}
+                                    h={"54px"}
+                                    onClick={() => setlistOffersShowed(!listOffersShowed)}
+                                    border={"1px solid #dedede"}
+                                >
+                                    <Image src={listOffersShowed ? upward : downward}/>
+                                </Center>
+                                <Heading>
+                                    Offers
+                                </Heading>
+                            </Flex>
+                            {listOffersShowed && <TableContainer mt={"50px"}>
+                                <Table w={"100%"}>
+                                    <Thead>
+                                        <Tr>
+                                            <Th
+                                                color={"#828384"}
+                                                fontWeight={400}
+                                                fontFamily={"Inter"}
+                                                fontSize={"18px"}
+                                            >
+                                                Price
+                                            </Th>
+                                            <Th
+                                                color={"#828384"}
+                                                fontWeight={400}
+                                                fontFamily={"Inter"}
+                                                fontSize={"18px"}
+                                            >
+                                                USD Price
+                                            </Th>
+                                            <Th
+                                                color={"#828384"}
+                                                fontWeight={400}
+                                                fontFamily={"Inter"}
+                                                fontSize={"18px"}
+                                            >
+                                                Floor Difference
+                                            </Th>
+                                            <Th
+                                                color={"#828384"}
+                                                fontWeight={400}
+                                                fontFamily={"Inter"}
+                                                fontSize={"18px"}
+                                            >
+                                                Expiration
+                                            </Th>
+                                            <Th
+                                                color={"#828384"}
+                                                fontWeight={400}
+                                                fontFamily={"Inter"}
+                                                fontSize={"18px"}
+                                            >
+                                                From
+                                            </Th>
+                                        </Tr>
+                                    </Thead>
+
+                                    <Tbody>
+                                        <Tr>
+                                            <Td>
+                                                <Flex
+                                                    alignItems={"center"}
+                                                    gap={"10px"}
+                                                >
+                                                    <Image src={eth}/>
+                                                    <Text mb={0}>0.00001 ETH</Text>
+                                                </Flex>
+                                            </Td>
+                                            <Td>
+                                                <Text>$54689</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>59% below</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>about 22 hours</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text 
+                                                    color={"#6b93a9"} 
+                                                    fontWeight={700}
+                                                    fontSize={"20px"}
+                                                    fontFamily={"QtOpt"}    
+                                                >
+                                                    Binsky
+                                                </Text>
+                                            </Td>
+                                        </Tr>
+                                        <Tr>
+                                            <Td>
+                                                <Flex
+                                                    alignItems={"center"}
+                                                    gap={"10px"}
+                                                >
+                                                    <Image src={eth}/>
+                                                    <Text mb={0}>0.00001 ETH</Text>
+                                                </Flex>
+                                            </Td>
+                                            <Td>
+                                                <Text>$54689</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>59% below</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>about 22 hours</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text 
+                                                    color={"#6b93a9"} 
+                                                    fontWeight={700}
+                                                    fontSize={"20px"}
+                                                    fontFamily={"QtOpt"}    
+                                                >
+                                                    Binsky
+                                                </Text>
+                                            </Td>
+                                        </Tr>
+                                        <Tr>
+                                            <Td>
+                                                <Flex
+                                                    alignItems={"center"}
+                                                    gap={"10px"}
+                                                >
+                                                    <Image src={eth}/>
+                                                    <Text mb={0}>0.00001 ETH</Text>
+                                                </Flex>
+                                            </Td>
+                                            <Td>
+                                                <Text>$54689</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>59% below</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text>about 22 hours</Text>
+                                            </Td>
+                                            <Td>
+                                                <Text 
+                                                    color={"#6b93a9"} 
+                                                    fontWeight={700}
+                                                    fontSize={"20px"}
+                                                    fontFamily={"QtOpt"}    
+                                                >
+                                                    Binsky
+                                                </Text>
+                                            </Td>
+                                        </Tr>
+
+                                    </Tbody>
+                                </Table>
+                            </TableContainer>}
+                        </Box>
                     </Box>
+
                 </Grid>
             </Container>
         </>
