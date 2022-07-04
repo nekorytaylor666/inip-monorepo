@@ -3,6 +3,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import { BigNumber } from 'ethers';
 import { Model } from 'mongoose';
+import {
+  ListingAdapter,
+  ListingAdapterDocument,
+} from 'src/mongoose/listing_metadata.model';
 import { NftCollectionCheckService } from 'src/nft_collection/services/check_controller.service';
 import {
   SellTokenEntity,
@@ -17,6 +21,8 @@ export class SellTokenController {
     @InjectModel(SellTokenEntity.name)
     private sellTokenEnityModel: Model<SellTokenEntityDocument>,
     private nftCollectionCheckService: NftCollectionCheckService,
+    @InjectModel(ListingAdapter.name)
+    private listingAdapterModel: Model<ListingAdapterDocument>,
   ) {}
 
   @Post('sell')
@@ -50,6 +56,10 @@ export class SellTokenController {
         ...body,
         contractMetadata,
         tokenMetadata,
+        tokenId: BigNumber.from(body.tokenId),
+      });
+      await this.listingAdapterModel.remove({
+        assetContractAddress: body.contractAddress,
         tokenId: BigNumber.from(body.tokenId),
       });
       return check;
