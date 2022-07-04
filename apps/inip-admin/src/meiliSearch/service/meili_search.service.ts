@@ -41,7 +41,7 @@ export class MeiliSearchService {
     await meiliSearchClient.index('collection').addDocuments(_dataAdded);
     await meiliSearchClient.index('collection').updateSettings({
       searchableAttributes: ['name', 'address'],
-      distinctAttribute: 'id',
+      distinctAttribute: 'address',
     });
   }
 }

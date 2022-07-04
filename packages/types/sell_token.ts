@@ -9,7 +9,7 @@ export interface SellTokenEntityInterface {
   from: string;
   to: string;
   contractAddress: string;
-  tokenId: string;
+  tokenId: BigNumberish | string;
   createDate?: Date;
   tokenMetadata: NFTMetadata;
   contractMetadata: INftCollectionMetadata;

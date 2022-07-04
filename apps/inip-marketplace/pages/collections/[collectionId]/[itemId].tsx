@@ -11,6 +11,7 @@ import {
     SimpleGrid,
     Skeleton,
     Text,
+    useToast,
     VStack,
     TableContainer,
     Table,
@@ -50,9 +51,7 @@ const ItemPage = () => {
     const itemId = router.query.itemId as string;
     const collectionId = router.query.collectionId as string;
     const nftCollection = useNFTCollection(collectionId);
-    const marketplace = useMarketplace(
-        "0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f",
-    );
+    const marketplace = useMarketplace(MARKETPLACE_ADDRESS);
 
     const [listing, setListings] = useState<
         (AuctionListing | DirectListing) | undefined
@@ -104,10 +103,17 @@ const ItemPage = () => {
                 contractAddress: listing.assetContractAddress,
                 from: buyoutRes?.receipt.from,
                 to: buyoutRes?.receipt.to,
-                tokenId: itemId,
+                tokenId: listing.tokenId,
                 transactionHash: buyoutRes?.receipt.transactionHash,
             };
             api.post("/sell_token/sell", sellData);
+            toast({
+                title: "Buy success.",
+                description: "You've bought NFT!",
+                status: "success",
+                duration: 9000,
+                isClosable: true,
+            });
             router.push("/collections");
             setLoadingBuying(false);
         } catch (error) {

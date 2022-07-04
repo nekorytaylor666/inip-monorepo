@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { MetaDataController } from 'src/metadata/controllers/get.controller';
 import { MongooseSchemasModule } from 'src/mongoose/mongoose.module';
 import { NftCollectionController } from './controller/nft_collection.controller';
+import { NftCollectionCheckService } from './services/check_controller.service';
 import { NftCollectionFloorPriceService } from './services/get_floor_price.service';
 // import { MetaDataController } from './controller/metadata.controller';
 
@@ -16,8 +17,9 @@ import { UpdateNftcollection } from './services/update_nftcollection.service';
     UpdateNftColectionData,
     UpdateNftcollection,
     NftCollectionFloorPriceService,
+    NftCollectionCheckService,
   ],
   controllers: [MetaDataController, NftCollectionController],
-  exports: [UpdateNftcollection],
+  exports: [UpdateNftcollection, NftCollectionCheckService],
 })
 export class NftCollectionModule {}
