@@ -29,6 +29,7 @@ import {
 } from "react-instantsearch-dom";
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
 import Link from "next/link";
+import { SEARCH_TOKEN, SEARCH_URL } from "src/utils/const";
 const CollectionsPage = () => {
     const { data, isLoading, isError, error } = useQuery(
         "collections",
@@ -36,16 +37,19 @@ const CollectionsPage = () => {
     );
 
     if (isLoading) {
-        return <div>loading</div>;
+        return (
+            <Container mt="14" minH={"container.xl"} maxW={"container.xxl"}>
+                <Center w="full" mt={4}>
+                    <Spinner size="xl" />
+                </Center>
+            </Container>
+        );
     }
 
     if (isError) {
         return <div>{JSON.stringify(error)}</div>;
     }
-    const searchClient = instantMeiliSearch(
-        "http://68.183.74.222:7700",
-        "gefest20202021",
-    );
+    const searchClient = instantMeiliSearch(SEARCH_URL, SEARCH_TOKEN);
 
     return (
         <Container mt="14" minH={"container.xl"} maxW={"container.xxl"}>
@@ -54,10 +58,8 @@ const CollectionsPage = () => {
             </Heading>
             <InstantSearch indexName="collection" searchClient={searchClient}>
                 <CustomSearchBox />
-                <Loading>
-                    <Configure hitsPerPage={9}></Configure>
-                    <CustomHits mt={8} hitComponent={Hit} />
-                </Loading>
+                <Configure hitsPerPage={9}></Configure>
+                <CustomHits mt={8} hitComponent={Hit} />
             </InstantSearch>
         </Container>
     );
