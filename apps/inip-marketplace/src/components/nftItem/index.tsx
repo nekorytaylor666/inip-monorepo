@@ -16,21 +16,7 @@ import frame from "@public/icons/community/frame.png";
 import like from "@public/icons/profile/like.svg";
 
 
-interface NFTItemInt {
-    item: {
-        id: string,
-        image: StaticImageData,
-        price: number,
-        lastPrice: number,
-        title: string,
-        author: string,
-    };
-    liked? : boolean;
-}
-
-const NFTItem = ({item, liked}: NFTItemInt) => {
-
-    console.log(liked, item);
+const NFTItem = ({item, liked}: NFTItemType) => {
 
     return (
         <Box 
