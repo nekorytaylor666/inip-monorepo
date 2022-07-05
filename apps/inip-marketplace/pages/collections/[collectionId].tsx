@@ -34,15 +34,13 @@ import {
     NFTMetadataOwner,
 } from "@thirdweb-dev/sdk";
 import Image from "next/image";
-import React, { Suspense, useEffect, useMemo, useState } from "react";
+import React, { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import eth from "@public/icons/homepage/ethereum.svg";
 import { truncateString } from "src/utils/helpers";
-import { CollectionMetadata } from "src/types/types";
 import whiteEth from "@public/icons/header/eth.svg";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import {
-    LineChart,
     Line,
     CartesianGrid,
     XAxis,
@@ -130,7 +128,6 @@ const ActivityChart = ({ data }: { data: ChartDataItem[] }) => {
                 <Area
                     type="monotone"
                     dataKey="price"
-                    stroke={false}
                     strokeWidth={2}
                     fillOpacity={1}
                     fill="url(#colorUv)"
@@ -140,16 +137,10 @@ const ActivityChart = ({ data }: { data: ChartDataItem[] }) => {
     );
 };
 
-const CustomTh: React.FC = ({ children }) => (
+const CustomTh: React.FC<PropsWithChildren> = ({ children }) => (
     <Th color="#979391" fontWeight={"bold"} fontFamily={"body"}>
         {children}
     </Th>
-);
-
-const CustomTd: React.FC = ({ children, ...props }) => (
-    <Td {...props} fontWeight={"bold"}>
-        {children}
-    </Td>
 );
 
 const ActivityTab = () => {
@@ -239,7 +230,11 @@ const ActivityTab = () => {
                 </Td>
                 <Td fontWeight={"bold"}>
                     <Text isTruncated w="150px">
-                        {format(new Date(row.createDate), "HH:mm, dd MMM yyyy")}
+                        {row.createDate &&
+                            format(
+                                new Date(row.createDate),
+                                "HH:mm, dd MMM yyyy",
+                            )}
                     </Text>
                 </Td>
             </Tr>

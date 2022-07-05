@@ -416,7 +416,7 @@ const OwnedNFTItem = ({ item }: { item: OwnedNft }) => {
     );
 };
 
-const ProfileTab: React.FC = ({ children }) => (
+const ProfileTab: React.FC<React.PropsWithChildren> = ({ children }) => (
     <Tab
         minH={"75px"}
         minW={"120px"}

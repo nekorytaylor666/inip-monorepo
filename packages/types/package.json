@@ -5,7 +5,8 @@
   "main": "./index.ts",
   "types": "./index.ts",
   "files": [
-    "marketplace.ts"
+    "marketplace.ts",
+    "get_floor_price.ts"
   ],
   "scripts": {
     "lint": "eslint *.ts*",

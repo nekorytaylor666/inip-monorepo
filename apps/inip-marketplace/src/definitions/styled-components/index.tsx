@@ -23,7 +23,9 @@ export const useTheme = () => {
     };
 };
 
-export const StyledThemeProvider: React.FC = ({ children }) => {
+export const StyledThemeProvider: React.FC<React.PropsWithChildren> = ({
+    children,
+}) => {
     const [theme, setTheme] = React.useState("light");
 
     const toggle = () => {

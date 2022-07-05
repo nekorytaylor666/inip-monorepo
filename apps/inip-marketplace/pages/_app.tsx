@@ -18,7 +18,7 @@ import Layout from "@components/layout/default-layout";
 import { initializeAlchemy, Network } from "@alch/alchemy-sdk";
 import { chainRpc } from "src/api/thirdweb";
 type NextPageWithLayout = NextPage & {
-    getLayout?: (page: ReactElement) => ReactNode;
+    getLayout?: (page: ReactElement) => JSX.Element;
 };
 
 type AppPropsWithLayout = AppProps & {
