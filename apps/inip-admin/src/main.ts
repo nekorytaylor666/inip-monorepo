@@ -25,8 +25,8 @@ const bootstrap = async () => {
   SwaggerModule.setup('api', app, document);
   await app.init();
 
-  http.createServer(server).listen(80);
-  http.createServer(server).listen(443);
+  // http.createServer(server).listen(80);
+  http.createServer(server).listen(3001);
   // await app.listen(80);
   // await app.listen(443);
 };
