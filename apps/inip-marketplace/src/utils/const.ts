@@ -4,3 +4,6 @@ export const DREAMS_COME_TRUE_COLLECTION_ADDRESS =
 export const MARKETPLACE_ADDRESS = "0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f";
 
 export const API_BASE_URL = "https://inip-api.gefest.dev";
+
+export const SEARCH_URL = API_BASE_URL;
+export const SEARCH_TOKEN = "gefest20202021";
