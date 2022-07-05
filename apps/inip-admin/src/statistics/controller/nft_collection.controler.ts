@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { BigNumber } from 'ethers';
 import { Model } from 'mongoose';
 import { ListingAdapter } from 'src/mongoose/listing_metadata.model';
 import { PopularCollectionTokenModel } from '../model/popular_collection_tokens.model';
@@ -70,6 +71,18 @@ export class NftStatisticController {
           },
         },
       )
+    ).map((e) => e.toObject());
+  }
+
+  @Post('get_sales_token')
+  async getSalesByTokenId(
+    @Body() body: { tokenId: string; collectionAddress: string },
+  ) {
+    return (
+      await this.sellTokenEntityModel.find({
+        tokenId: BigNumber.from(body.tokenId),
+        contractAddress: body.collectionAddress,
+      })
     ).map((e) => e.toObject());
   }
 }

@@ -7,7 +7,7 @@ import { AppService } from './app.service';
 
 import { Token } from './mongoose/token.model';
 import { MongooseSchemasModule } from './mongoose/mongoose.module';
-import { AdminModule } from '@adminjs/nestjs';
+// import { AdminModule } from '@adminjs/nestjs';
 import { ScheduleModule } from '@nestjs/schedule';
 import { NftCollectionModule } from './nft_collection/nft_collection.module';
 import { NFTCollectionEntity } from './nft_collection/model/nft_collection.model';
@@ -26,38 +26,38 @@ import { StatiscticModule } from './statistics/statistic.module';
         dbName: 'INIP',
       },
     ),
-    AdminModule.createAdminAsync({
-      imports: [MongooseSchemasModule],
-      inject: [
-        getModelToken('Token'),
-        getModelToken('NFTCollectionEntity'),
-        getModelToken('ListingAdapter'),
-      ],
-      useFactory: (
-        tokenModel: Model<Token>,
-        nftColelctionModel: Model<NFTCollectionEntity>,
-        listingAdapterModel: Model<ListingAdapter>,
-      ) => ({
-        adminJsOptions: {
-          rootPath: '/admin',
+    // AdminModule.createAdminAsync({
+    //   imports: [MongooseSchemasModule],
+    //   inject: [
+    //     getModelToken('Token'),
+    //     getModelToken('NFTCollectionEntity'),
+    //     getModelToken('ListingAdapter'),
+    //   ],
+    //   useFactory: (
+    //     tokenModel: Model<Token>,
+    //     nftColelctionModel: Model<NFTCollectionEntity>,
+    //     listingAdapterModel: Model<ListingAdapter>,
+    //   ) => ({
+    //     adminJsOptions: {
+    //       rootPath: '/admin',
 
-          resources: [
-            { resource: tokenModel },
-            { resource: nftColelctionModel },
-            { resource: listingAdapterModel },
-          ],
-        },
-        auth: {
-          authenticate: async (email, password) =>
-            email == 'toha' && password == '123456789'
-              ? Promise.resolve({ email: 'toha' })
-              : null,
-          cookieName: 'world12',
-          cookiePassword: 'testPass',
-        },
-      }),
-      // customLoader: ExpressCustomLoader,
-    }),
+    //       resources: [
+    //         { resource: tokenModel },
+    //         { resource: nftColelctionModel },
+    //         { resource: listingAdapterModel },
+    //       ],
+    //     },
+    //     auth: {
+    //       authenticate: async (email, password) =>
+    //         email == 'toha' && password == '123456789'
+    //           ? Promise.resolve({ email: 'toha' })
+    //           : null,
+    //       cookieName: 'world12',
+    //       cookiePassword: 'testPass',
+    //     },
+    //   }),
+    //   // customLoader: ExpressCustomLoader,
+    // }),
     MongooseSchemasModule,
     NftCollectionModule,
     MeiliSearchModule,
