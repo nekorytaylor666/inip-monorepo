@@ -30,25 +30,24 @@ const Listing = ({items}: ListType) => {
             {items.map((item) => {
                 return <Box 
                         key={item._id} 
-                        w={"30%"} 
-                        h={"550px"} 
+                        w={items.length > 3 ? "16%" : "30%"} 
+                        h={items.length > 3 ? "350px" : "550px" } 
                         pos={"relative"}
                     >
                     <img src={frameLil.src} style={{ width: "100%", height:"90%"}}/>
                     <Box
                         position={"absolute"}
                         top={"3.5%"}
-                        left={"3%"}
-                        h={"95%"}
-                        w={"98%"}
-                        p={"15px"}
+                        left={"6%"}
+                        h={"80%"}
+                        w={"93%"}
                     >
                         <MediaRenderer 
                             height={"unset"}
                             src={popular ? item.nftCollectionMetadata.metadata.image : item.asset.image}
                             style={{
                                 objectFit: "cover",
-                                height: "87%",
+                                height: "100%",
                                 width: "95%"
                             }}
                         />

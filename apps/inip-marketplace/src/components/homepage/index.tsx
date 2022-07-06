@@ -482,30 +482,6 @@ export const Container: React.FC = () => {
             </Flex>
 
 
-            <Flex flexDirection={"column"} p={"40px 200px"}>
-                <Box>
-                    <Heading fontFamily={"QtOpt"} fontSize={"46px"}>
-                        louvre.
-                    </Heading>
-                    <Text fontWeight={700}>
-                        Explore our Louvre and collect digital art.
-                    </Text>
-                </Box>
-                <Collection collection={collection} />
-                <Flex justifyContent={"center"}>
-                    <Button
-                        background={"rgba(255, 255, 255, 0.1)"}
-                        border={"1px solid #DEDEDE"}
-                        minWidth={"316px"}
-                        maxWidth={"316px"}
-                        minHeight={"80px"}
-                        mt={"40px"}
-                    >
-                        Check more
-                    </Button>
-                </Flex>
-            </Flex>
-
             <Flex flexDirection={"column"} padding={"0 200px"} gap={"50px"}>
                 <Box>
                     <Heading fontFamily={"SangSunrise"} fontWeight={700}>
