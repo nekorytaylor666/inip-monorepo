@@ -14,6 +14,7 @@ import Web3 from "web3";
 import eth from "@public/icons/header/eth.svg";
 import Image from "next/image";
 import { ethers } from "ethers";
+import { useRouter } from "next/router";
 
 interface ConnectWalletButtonProps {
     isTransparent: boolean;
@@ -22,11 +23,10 @@ interface ConnectWalletButtonProps {
 export const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({
     isTransparent,
 }) => {
-    const connectWithMetamask = useMetamask();
     const address = useAddress();
     const disconnect = useDisconnect();
     const [balance, setBalance] = useState("");
-
+    const router = useRouter();
     useEffect(() => {
         getBalance();
     }, [address]);
@@ -63,8 +63,7 @@ export const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({
                 ) : (
                     <MenuItem
                         onClick={() => {
-                            connectWithMetamask();
-                            getBalance();
+                            router.push("/connect-wallet-page");
                         }}
                     >
                         Connect Wallet

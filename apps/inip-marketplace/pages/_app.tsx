@@ -17,8 +17,10 @@ import { NextPage } from "next";
 import Layout from "@components/layout/default-layout";
 import { initializeAlchemy, Network } from "@alch/alchemy-sdk";
 import { chainRpc } from "src/api/thirdweb";
-type NextPageWithLayout = NextPage & {
-    getLayout?: (page: ReactElement) => JSX.Element;
+
+export type NextPageWithLayout = NextPage & {
+    getLayout?: (page: NextPage) => NextPage;
+    isProtected?: boolean;
 };
 
 type AppPropsWithLayout = AppProps & {
@@ -27,11 +29,6 @@ type AppPropsWithLayout = AppProps & {
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
     const queryClient = new QueryClient();
-
-    const supportedChainIds = [1, 4];
-    const connectors = {
-        injected: {},
-    };
 
     const getLayout =
         Component.getLayout || ((page) => <Layout>{page}</Layout>);

@@ -44,6 +44,7 @@ import views from "@public/icons/nftpage/views.svg";
 import upward from "@public/icons/upward.svg";
 import downward from "@public/icons/downward.svg";
 import { MARKETPLACE_ADDRESS } from "src/utils/const";
+import { withWalletAuth } from "src/HOC/withWalletAuth";
 
 const ItemPage = () => {
     const router = useRouter();
@@ -660,4 +661,4 @@ const ItemPage = () => {
     );
 };
 
-export default ItemPage;
+export default withWalletAuth(ItemPage);
