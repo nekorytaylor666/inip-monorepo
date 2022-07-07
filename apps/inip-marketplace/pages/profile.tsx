@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     AspectRatio,
     Flex,
@@ -49,6 +49,8 @@ import {
 import { sdk } from "src/api/thirdweb";
 import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
 import { useFormik } from "formik";
+import { useRouter } from "next/router";
+import { withWalletAuth } from "src/HOC/withWalletAuth";
 
 const Profile = () => {
     return (
@@ -416,7 +418,7 @@ const OwnedNFTItem = ({ item }: { item: OwnedNft }) => {
     );
 };
 
-const ProfileTab: React.FC<React.PropsWithChildren> = ({ children }) => (
+const ProfileTab: React.FC = ({ children }) => (
     <Tab
         minH={"75px"}
         minW={"120px"}
@@ -425,4 +427,7 @@ const ProfileTab: React.FC<React.PropsWithChildren> = ({ children }) => (
         {children}
     </Tab>
 );
-export default Profile;
+
+Profile.isProtected = true;
+
+export default withWalletAuth(Profile);
