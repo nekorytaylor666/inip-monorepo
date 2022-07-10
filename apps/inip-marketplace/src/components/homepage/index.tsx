@@ -549,7 +549,7 @@ export const Container: React.FC = () => {
                     </Button>
                 </Flex>
             </Box>
-            <Flex flexDirection={"column"} p={"50px 0 150px"}>
+            <Flex flexDirection={"column"} p={"50px 200px 150px"}>
                 <Heading fontWeight={900} fontFamily={"SangSunrise"}>
                     our partners.
                 </Heading>

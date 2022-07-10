@@ -48,17 +48,19 @@ export const Header: React.FC = () => {
             >
                 <Link href="">
                     <a>
-                        <Text mb={0}>Homepage</Text>
+                        <Text mb={0} _hover={{ fontWeight: "bold" }}>Homepage</Text>
                     </a>
                 </Link>
                 <Link href="/collections">
                     <a>
-                        <Text mb={0}>Louvre</Text>
+                        <Text mb={0} _hover={{ fontWeight: "bold" }}>Louvre</Text>
                     </a>
                 </Link>
 
                 <Menu>
-                    <MenuButton>Charity Projects</MenuButton>
+                    <MenuButton _hover={{ fontWeight: "bold" }}>
+                        Charity Projects
+                    </MenuButton>
                     <MenuList
                         borderRadius={0}
                         borderTop={"0px"}
@@ -86,7 +88,9 @@ export const Header: React.FC = () => {
                 </Menu>
 
                 <Menu>
-                    <MenuButton>Dreams</MenuButton>
+                    <MenuButton _hover={{ fontWeight: "bold" }}>
+                        Dreams
+                    </MenuButton>
                     <MenuList
                         borderRadius={0}
                         borderTop={"0px"}
@@ -96,14 +100,14 @@ export const Header: React.FC = () => {
                         fontSize={"18px"}
                         fontWeight={500}
                     >
-                        <MenuItem _focus={{ color: "#365262" }}>
+                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold"}}>
                             <Link href="/dreams-come-true">
                                 <a>
                                     <Text mb={0}>Dreams Come True</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={{ color: "#365262" }}>
+                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
                             <Link href="/dreams">
                                 <a>
                                     <Text mb={0}>Dreams</Text>
@@ -114,7 +118,9 @@ export const Header: React.FC = () => {
                 </Menu>
 
                 <Menu>
-                    <MenuButton>Kindness Rating</MenuButton>
+                    <MenuButton _hover={{ fontWeight: "bold" }}>
+                        Kindness Rating
+                    </MenuButton>
                     <MenuList
                         borderRadius={0}
                         borderTop={"0px"}
@@ -124,14 +130,14 @@ export const Header: React.FC = () => {
                         fontSize={"18px"}
                         fontWeight={500}
                     >
-                        <MenuItem _focus={{ color: "#365262" }}>
+                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
                             <Link href="/about-kindness-rating">
                                 <a>
                                     <Text mb={0}>About Rating</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={{ color: "#365262" }}>
+                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
                             <Link href="/">
                                 <a>
                                     <Text mb={0}>Rating</Text>
@@ -142,7 +148,9 @@ export const Header: React.FC = () => {
                 </Menu>
 
                 <Menu>
-                    <MenuButton>Community</MenuButton>
+                    <MenuButton _hover={{ fontWeight: "bold" }}>
+                        Community
+                    </MenuButton>
                     <MenuList
                         borderRadius={0}
                         borderTop={"0px"}
@@ -152,21 +160,21 @@ export const Header: React.FC = () => {
                         fontSize={"18px"}
                         fontWeight={500}
                     >
-                        <MenuItem _focus={{ color: "#365262" }}>
+                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
                             <Link href="/community/1">
                                 <a>
                                     <Text mb={0}>INIP Community 1</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={{ color: "#365262" }}>
+                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
                             <Link href="/community/2">
                                 <a>
                                     <Text mb={0}>INIP Community 2</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={{ color: "#365262" }}>
+                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
                             <Link href="/creator-support">
                                 <a>
                                     <Text mb={0}>Creator support</Text>
@@ -178,12 +186,16 @@ export const Header: React.FC = () => {
 
                 <Link href="">
                     <a>
-                        <Text mb={0}>INIP token</Text>
+                        <Text mb={0} _hover={{ fontWeight: "bold" }}>
+                            INIP token
+                        </Text>
                     </a>
                 </Link>
                 <Link href="/collections">
                     <a>
-                        <Text mb={0}>Search</Text>
+                        <Text mb={0} _hover={{ fontWeight: "bold" }}>
+                            Search
+                        </Text>
                     </a>
                 </Link>
             </Box>
