@@ -85,7 +85,7 @@ const AboutKindnessRating = () => {
             <Flex
                 bgImage={kindnessBgim.src}
                 p={"0 200px"}
-                minH={"800px"}
+                minH={"700px"}
                 alignItems={"center"}
             >
                 <Flex 
@@ -116,7 +116,7 @@ const AboutKindnessRating = () => {
             </Flex>
 
             <Box
-                p={"100px 200px"}
+                p={"70px 200px 100px"}
             >
                 <Flex gap={"70px"} alignItems={"center"}>
                     <Square 

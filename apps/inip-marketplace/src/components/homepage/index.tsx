@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
     AspectRatio,
     Flex,
@@ -24,8 +24,39 @@ import world from "@public/icons/homepage/charityWorld.svg";
 import frame from "@public/icons/community/frame.png";
 import Benefits from "@components/benefits";
 import Partners from "@components/partners";
+import {api} from "src/api/axios";
+import { useQuery } from "react-query";
+import {ListingType, PopularType} from "src/types/types";
+import { MediaRenderer } from "@thirdweb-dev/react";
+import frameLil from "@public/icons/community/frame.png";
+import Listing from "@components/collectionOfListing";
+
+
 
 export const Container: React.FC = () => {
+
+
+    const {data: listingsReq, isLoading: listingsLoading} = useQuery<ListingType[]>(
+        "newest_listing",
+        async () => {
+            const res = await api.get("/listings");
+            return setListings([...res.data]);
+        }
+    );
+
+    const {data: getPopularReq, isLoading: getLoading} = useQuery<PopularType[]>(
+        "get_popular",  
+        async () => {
+            const res = await api.get("/get_popular");
+            return setPopulars([...res.data]);
+        }
+    );
+
+    const [listings, setListings] = useState<ListingType[]>([]);
+    const [populars, setPopulars] = useState<PopularType[]>([]);
+
+    console.log(listings, populars);
+
     const dreams = [
         {
             id: "1",
@@ -418,30 +449,38 @@ export const Container: React.FC = () => {
                     </Button>
                 </Flex>
             </Flex>
+            
+            <Flex p={"150px 200px"} minH={"750px"} flexDir={"column"}>
 
-            <Flex flexDirection={"column"} p={"40px 200px"}>
-                <Box>
-                    <Heading fontFamily={"QtOpt"} fontSize={"46px"}>
-                        louvre.
-                    </Heading>
-                    <Text fontWeight={700}>
-                        Explore our Louvre and collect digital art.
-                    </Text>
-                </Box>
-                <Collection collection={collection} />
-                <Flex justifyContent={"center"}>
-                    <Button
-                        background={"rgba(255, 255, 255, 0.1)"}
-                        border={"1px solid #DEDEDE"}
-                        minWidth={"316px"}
-                        maxWidth={"316px"}
-                        minHeight={"80px"}
-                        mt={"40px"}
+                <Box p={"50px 0"}>
+                    <Heading
+                        fontFamily={"QtOpt"}
+                        fontWeight={700}
+                        fontSize={"40px"}
                     >
-                        Check more
-                    </Button>
-                </Flex>
+                        popular collections.
+                    </Heading>
+                </Box>
+                
+                <Listing items={populars}/>
             </Flex>
+
+            
+            <Flex p={"150px 200px"} flexDir={"column"}>
+
+                <Box p={"50px 0"}>
+                    <Heading
+                        fontFamily={"QtOpt"}
+                        fontWeight={700}
+                        fontSize={"40px"}
+                    >
+                        popular listings.
+                    </Heading>
+                </Box>
+                
+                <Listing items={listings}/>
+            </Flex>
+
 
             <Flex flexDirection={"column"} padding={"0 200px"} gap={"50px"}>
                 <Box>
@@ -510,7 +549,7 @@ export const Container: React.FC = () => {
                     </Button>
                 </Flex>
             </Box>
-            <Flex flexDirection={"column"} p={"50px 0 150px"}>
+            <Flex flexDirection={"column"} p={"50px 200px 150px"}>
                 <Heading fontWeight={900} fontFamily={"SangSunrise"}>
                     our partners.
                 </Heading>
