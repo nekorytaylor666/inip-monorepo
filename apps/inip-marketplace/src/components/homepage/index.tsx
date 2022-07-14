@@ -31,11 +31,7 @@ import { MediaRenderer } from "@thirdweb-dev/react";
 import frameLil from "@public/icons/community/frame.png";
 import Listing from "@components/collectionOfListing";
 
-
-
 export const Container: React.FC = () => {
-
-
     const {data: listingsReq, isLoading: listingsLoading} = useQuery<ListingType[]>(
         "newest_listing",
         async () => {
@@ -45,7 +41,7 @@ export const Container: React.FC = () => {
     );
 
     const {data: getPopularReq, isLoading: getLoading} = useQuery<PopularType[]>(
-        "get_popular",  
+        "get_popular",
         async () => {
             const res = await api.get("/get_popular");
             return setPopulars([...res.data]);
@@ -197,15 +193,15 @@ export const Container: React.FC = () => {
                 display="flex"
                 justifyContent={"space-between"}
                 flexDirection={"column"}
-                p={"0 200px 150px"}
+                p={'0 10%'}
             >
                 <Box>
                     <Flex justifyContent={"space-between"}>
-                        <Box maxWidth={"680px"}>
+                        <Box width={{md: '50%', sm: '100%'}}>
                             <Heading
                                 fontFamily={"Swing"}
                                 color={"#1C2529"}
-                                fontSize={"95px"}
+                                fontSize={{md: "95px", sm: '60px'}}
                                 fontWeight={"400"}
                                 lineHeight={"103.05%"}
                             >
@@ -220,9 +216,9 @@ export const Container: React.FC = () => {
                                 Be part of the first Charity NFT Marketplace
                                 around the world.
                             </Text>
-                            <ButtonGroup gap={"14px"} mt={"70px"}>
+                            <Flex mt={"70px"} justifyContent={{md: 'flex-start', sm: 'space-between'}}>
                                 <Button
-                                    minWidth={"221px"}
+                                    width={'45%'}
                                     minHeight={"80px"}
                                     bg={
                                         "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%) #748E9C"
@@ -235,21 +231,22 @@ export const Container: React.FC = () => {
                                 </Button>
 
                                 <Button
-                                    minWidth={"221px"}
+                                    width={'50%'}
                                     minHeight={"80px"}
                                     bg={"none"}
                                     fontSize={"20px"}
                                     color={"#1C2529"}
                                     borderRadius={"0"}
                                     border={"2px solid #DEDEDE"}
+                                    marginLeft={{md: 10, sm: 0}}
                                 >
                                     Dreams Come True
                                 </Button>
-                            </ButtonGroup>
+                            </Flex>
                         </Box>
                         <Box
-                            minH={"620px"}
-                            maxW={"540px"}
+                            display={{md: 'block', sm: 'none'}}
+                            w={"35%"}
                             position={"relative"}
                         >
                             <Flex
@@ -266,31 +263,30 @@ export const Container: React.FC = () => {
                                     HENOCYDE
                                 </Text>
                             </Flex>
-                            <img
-                                src={frame.src}
-                                style={{
-                                    minHeight: "620px",
-                                    backgroundSize: "100% 100%",
-                                }}
-                            />
-                            <img
-                                src={mainIcon.src}
-                                style={{
-                                    position: "absolute",
-                                    top: "10%",
-                                    zIndex: "0",
-                                    width: "87%",
-                                    left: "6.5%",
-                                }}
-                            />
+                            <Box
+                                width={'100%'}
+                                height={'100%'}
+                                backgroundImage={mainIcon.src}
+                                backgroundSize={'cover'}
+                                backgroundPosition={'center'}
+                            >
+                                <img
+                                    src={frame.src}
+                                    style={{
+                                        height: "100%",
+                                        width: '100%',
+                                        backgroundSize: "100% 100%",
+                                    }}
+                                />
+                            </Box>
                         </Box>
                     </Flex>
                 </Box>
 
                 <Box pt={"120px"}>
-                    <Center gap={"40px"} height={"205px"} width={"100%"}>
+                    <Box gap={{md: "40px", sm: 0}} height={"205px"} width={"100%"}>
                         <Box width={"100%"}>
-                            <Flex justifyContent={"space-between"}>
+                            <Flex justifyContent={"space-between"} flexDir={{md: 'row', sm: 'column'}}>
                                 <Flex gap={"40px"} pb={"20px"}>
                                     <Box>
                                         <Heading
@@ -320,9 +316,18 @@ export const Container: React.FC = () => {
                                     </Text>
                                 </Box>
                             </Flex>
+                        </Box>
 
+                        <Flex
+                            width={'100%'}
+                            height={{md: "50%", sm: '30%'}}
+                            alignItems={"center"}
+                            marginBottom={40}
+                            justifyContent={'space-between'}
+                        >
                             <Progress
-                                height={"90px"}
+                                height={"100%"}
+                                width={'65%'}
                                 value={18}
                                 colorScheme={
                                     "linear-gradient(90deg, #6C8693 -15.57%, #A7C2D3 117.18%)"
@@ -337,38 +342,27 @@ export const Container: React.FC = () => {
                             >
                                 <Box position={"absolute"}>18%</Box>
                             </Progress>
-                        </Box>
 
-                        <Flex
-                            height={"100%"}
-                            minWidth={"200px"}
-                            alignItems={"end"}
-                        >
-                            <Flex
-                                width={"100%"}
-                                height={"50%"}
-                                alignItems={"center"}
+                            <Button
+                                bg={"#748E9C"}
+                                color={"#fff"}
+                                height={"100%"}
+                                width={"30%"}
+                                borderRadius={0}
                             >
-                                <Button
-                                    bg={"#748E9C"}
-                                    color={"#fff"}
-                                    height={"100%"}
-                                    width={"100%"}
-                                    borderRadius={0}
-                                >
-                                    Contribute
-                                </Button>
-                            </Flex>
+                                Contribute
+                            </Button>
                         </Flex>
-                    </Center>
+                    </Box>
                 </Box>
             </Box>
 
             <Flex
                 bg={`url(${dream.src})`}
                 flexDirection={"column"}
-                p={"40px 200px"}
+                p={"40px 10%"}
                 color={"white"}
+                mt={'10%'}
             >
                 <Box>
                     <Heading
@@ -386,7 +380,7 @@ export const Container: React.FC = () => {
                         List your dream and let others realize it!
                     </Text>
                 </Box>
-                <Center gap={"50px"}>
+                <Flex gap={"50px"} flexDir={{md: 'row', sm: 'column'}}>
                     {dreams.map((item) => {
                         return (
                             <Box maxWidth={"465px"} key={item.id}>
@@ -435,7 +429,7 @@ export const Container: React.FC = () => {
                             </Box>
                         );
                     })}
-                </Center>
+                </Flex>
                 <Flex justifyContent={"center"}>
                     <Button
                         backgroundColor={"rgba(255, 255, 255, 0.1)"}
@@ -449,10 +443,10 @@ export const Container: React.FC = () => {
                     </Button>
                 </Flex>
             </Flex>
-            
-            <Flex p={"150px 200px"} minH={"750px"} flexDir={"column"}>
 
-                <Box p={"50px 0"}>
+            <Flex p={"150px 0"} minH={"750px"} flexDir={"column"}>
+
+                <Box p={"50px 10%"}>
                     <Heading
                         fontFamily={"QtOpt"}
                         fontWeight={700}
@@ -461,14 +455,14 @@ export const Container: React.FC = () => {
                         popular collections.
                     </Heading>
                 </Box>
-                
+
                 <Listing items={populars}/>
             </Flex>
 
-            
-            <Flex p={"150px 200px"} flexDir={"column"}>
 
-                <Box p={"50px 0"}>
+            <Flex p={"50px 10%"} flexDir={"column"}>
+
+                <Box>
                     <Heading
                         fontFamily={"QtOpt"}
                         fontWeight={700}
@@ -477,12 +471,12 @@ export const Container: React.FC = () => {
                         popular listings.
                     </Heading>
                 </Box>
-                
-                <Listing items={listings}/>
+
             </Flex>
+            <Listing items={listings}/>
 
 
-            <Flex flexDirection={"column"} padding={"0 200px"} gap={"50px"}>
+            <Flex flexDirection={"column"} padding={"10% 10%"} gap={"50px"}>
                 <Box>
                     <Heading fontFamily={"SangSunrise"} fontWeight={700}>
                         our benefits.
@@ -495,7 +489,7 @@ export const Container: React.FC = () => {
                 <Benefits charity={charity} />
             </Flex>
 
-            <Box flexDirection={"column"} p={"120px 200px 50px"}>
+            <Box flexDirection={"column"} p={"0 10%"}>
                 <Box>
                     <Heading fontFamily={"SangSunrise"} fontWeight={700}>
                         kindness rating.
@@ -510,6 +504,7 @@ export const Container: React.FC = () => {
                         fontFamily={"QtOpt"}
                         fontWeight={700}
                         color={"#476676"}
+                        mb={10}
                     >
                         Quantitative
                     </Heading>
@@ -521,6 +516,7 @@ export const Container: React.FC = () => {
                         fontFamily={"QtOpt"}
                         fontWeight={700}
                         color={"#476676"}
+                        mb={10}
                     >
                         Financial
                     </Heading>
@@ -532,6 +528,7 @@ export const Container: React.FC = () => {
                         fontFamily={"QtOpt"}
                         fontWeight={700}
                         color={"#476676"}
+                        mb={10}
                     >
                         Democratic
                     </Heading>
@@ -549,8 +546,8 @@ export const Container: React.FC = () => {
                     </Button>
                 </Flex>
             </Box>
-            <Flex flexDirection={"column"} p={"50px 200px 150px"}>
-                <Heading fontWeight={900} fontFamily={"SangSunrise"}>
+            <Flex flexDirection={"column"} mt={20}>
+                <Heading textAlign={'center'} fontWeight={900} fontFamily={"SangSunrise"}>
                     our partners.
                 </Heading>
                 <Partners partners={partners} />

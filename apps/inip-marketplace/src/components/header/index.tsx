@@ -25,13 +25,22 @@ import sky from "@public/icons/dreams-come-true/sky.jpg";
 
 export const Header: React.FC = () => {
     return (
-        <Center justifyContent={"space-between"} my={"30px"} p={"0 200px"}>
+        <Box
+            display={'flex'}
+            flexDir={{md: 'row', xs: 'column'}}
+            alignItems={'center'}
+            justifyContent={"space-between"}
+            my={"30px"}
+            p={'0 10%'}
+            flexWrap={'wrap'}
+        >
             <Link href="/">
                 <Heading
                     cursor="pointer"
                     as="h4"
                     fontFamily={"QtOpt"}
                     color={"#1C2529"}
+                    order={0}
                 >
                     INIP
                 </Heading>
@@ -40,11 +49,15 @@ export const Header: React.FC = () => {
             <Box
                 display="flex"
                 alignItems="center"
-                justifyContent="space-between"
+                justifyContent="flex-start"
+                flexDir={{md: 'row', xs: 'column'}}
                 gap="30px"
-                fontSize={"18px"}
+                fontSize={{md: '0.9vw', sm: '3vw'}}
+                mt={{md: 0, sm: 10}}
                 fontFamily={"Inter"}
                 fontWeight={"500"}
+                order={{md: 1, sm: 2}}
+                flexWrap={{md: 'no-wrap', sm: 'wrap'}}
             >
                 <Link href="">
                     <a>
@@ -200,7 +213,7 @@ export const Header: React.FC = () => {
                 </Link>
             </Box>
 
-            <Flex gap={"18px"}>
+            <Flex gap={"18px"} order={{md: 2, sm: 1}}>
                 <Link href="/profile">
                     <a>
                         <Square
@@ -214,7 +227,7 @@ export const Header: React.FC = () => {
                 </Link>
                 <ConnectWalletButton isTransparent={false} />
             </Flex>
-        </Center>
+        </Box>
     );
 };
 
