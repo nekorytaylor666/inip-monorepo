@@ -13,24 +13,20 @@ import Image from "next/image";
 import PartnerItem from "./partnerItem";
 
 const Partners = ({partners}) => {
-
     return (
-        <Flex
+        <Box
             mt={"50px"}
-            scrollSnapType={"x mandatory"}
-            width={"100%"}
+            minW={'100%'}
             height={"250px"}
-            gap={"30px"}
-            overflowX={"scroll"}
+            maxHeight={250}
+            overflow={"auto"}
+            whiteSpace={'nowrap'}
         >
             {partners.map((item, index) => {
-
                 return <PartnerItem item={index}/>
             })}
-        </Flex>
+        </Box>
     );
 }
-
-
 
 export default Partners;

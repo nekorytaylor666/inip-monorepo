@@ -19,10 +19,11 @@ const Benefits = ({charity}) => {
 
     return (
         <Flex
-            gap={"35px"}
+            gap={"2%"}
             justifyContent={"center"}
             textAlign={"center"}
             color={"#476676"}
+            flexDir={{md: 'row', sm: 'column'}}
         >
             {charity.map((item) => {
                 return (
