@@ -15,9 +15,11 @@ import Image from "next/image";
 const PartnerItem = () => {
     return (
         <Box
-            minW={"250px"}
+            width={250}
             height={"160px"}
             backgroundColor={"#748E9C"}
+            display={'inline-block'}
+            m={10}
         ></Box>
     )
 }
