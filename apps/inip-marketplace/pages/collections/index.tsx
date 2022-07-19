@@ -52,7 +52,7 @@ const CollectionsPage = () => {
     const searchClient = instantMeiliSearch(SEARCH_URL, SEARCH_TOKEN);
 
     return (
-        <Container mt="14" minH={"container.xl"} maxW={"container.xxl"}>
+        <Box padding={'0 10%'} mt="14">
             <Heading mb={8} as="h1">
                 Find collection.
             </Heading>
@@ -61,7 +61,7 @@ const CollectionsPage = () => {
                 <Configure hitsPerPage={9}></Configure>
                 <CustomHits mt={8} hitComponent={Hit} />
             </InstantSearch>
-        </Container>
+        </Box>
     );
 };
 
@@ -146,7 +146,7 @@ const renderCollectionItem = (collection: INFTCollection) => (
     </Link>
 );
 const Hits: React.FC = ({ hits, ...props }: { hits: any[] }) => (
-    <SimpleGrid columns={"3"} gap={"8"} {...props}>
+    <SimpleGrid columns={{md: "3", sm: '1'}} gap={"8"} {...props}>
         {hits?.map(renderCollectionItem)}
     </SimpleGrid>
 );
