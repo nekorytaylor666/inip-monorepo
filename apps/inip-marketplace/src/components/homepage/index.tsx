@@ -196,7 +196,7 @@ export const Container: React.FC = () => {
                 p={'0 10%'}
             >
                 <Box>
-                    <Flex justifyContent={"space-between"}>
+                    <Flex justifyContent={"space-between"} alignItems={'center'}>
                         <Box width={{md: '50%', sm: '100%'}}>
                             <Heading
                                 fontFamily={"Swing"}

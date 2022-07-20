@@ -59,7 +59,7 @@ export const Header: React.FC = () => {
                 order={{md: 1, sm: 2}}
                 flexWrap={{md: 'no-wrap', sm: 'wrap'}}
             >
-                <Link href="">
+                <Link href="/">
                     <a>
                         <Text mb={0} _hover={{ fontWeight: "bold" }}>Homepage</Text>
                     </a>
