@@ -19,7 +19,7 @@ const PartnerItem = () => {
             height={"160px"}
             backgroundColor={"#748E9C"}
             display={'inline-block'}
-            m={10}
+            marginRight={10}
         ></Box>
     )
 }

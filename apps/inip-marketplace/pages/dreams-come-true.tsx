@@ -1,29 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
     Box,
-    ButtonGroup,
     Button,
     Center,
-    Container,
     Flex,
     Heading,
-    HStack,
-    SimpleGrid,
-    Skeleton,
     Square,
     Text,
-    VStack,
-    List,
-    ListItem,
-    ListIcon,
-    OrderedList,
-    UnorderedList,
-    Textarea
-    // Image
 } from "@chakra-ui/react";
-import { NextPage } from "next";
 import centerGear from "@public/icons/dreams-come-true/centerGear.svg";
 import leftGear from "@public/icons/dreams-come-true/leftGear.svg";
 import rightGear from "@public/icons/dreams-come-true/rightGear.svg";
@@ -64,32 +49,30 @@ const DreamsComeTrue = () => {
         },
     ];
 
-
     const partners = [0, 1, 2, 3, 4, 5];
-
 
     return (
         <Box>
             <Box
                 bgImage={sky.src}
                 maxH={"850px"}
-                p={"0 200px"}
+                p={"0 10%"}
                 bgSize={"cover"}
                 bgPos={"center"}
             >
                 <Flex
                     alignItems={"center"}
                     justifyContent={"space-between"}
-                    minH={"865px"}
+                    minH={{md: '100vh', sm: '90vh'}}
                     color={"#fff"}
-                    pb={"220px"}
+                    pb={"100px"}
                     pos={"relative"}
                 >
                     <Box
                         maxW={"920px"}
                     >
-                        <Heading 
-                            fontSize={"100px"} 
+                        <Heading
+                            fontSize={"100px"}
                             fontWeight={400}
                             fontFamily={"Swing"}
                         >
@@ -110,23 +93,24 @@ const DreamsComeTrue = () => {
                     </Box>
                     <Image src={stars}/>
 
-                    <Square 
-                        w={"153px"} 
-                        h={"153px"} 
+                    <Square
+                        w={"153px"}
+                        h={"153px"}
                         pos={"absolute"}
                         border={"2px solid #dedede"}
                         bg={"rgba(255, 255, 255, 0.2)"}
                         bottom={"30%"}
                         left={"40%"}
+                        display={{md: 'flex', sm: 'none'}}
                     >
                         <Image src={play}/>
                     </Square>
                 </Flex>
             </Box>
-            <Box p={"150px 200px"}>
-                <Flex gap={"70px"} alignItems={"center"} p={"100px 0 200px 0"}>
-                    <Square 
-                        h={"102px"} 
+            <Box paddingX={"10%"} paddingY={{md: '50px', sm: 0}}>
+                <Flex gap={"70px"} alignItems={"center"} paddingY={100}>
+                    <Square
+                        h={"102px"}
                         w={"100px"}
                         border={"1px solid #476676"}
                         color={"#365262"}
@@ -146,15 +130,15 @@ const DreamsComeTrue = () => {
                     </Box>
                 </Flex>
 
-                <Box pb={"200px"}>
+                <Box pb={"100px"}>
                     <Heading color={"#365262"} fontFamily={"QtOpt"}>options.</Heading>
-                    <Flex gap={"52px"} mt={"50px"}>
-                        <Flex 
-                            w={"33%"} 
+                    <Flex gap={"52px"} mt={"50px"} flexDir={{md: 'row', sm: 'column'}}>
+                        <Flex
+                            w={{md: "33%", sm: '100%'}}
                             minH={"282px"}
                             alignItems={"center"}
                             gap={"25px"}
-                            bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), linear-gradient(0deg, #6C8693, #6C8693)"}    
+                            bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), linear-gradient(0deg, #6C8693, #6C8693)"}
                             color={"#fff"}
                         >
                             <Image src={leftGear}/>
@@ -163,12 +147,12 @@ const DreamsComeTrue = () => {
                                 <Text mt={"24px"} fontSize={"18px"} fontWeight={400} fontFamily={"Inter"}>There will be a 2nd collection with NFTs, which will be sent to the philanthropists as evidence of dreams came true and gratitude to them.</Text>
                             </Box>
                         </Flex>
-                        <Flex 
-                            w={"33%"} 
+                        <Flex
+                            w={{md: "33%", sm: '100%'}}
                             minH={"282px"}
                             alignItems={"center"}
                             gap={"25px"}
-                            bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), linear-gradient(0deg, #6C8693, #6C8693)"}    
+                            bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), linear-gradient(0deg, #6C8693, #6C8693)"}
                             color={"#fff"}
                         >
                             <Image src={centerGear}/>
@@ -177,12 +161,12 @@ const DreamsComeTrue = () => {
                                 <Text mt={"24px"} fontSize={"18px"} fontWeight={400} fontFamily={"Inter"}>All the royalty goes to the charity project or charity organizations itself. By that, even flippers can contribute to the movement.</Text>
                             </Box>
                         </Flex>
-                        <Flex 
-                            w={"33%"} 
+                        <Flex
+                            w={{md: "33%", sm: '100%'}}
                             minH={"282px"}
                             alignItems={"center"}
                             gap={"25px"}
-                            bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), linear-gradient(0deg, #6C8693, #6C8693)"}    
+                            bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), linear-gradient(0deg, #6C8693, #6C8693)"}
                             color={"#fff"}
                         >
                             <Image src={rightGear}/>
@@ -191,7 +175,6 @@ const DreamsComeTrue = () => {
                                 <Text mt={"24px"} fontSize={"18px"} fontWeight={400} fontFamily={"Inter"}>There are 3 stages of NFTs: 'ransomed' - a dream is purchased, 'in progress' - it is being realized; 'succeed' - the dream came true.</Text>
                             </Box>
                         </Flex>
-
                     </Flex>
                 </Box>
 
@@ -199,20 +182,22 @@ const DreamsComeTrue = () => {
                     <Heading color={"#365262"} fontFamily={"QtOpt"} fontWeight={700}>dreams.</Heading>
                     <Flex
                         flexWrap={"wrap"}
-                        gap={"45px"}
+                        justifyContent={{md: 'space-between', sm: 'center'}}
                         mt={"50px"}
                         pb={"70px"}
                     >
                         {dreams.map((item, index) => {
 
-                            return <Box 
+                            return <Box
                                     key={item.id}
                                     minH={"647px"}
+                                    width={{md: '30%', sm: '100%'}}
                                     maxW={"465px"}
+                                    marginBottom={10}
                                 >
                                     <Image src={item.img}/>
-                                    <Flex 
-                                        pt={"10px"} 
+                                    <Flex
+                                        pt={"10px"}
                                         justifyContent={"space-between"}
                                         color={"#1c2529"}
                                         alignItems={"center"}
@@ -244,7 +229,7 @@ const DreamsComeTrue = () => {
                                         fontWeight={700}
                                         fontFamily={"Inter"}
                                         bg={
-                                            (index + 1) % 3 === 1 
+                                            (index + 1) % 3 === 1
                                             ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
                                             : (
                                                 (index + 1) % 3 === 2
@@ -283,7 +268,7 @@ const DreamsComeTrue = () => {
 }
 
 
-DreamsComeTrue.getLayout = function getLayout(page: ReactElement){ 
+DreamsComeTrue.getLayout = function getLayout(page: ReactElement){
 
     return <CustomLayout>
         <>
