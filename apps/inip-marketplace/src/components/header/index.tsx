@@ -233,51 +233,56 @@ export const Header: React.FC = () => {
 
 export const DreamHeader: React.FC = () => {
     return (
-        <Center
-            p={"30px 200px 20px"}
+        <Box
+            p={"30px 10% 20px"}
             gap={"50px"}
-            bgImage={sky.src}
             bgSize={"cover"}
             color={"#fff"}
+            position={'absolute'}
+            width={'100%'}
+            borderBottom={'1px solid #ECECEC'}
         >
-            <Center
-                minW={"265px"}
-                minH={"56px"}
-                border={"1px solid #ececec"}
-                bg={
-                    "radial-gradient(43.08% 63.75% at 50% 50%, rgba(230, 234, 233, 0.2) 0%, rgba(255, 244, 231, 0) 100%)"
-                }
-                fontFamily={"Inter"}
-                fontWeight={900}
-            >
-                <Link href="/">
-                    <a>Back to INIP Marketplace</a>
-                </Link>
-            </Center>
-            <Flex
-                w={"100%"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-            >
-                <Flex gap={"40px"}>
-                    <Link href="/dreams-come-true">
-                        <Box fontFamily={"SangSunrise"} fontWeight={700}>
+            <Flex w={'100%'} gap={"40px"} alignItems={'center'} flexWrap={'wrap'}>
+                <Box
+                    minW={"265px"}
+                    minH={"56px"}
+                    border={"1px solid #ececec"}
+                    bg={
+                        "radial-gradient(43.08% 63.75% at 50% 50%, rgba(230, 234, 233, 0.2) 0%, rgba(255, 244, 231, 0) 100%)"
+                    }
+                    fontFamily={"Inter"}
+                    fontWeight={900}
+                    display={'flex'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    order={{md: 0, sm: 0}}
+                >
+                    <Link href="/">
+                        <a>Back to INIP Marketplace</a>
+                    </Link>
+                </Box>
+
+                <Flex gap={10} order={{md: 1, sm: 2}}>
+                    <Box fontFamily={"SangSunrise"} fontWeight={700}>
+                        <Link href="/dreams-come-true">
                             <a>DREAMS COME TRUE</a>
-                        </Box>
-                    </Link>
-                    <Link href="/dreams">
-                        <Box fontFamily={"Inter"}>
+                        </Link>
+                    </Box>
+
+                    <Box fontFamily={"Inter"}>
+                        <Link href="/dreams">
                             <a>Dreams</a>
-                        </Box>
-                    </Link>
+                        </Link>
+                    </Box>
                 </Flex>
-                <Flex gap={"20px"}>
+
+                <Flex order={{md: 2, sm: 1}} gap={"20px"} flexGrow={1} justifyContent={"flex-end"}>
                     <Square w={"52px"} h={"52px"} border={"1px solid #ececec"}>
                         <Image src={white_account} />
                     </Square>
                     <ConnectWalletButton isTransparent />
                 </Flex>
             </Flex>
-        </Center>
+        </Box>
     );
 };

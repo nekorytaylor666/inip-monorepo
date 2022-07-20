@@ -17,9 +17,9 @@ const Partners = ({partners}) => {
         <Box
             mt={"50px"}
             minW={'100%'}
-            height={"250px"}
-            maxHeight={250}
-            overflow={"auto"}
+            height={220}
+            overflowX={"scroll"}
+            overflowY={'hidden'}
             whiteSpace={'nowrap'}
         >
             {partners.map((item, index) => {
