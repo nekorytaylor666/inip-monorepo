@@ -22,7 +22,7 @@ const CommunityCollections = ({communityCollection}: Collection[]) => {
     const [collection, setCollection] = useState([...communityCollection]);
 
     return (
-        <Flex flexWrap={"wrap"} gap={"25px"}>
+        <Flex flexWrap={"wrap"} justifyContent={'space-between'}>
             {collection.map((item) => {
 
                 return <CollectionItem key={item.id} item={item} />

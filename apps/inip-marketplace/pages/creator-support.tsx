@@ -1,20 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
     Box,
-    ButtonGroup,
     Button,
     Center,
-    Container,
     Flex,
     Heading,
-    HStack,
-    SimpleGrid,
-    Skeleton,
-    Square,
     Text,
-    VStack,
 } from "@chakra-ui/react";
 import advising from "@public/icons/creator-support/advising.svg";
 import fundraising from "@public/icons/creator-support/fundraising.svg";
@@ -41,42 +33,42 @@ const CreatorSupport = () => {
             id: "1",
             name: "HENOCYDE",
             author: "Binsky",
-            price: 29, 
+            price: 29,
             image: heno.src
         },
         {
             id: "2",
             name: "HENOCYDE",
             author: "Binsky",
-            price: 29, 
+            price: 29,
             image: heno.src
         },
         {
             id: "3",
             name: "HENOCYDE",
             author: "Binsky",
-            price: 29, 
+            price: 29,
             image: heno.src
         },
         {
             id: "4",
             name: "HENOCYDE",
             author: "Binsky",
-            price: 29, 
+            price: 29,
             image: heno.src
         },
         {
             id: "5",
             name: "HENOCYDE",
             author: "Binsky",
-            price: 29, 
+            price: 29,
             image: heno.src
         },
         {
             id: "6",
             name: "HENOCYDE",
             author: "Binsky",
-            price: 29, 
+            price: 29,
             image: heno.src
         }
 
@@ -90,7 +82,7 @@ const CreatorSupport = () => {
                 minH={"900px"}
                 bgPos={"top"}
                 bgSize={"cover"}
-                p={"0 200px"}
+                p={"0 10%"}
                 color={"#fff"}
                 justifyContent={"center"}
             >
@@ -99,14 +91,14 @@ const CreatorSupport = () => {
                     maxW={"1000px"}
                     gap={"145px"}
                 >
-                    <Heading 
-                        fontFamily={"Swing"} 
-                        fontSize={"80px"} 
+                    <Heading
+                        fontFamily={"Swing"}
+                        fontSize={"80px"}
                         fontWeight={400}
                     >
                         Are you an artist? INIP can support you!
                     </Heading>
-                    <Button 
+                    <Button
                         maxW={"300px"}
                         minH={"80px"}
                         bg={"transparent"}
@@ -119,7 +111,7 @@ const CreatorSupport = () => {
             </Flex>
 
             <Box
-                p={"120px 200px"}
+                p={"120px 10%"}
             >
                 <Heading
                     pb={"50px"}
@@ -129,9 +121,9 @@ const CreatorSupport = () => {
                 >
                     support.
                 </Heading>
-                <Flex gap={"25px"}>
-                    <Box 
-                        w={"25%"} 
+                <Flex gap={"25px"} flexDir={{md: 'row', sm: 'column'}}>
+                    <Box
+                        w={{md: "25%", sm: '100%'}}
                         minH={"454px"}
                         p={"35px"}
                         color={"#fff"}
@@ -146,8 +138,8 @@ const CreatorSupport = () => {
                         >
                             Advising
                         </Heading>
-                        <Text 
-                            fontFamily={"Inter"} 
+                        <Text
+                            fontFamily={"Inter"}
                             fontWeight={400}
                             fontSize={"20px"}
                             pt={"22px"}
@@ -155,8 +147,8 @@ const CreatorSupport = () => {
                             INIP will help you with navigating in space. We will share our experience, strategies and other knowledge to make your project even better.
                         </Text>
                     </Box>
-                    <Box 
-                        w={"25%"} 
+                    <Box
+                        w={{md: "25%", sm: '100%'}}
                         minH={"454px"}
                         p={"35px"}
                         color={"#fff"}
@@ -171,8 +163,8 @@ const CreatorSupport = () => {
                         >
                             Fundraising
                         </Heading>
-                        <Text 
-                            fontFamily={"Inter"} 
+                        <Text
+                            fontFamily={"Inter"}
                             fontWeight={400}
                             fontSize={"20px"}
                             pt={"22px"}
@@ -180,8 +172,8 @@ const CreatorSupport = () => {
                             Finding investment is one of the biggest problems creators face with. INIP has partnerships with many VCs and angel investors, whose next investment might be your project.
                         </Text>
                     </Box>
-                    <Box 
-                        w={"25%"} 
+                    <Box
+                        w={{md: "25%", sm: '100%'}}
                         minH={"454px"}
                         p={"35px"}
                         color={"#fff"}
@@ -196,8 +188,8 @@ const CreatorSupport = () => {
                         >
                             Promo
                         </Heading>
-                        <Text 
-                            fontFamily={"Inter"} 
+                        <Text
+                            fontFamily={"Inter"}
                             fontWeight={400}
                             fontSize={"20px"}
                             pt={"22px"}
@@ -206,8 +198,8 @@ const CreatorSupport = () => {
                         </Text>
 
                     </Box>
-                    <Box 
-                        w={"25%"} 
+                    <Box
+                        w={{md: "25%", sm: '100%'}}
                         minH={"454px"}
                         p={"35px"}
                         color={"#fff"}
@@ -222,8 +214,8 @@ const CreatorSupport = () => {
                         >
                             Resources
                         </Heading>
-                        <Text 
-                            fontFamily={"Inter"} 
+                        <Text
+                            fontFamily={"Inter"}
                             fontWeight={400}
                             fontSize={"20px"}
                             pt={"22px"}
@@ -249,7 +241,7 @@ const CreatorSupport = () => {
                 </Center>
             </Box>
 
-            <Box p={"0 200px 100px"}>
+            <Box p={"0 10% 100px"}>
                 <Heading
                     pb={"50px"}
                     fontWeight={700}
@@ -259,8 +251,8 @@ const CreatorSupport = () => {
                     collections supported by INIP.
                 </Heading>
                 <CommunityCollections communityCollection={communityCollection}/>
-                
-                <Center pt={"70px"}>
+
+                <Center pt={"30px"}>
                     <Button
                         minH={"74px"}
                         w={"271px"}
