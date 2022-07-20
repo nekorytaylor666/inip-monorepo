@@ -25,9 +25,8 @@ const CollectionItem = ({item}: Collection) => {
 
 
     return (
-        
         <Flex
-            w={"32%"}
+            w={{md: "30%", sm: '100%'}}
             minH={"570px"}
             flexDirection={"column"}
             justifyContent={"end"}
@@ -35,6 +34,7 @@ const CollectionItem = ({item}: Collection) => {
             bgSize={"100% 100%"}
             color={"#fff"}
             position={"relative"}
+            mb={20}
         >
             <Flex
                 w={"88%"}
@@ -64,8 +64,8 @@ const CollectionItem = ({item}: Collection) => {
                             <Text fontWeight={700} fontFamily={"QtOpt"} fontSize={"20px"}>by {item.author}</Text>
                         </Box>
                         <Box>
-                            <Text 
-                                fontSize={"20px"} 
+                            <Text
+                                fontSize={"20px"}
                                 fontWeight={700}
                                 mt={"5px"}
                             >
