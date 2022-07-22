@@ -30,48 +30,46 @@ import reward from "@public/icons/community/reward.svg";
 import frameCommunity from "@public/icons/community/frameCommunity.png";
 
 const Community = () => {
-
-
     return (
-        <Box
-        >
+        <Box>
             <Box
                 bgImage={community.src}
                 bgPosition={"top"}
                 bgSize={"cover"}
-                h={"815px"}
+                paddingY={{md: 40, sm: 20}}
                 display={"flex"}
                 alignItems={"center"}
                 justifyContent={"center"}
             >
                 <Center
-                    minW={"910px"}
-                    minH={"508px"}
-                    bg={"GrayText"}
-                    justifyContent={"center"}
+                    w={{md: "910px", sm: '455px'}}
+                    minH={{md: "508px", sm: '254px'}}
+                    backgroundImage={`url(${frameCommunity.src})`}
+                    backgroundColor={'rgba(24, 39, 47, 0.6)'}
+                    backgroundPosition={'center'}
+                    backgroundSize={'cover'}
                     position={"relative"}
                 >
-                    <img src={frameCommunity.src} style={{position: "absolute", zIndex: 0}}/>
                     <Center
                         flexDir={"column"}
                         color={"#fff"}
-                        gap={"35px"}
+                        gap={{md: "50px", sm: 0}}
                         position={"absolute"}
-                        bgColor={"rgba(24, 39, 47, 0.6)"}
+                        paddingX={10}
                         w={"93%"}
                         h={"87%"}
                     >
                         <Text
                             maxW={"580px"}
                             maxH={"192px"}
-                            fontSize={"44px"}
+                            fontSize={{md: "44px", sm: '22px'}}
                             fontWeight={400}
                             fontFamily={"Swing"}
                             textAlign={"center"}
                         >
-                            I alone cannot change  
-                            the world but I can cast  
-                            a stone across the waters  
+                            I alone cannot change
+                            the world but I can cast
+                            a stone across the waters
                             to create many ripples
                         </Text>
                         <Button
@@ -88,9 +86,9 @@ const Community = () => {
             </Box>
 
             <Box
-                minH={"444px"}
+                minH={{md: 444, sm: 300}}
                 w={"100%"}
-                p={"0 200px"}
+                p={"0 10%"}
                 position={"relative"}
                 bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(167, 194, 211, 0) 100%), #6C8693"}
                 display={"flex"}
@@ -110,18 +108,24 @@ const Community = () => {
                 >
                     <Heading>in 1 percent.</Heading>
                     <Text maxW={"520px"} fontSize={"18px"}>
-                        1 percent of the population or otherwise - a community  
-                        created to unite individuals who are ready to change the world,  
+                        1 percent of the population or otherwise - a community
+                        created to unite individuals who are ready to change the world,
                         improve it and make history.
                     </Text>
                 </Flex>
             </Box>
 
-            <Box p={"110px 200px"}>
+            <Box p={"110px 10%"}>
 
                 <Heading color={"#365262"} fontFamily={"QtOpt"}>community levels.</Heading>
 
-                <Flex gap={"54px"} color={"#fff"} justifyContent={"space-between"} p={"45px 0 65px"}>
+                <Flex
+                    gap={"54px"}
+                    color={"#fff"}
+                    justifyContent={"space-between"}
+                    p={"45px 0 65px"}
+                    flexDir={{md: 'row', sm: 'column'}}
+                >
                     <Flex
                         minH={"644px"}
                         minW={"465px"}
@@ -249,7 +253,7 @@ const Community = () => {
             </Box>
 
             <Box
-                p={"60px 200px 80px"}
+                p={"60px 10% 80px"}
                 bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(167, 194, 211, 0) 100%), #6C8693"}
                 color={"#fff"}
             >
@@ -262,7 +266,7 @@ const Community = () => {
                         gap={"20px"}
                     >
                         <Flex
-                            w={"47%"}
+                            w={{md: "47%", sm: '100%'}}
                             minH={"190px"}
                             flexDir={"column"}
                             border={"1px solid #b1d0d8"}
@@ -274,12 +278,12 @@ const Community = () => {
                             </Heading>
 
                             <Text maxW={"400px"}>
-                                Get into the top 50 and get access to a community 
+                                Get into the top 50 and get access to a community
                                 that will change the whole world!
                             </Text>
                         </Flex>
                         <Flex
-                            w={"47%"}
+                            w={{md: "47%", sm: '100%'}}
                             minH={"190px"}
                             flexDir={"column"}
                             border={"1px solid #b1d0d8"}
@@ -291,12 +295,12 @@ const Community = () => {
                             </Heading>
 
                             <Text maxW={"400px"}>
-                                Get into the top 50 and get access to a community 
+                                Get into the top 50 and get access to a community
                                 that will change the whole world!
                             </Text>
                         </Flex>
                         <Flex
-                            w={"47%"}
+                            w={{md: "47%", sm: '100%'}}
                             minH={"190px"}
                             flexDir={"column"}
                             border={"1px solid #b1d0d8"}
@@ -308,12 +312,12 @@ const Community = () => {
                             </Heading>
 
                             <Text maxW={"400px"}>
-                                Get into the top 50 and get access to a community 
+                                Get into the top 50 and get access to a community
                                 that will change the whole world!
                             </Text>
                         </Flex>
                         <Flex
-                            w={"47%"}
+                            w={{md: "47%", sm: '100%'}}
                             minH={"190px"}
                             flexDir={"column"}
                             border={"1px solid #b1d0d8"}
@@ -329,28 +333,24 @@ const Community = () => {
                     </Flex>
                     <Flex
                         alignItems={"center"}
+                        display={{md: 'flex', sm: 'none'}}
                     >
                         <Image src={reward}/>
                     </Flex>
                 </Flex>
             </Box>
 
-            <Center
-                p={"110px 200px 150px"}
-            >
-                <Flex
-                    flexDir={"column"}
-                    gap={"50px"}
-                >
+            <Center p={'10%'}>
+                <Flex flexDir={"column"} gap={"50px"}>
                     <Heading color={"#365262"}>answer one question.</Heading>
 
                     <Box
-                        minW={"910px"}
+                        minW={{md: "910px", sm: "100%"}}
                         color={"#476676"}
                     >
                         <Text>If you had endless possibilities, what would you bring the world?</Text>
-                        <Textarea 
-                            placeholder={"Write something here"} 
+                        <Textarea
+                            placeholder={"Write something here"}
                             minH={"300px"}
                             w={"100%"}
                             p={"40px"}
