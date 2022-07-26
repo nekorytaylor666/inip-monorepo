@@ -21,6 +21,16 @@ const Partners = ({partners}) => {
             overflowX={"scroll"}
             overflowY={'hidden'}
             whiteSpace={'nowrap'}
+            __css={{
+                '&::-webkit-scrollbar': {
+                    height: "3px",
+                    width: "50%",
+                    backgroundColor: `rgba(0, 0, 0, 0.05)`,
+                },
+                '&::-webkit-scrollbar-thumb': {
+                    backgroundColor: `#758F9D`,
+                },
+            }}
         >
             {partners.map((item, index) => {
                 return <PartnerItem item={index}/>

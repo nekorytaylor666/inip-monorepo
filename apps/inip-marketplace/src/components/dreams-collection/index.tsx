@@ -40,7 +40,7 @@ const DreamsCollection = (props) => {
                             key={item.id}
                             minH={"647px"}
                             maxH={"680px"}
-                            maxW={"30%"}
+                            maxW={"29%"}
                             mb={14}
                         >
                             <Image width={"500px"} height={"500px"} src={item.img.src}/>

@@ -444,6 +444,31 @@ export const Container: React.FC = () => {
                 </Flex>
             </Flex>
 
+            <Flex flexDirection={"column"} p={"40px 200px"}>
+                <Box>
+                    <Heading fontFamily={"QtOpt"} fontSize={"46px"}>
+                        louvre.
+                    </Heading>
+                    <Text fontWeight={700}>
+                        Explore our Louvre and collect digital art.
+                    </Text>
+                </Box>
+                <Collection collection={collection}/>
+                <Flex justifyContent={"center"}>
+                    <Button
+                        background={"rgba(255, 255, 255, 0.1)"}
+                        border={"1px solid #DEDEDE"}
+                        minWidth={"316px"}
+                        maxWidth={"316px"}
+                        minHeight={"80px"}
+                        mt={"40px"}
+                    >
+                        Check more
+                    </Button>
+                </Flex>
+            </Flex>
+
+{/* 
             <Flex p={"150px 0"} minH={"750px"} flexDir={"column"}>
 
                 <Box p={"50px 10%"}>
@@ -473,7 +498,7 @@ export const Container: React.FC = () => {
                 </Box>
 
             </Flex>
-            <Listing items={listings}/>
+            <Listing items={listings}/> */}
 
 
             <Flex flexDirection={"column"} padding={"10% 10%"} gap={"50px"}>
@@ -546,7 +571,7 @@ export const Container: React.FC = () => {
                     </Button>
                 </Flex>
             </Box>
-            <Flex flexDirection={"column"} mt={20}>
+            <Flex flexDirection={"column"} mt={20} mb={20}>
                 <Heading textAlign={'center'} fontWeight={900} fontFamily={"SangSunrise"}>
                     our partners.
                 </Heading>
