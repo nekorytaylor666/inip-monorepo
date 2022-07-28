@@ -188,7 +188,7 @@ export const Container: React.FC = () => {
     const partners = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
     return (
-        <Box mt={"100px"}>
+        <Box mt={"200px"}>
             <Box
                 display="flex"
                 justifyContent={"space-between"}

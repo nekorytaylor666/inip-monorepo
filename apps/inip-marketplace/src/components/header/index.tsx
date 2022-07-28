@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
     Flex,
     Box,
@@ -33,6 +33,11 @@ export const Header: React.FC = () => {
             p={'30px 10%'}
             flexWrap={'wrap'}
             borderBottom={"1px solid #E6E6E6"}
+            position={"fixed"}
+            top={0}
+            zIndex={1}
+            w={"100%"}
+            bg={"#fff"}
         >
             <Link href="/">
                 <Heading
@@ -240,6 +245,8 @@ export const Header: React.FC = () => {
 };
 
 export const DreamHeader: React.FC = () => {
+
+
     return (
         <Box
             p={"30px 10% 20px"}
