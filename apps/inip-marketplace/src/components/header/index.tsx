@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
     Flex,
     Box,
@@ -30,9 +30,14 @@ export const Header: React.FC = () => {
             flexDir={{md: 'row', xs: 'column'}}
             alignItems={'center'}
             justifyContent={"space-between"}
-            my={"30px"}
-            p={'0 10%'}
+            p={'30px 10%'}
             flexWrap={'wrap'}
+            borderBottom={"1px solid #E6E6E6"}
+            position={"fixed"}
+            top={0}
+            zIndex={1}
+            w={"100%"}
+            bg={"#fff"}
         >
             <Link href="/">
                 <Heading
@@ -81,16 +86,18 @@ export const Header: React.FC = () => {
                         color={"#979391"}
                         fontFamily={"Inter"}
                         fontSize={"18px"}
+                        ml={"-30px"}
+                        mt={"35px"}
                         fontWeight={500}
                     >
-                        <MenuItem _focus={{ color: "#365262" }}>
+                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
                             <Link href="/about-charity-project">
                                 <a>
                                     <Text mb={0}>About charity projects</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={{ color: "#365262" }}>
+                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
                             <Link href="/">
                                 <a>
                                     <Text mb={0}>Projects</Text>
@@ -112,6 +119,8 @@ export const Header: React.FC = () => {
                         fontFamily={"Inter"}
                         fontSize={"18px"}
                         fontWeight={500}
+                        ml={"-30px"}
+                        mt={"35px"}
                     >
                         <MenuItem _focus={{ color: "#365262", fontWeight: "bold"}}>
                             <Link href="/dreams-come-true">
@@ -142,6 +151,8 @@ export const Header: React.FC = () => {
                         fontFamily={"Inter"}
                         fontSize={"18px"}
                         fontWeight={500}
+                        ml={"-30px"}
+                        mt={"35px"}
                     >
                         <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
                             <Link href="/about-kindness-rating">
@@ -172,6 +183,8 @@ export const Header: React.FC = () => {
                         fontFamily={"Inter"}
                         fontSize={"18px"}
                         fontWeight={500}
+                        ml={"-30px"}
+                        mt={"35px"}
                     >
                         <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
                             <Link href="/community/1">
@@ -232,6 +245,8 @@ export const Header: React.FC = () => {
 };
 
 export const DreamHeader: React.FC = () => {
+
+
     return (
         <Box
             p={"30px 10% 20px"}
