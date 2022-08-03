@@ -90,7 +90,7 @@ const CollectionItem = ({ collection }: { collection: INFTCollection }) => (
         >
             <img
                 style={{
-                    zIndex: 20,
+                    zIndex: 2,
                     position: "absolute",
                     height: "540px",
                     width: "100%",
@@ -106,6 +106,7 @@ const CollectionItem = ({ collection }: { collection: INFTCollection }) => (
                         objectFit: "cover",
                         height: "540px",
                         width: "100%",
+                        zIndex: 1
                     }}
                     src={collection.metadata.image}
                     alt="collection"
@@ -124,7 +125,7 @@ const CollectionItem = ({ collection }: { collection: INFTCollection }) => (
                 }}
                 h="540px"
                 w="full"
-                zIndex={10}
+                zIndex={3}
                 position="relative"
                 padding={"40px"}
             >

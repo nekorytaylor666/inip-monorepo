@@ -10,6 +10,7 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
+    Button
 } from "@chakra-ui/react";
 import account from "@public/icons/header/account.svg";
 import Link from "next/link";
@@ -35,7 +36,7 @@ export const Header: React.FC = () => {
             borderBottom={"1px solid #E6E6E6"}
             position={"fixed"}
             top={0}
-            zIndex={1}
+            zIndex={50}
             w={"100%"}
             bg={"#fff"}
         >
@@ -187,16 +188,9 @@ export const Header: React.FC = () => {
                         mt={"35px"}
                     >
                         <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
-                            <Link href="/community/1">
+                            <Link href="/community">
                                 <a>
-                                    <Text mb={0}>INIP Community 1</Text>
-                                </a>
-                            </Link>
-                        </MenuItem>
-                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
-                            <Link href="/community/2">
-                                <a>
-                                    <Text mb={0}>INIP Community 2</Text>
+                                    <Text mb={0}>INIP Community</Text>
                                 </a>
                             </Link>
                         </MenuItem>
@@ -254,41 +248,45 @@ export const DreamHeader: React.FC = () => {
             bgSize={"cover"}
             color={"#fff"}
             position={'absolute'}
+            zIndex={1}
             width={'100%'}
             borderBottom={'1px solid #ECECEC'}
         >
             <Flex w={'100%'} gap={"40px"} alignItems={'center'} flexWrap={'wrap'}>
-                <Box
-                    minW={"265px"}
-                    minH={"56px"}
-                    border={"1px solid #ececec"}
-                    bg={
-                        "radial-gradient(43.08% 63.75% at 50% 50%, rgba(230, 234, 233, 0.2) 0%, rgba(255, 244, 231, 0) 100%)"
-                    }
-                    fontFamily={"Inter"}
-                    fontWeight={900}
-                    display={'flex'}
-                    alignItems={'center'}
-                    justifyContent={'center'}
-                    order={{md: 0, sm: 0}}
-                >
-                    <Link href="/">
-                        <a>Back to INIP Marketplace</a>
-                    </Link>
-                </Box>
+
+                <Link href="/">
+                    <a>
+                        <Box
+                            border={"1px solid #ececec"}
+                            bg={
+                                "radial-gradient(43.08% 63.75% at 50% 50%, rgba(230, 234, 233, 0.2) 0%, rgba(255, 244, 231, 0) 100%)"
+                            }
+                            minW={"265px"}
+                            minH={"56px"}
+                            fontFamily={"Inter"}
+                            fontWeight={900}
+                            display={'flex'}
+                            alignItems={'center'}
+                            justifyContent={'center'}
+                            order={{md: 0, sm: 0}}
+                        >
+                            Back to INIP Marketplace
+                        </Box>
+                    </a>
+                </Link>
 
                 <Flex gap={10} order={{md: 1, sm: 2}}>
-                    <Box fontFamily={"SangSunrise"} fontWeight={700}>
-                        <Link href="/dreams-come-true">
+                    <Link href="/dreams-come-true">
+                        <Box fontFamily={"SangSunrise"} fontWeight={700}>
                             <a>DREAMS COME TRUE</a>
-                        </Link>
-                    </Box>
+                        </Box>
+                    </Link>
 
-                    <Box fontFamily={"Inter"}>
-                        <Link href="/dreams">
+                    <Link href="/dreams">
+                        <Box fontFamily={"Inter"}>
                             <a>Dreams</a>
-                        </Link>
-                    </Box>
+                        </Box>
+                    </Link>
                 </Flex>
 
                 <Flex order={{md: 2, sm: 1}} gap={"20px"} flexGrow={1} justifyContent={"flex-end"}>

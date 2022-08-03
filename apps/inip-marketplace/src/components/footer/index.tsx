@@ -143,21 +143,21 @@ export const Footer: React.FC = () => {
                     flexDir={{md: 'row', sm: 'column'}}
                     alignItems={'center'}
                 >
-                    <Link href="">
+                    <Link href="/">
                         <a>
                             <Text mb={0} color={"#fff"}>
                                 Homepage
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/about-charity-projects">
                         <a>
                             <Text mb={0} color={"rgba(255, 255, 255, 0.5)"}>
                                 Charity Projects
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/search">
                         <a>
                             <Text
                                 mb={0}
@@ -167,7 +167,7 @@ export const Footer: React.FC = () => {
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/about-kindness-rating">
                         <a>
                             <Text
                                 mb={0}
@@ -177,7 +177,7 @@ export const Footer: React.FC = () => {
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/community">
                         <a>
                             <Text
                                 mb={0}
@@ -187,7 +187,7 @@ export const Footer: React.FC = () => {
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/">
                         <a>
                             <Text
                                 mb={0}
@@ -197,7 +197,7 @@ export const Footer: React.FC = () => {
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/collections">
                         <a>
                             <Text
                                 mb={0}
