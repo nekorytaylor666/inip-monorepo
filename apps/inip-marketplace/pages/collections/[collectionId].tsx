@@ -317,7 +317,7 @@ const CollectionHeader = () => {
         return <Box>{error}</Box>;
     }
     return (
-        <Box overflow={"hidden"} position={"relative"}>
+        <Box overflow={"hidden"} position={"relative"} pt={"100px"}>
             <Container height={"xl"} zIndex={10} maxW="1440px">
                 <Flex height={"100%"} alignItems={"center"}>
                     <Flex align={"center"} w={"full"} gap={"24px"}>
@@ -416,14 +416,17 @@ const CollectionHeader = () => {
                 top={"-5%"}
                 left={"-5%"}
                 zIndex={-1}
+                bg={"navy"}
             >
                 <MediaRenderer
                     style={{
                         objectFit: "cover",
+                        opacity: 0.9,
                     }}
                     width="100%"
                     src={collectionMetadata.image}
                     alt="A mp4 video"
+
                 />
             </Box>
         </Box>

@@ -44,7 +44,7 @@ export const Header: React.FC = () => {
                 <Heading
                     cursor="pointer"
                     as="h4"
-                    fontFamily={"QtOpt"}
+                    fontFamily={"SangSunrise"}
                     color={"#1C2529"}
                     order={0}
                 >
@@ -86,7 +86,7 @@ export const Header: React.FC = () => {
                         p={"25px 20px"}
                         color={"#979391"}
                         fontFamily={"Inter"}
-                        fontSize={"18px"}
+                        fontSize={"16px"}
                         ml={"-30px"}
                         mt={"35px"}
                         fontWeight={500}
@@ -118,7 +118,7 @@ export const Header: React.FC = () => {
                         p={"25px 20px"}
                         color={"#979391"}
                         fontFamily={"Inter"}
-                        fontSize={"18px"}
+                        fontSize={"16px"}
                         fontWeight={500}
                         ml={"-30px"}
                         mt={"35px"}
@@ -150,7 +150,7 @@ export const Header: React.FC = () => {
                         p={"25px 20px"}
                         color={"#979391"}
                         fontFamily={"Inter"}
-                        fontSize={"18px"}
+                        fontSize={"16px"}
                         fontWeight={500}
                         ml={"-30px"}
                         mt={"35px"}
@@ -182,7 +182,7 @@ export const Header: React.FC = () => {
                         p={"25px 20px"}
                         color={"#979391"}
                         fontFamily={"Inter"}
-                        fontSize={"18px"}
+                        fontSize={"16px"}
                         fontWeight={500}
                         ml={"-30px"}
                         mt={"35px"}

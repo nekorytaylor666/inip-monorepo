@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -29,8 +29,144 @@ import room from "@public/icons/about-charity/room.jpg";
 import joyful_people from "@public/icons/about-charity/joyful_people.jpg";
 
 
+interface IProjects {
+    id: string,
+    firstBlock: {
+        title: string,
+        amountOfMoney: string,
+    },
+    secondBlock: {
+        title: string,
+    },
+    showFirst: boolean
+}
 
 const AboutCharity = () => {
+
+
+    const [projects, setProjects] = useState<IProjects[]>([
+        {
+            id: "1",
+            firstBlock: {
+                title: "Make the Africa green again!",
+                amountOfMoney: "125.000.000$"
+            },
+            secondBlock: {
+                title: `The world is falling apart. The last 3 years are the explicit representatives of it.
+                The pandemic, economics crisis, protests, wars. Without peering, it may seems
+                like the humanity is in the right way, but no it is not. Despite all that technological
+                advances and scientific progress, there are still many problems that have to be solved,
+                but are ignored. asd123
+
+                Do you know that there is more than enough capital in the world to make the Africa
+                green again? But 256 children already died there while you were reading this, due to
+                hunger and water scarcity. Would not you change this if you had the opportunity?
+                So we are giving that.`,
+            },
+            showFirst: true
+        },
+        {
+            id: "2",
+            firstBlock: {
+                title: "Make the Africa green again!",
+                amountOfMoney: "125.000.000$"
+            },
+            secondBlock: {
+                title: `The world is falling apart. The last 3 years are the explicit representatives of it.
+                The pandemic, economics crisis, protests, wars. Without peering, it may seems
+                like the humanity is in the right way, but no it is not. Despite all that technological
+                advances and scientific progress, there are still many problems that have to be solved,
+                but are ignored. asd123
+
+                Do you know that there is more than enough capital in the world to make the Africa
+                green again? But 256 children already died there while you were reading this, due to
+                hunger and water scarcity. Would not you change this if you had the opportunity?
+                So we are giving that.`,
+            },
+            showFirst: true
+        },
+        {
+            id: "3",
+            firstBlock: {
+                title: "Make the Africa green again!",
+                amountOfMoney: "125.000.000$"
+            },
+            secondBlock: {
+                title: `The world is falling apart. The last 3 years are the explicit representatives of it.
+                The pandemic, economics crisis, protests, wars. Without peering, it may seems
+                like the humanity is in the right way, but no it is not. Despite all that technological
+                advances and scientific progress, there are still many problems that have to be solved,
+                but are ignored. asd
+
+                Do you know that there is more than enough capital in the world to make the Africa
+                green again? But 256 children already died there while you were reading this, due to
+                hunger and water scarcity. Would not you change this if you had the opportunity?
+                So we are giving that.`,
+            },
+            showFirst: true
+        },
+        {
+            id: "4",
+            firstBlock: {
+                title: "Make the Africa green again!",
+                amountOfMoney: "125.000.000$"
+            },
+            secondBlock: {
+                title: `The world is falling apart. The last 3 years are the explicit representatives of it.
+                The pandemic, economics crisis, protests, wars. Without peering, it may seems
+                like the humanity is in the right way, but no it is not. Despite all that technological
+                advances and scientific progress, there are still many problems that have to be solved,
+                but are ignored. asd123
+
+                Do you know that there is more than enough capital in the world to make the Africa
+                green again? But 256 children already died there while you were reading this, due to
+                hunger and water scarcity. Would not you change this if you had the opportunity?
+                So we are giving that.`,
+            },
+            showFirst: true
+        },
+        {
+            id: "5",
+            firstBlock: {
+                title: "Make the Africa green again!",
+                amountOfMoney: "125.000.000$"
+            },
+            secondBlock: {
+                title: `The world is falling apart. The last 3 years are the explicit representatives of it.
+                The pandemic, economics crisis, protests, wars. Without peering, it may seems
+                like the humanity is in the right way, but no it is not. Despite all that technological
+                advances and scientific progress, there are still many problems that have to be solved,
+                but are ignored. asd123
+
+                Do you know that there is more than enough capital in the world to make the Africa
+                green again? But 256 children already died there while you were reading this, due to
+                hunger and water scarcity. Would not you change this if you had the opportunity?
+                So we are giving that.`,
+            },
+            showFirst: true
+        },
+        {
+            id: "6",
+            firstBlock: {
+                title: "Make the Africa green again!",
+                amountOfMoney: "125.000.000$"
+            },
+            secondBlock: {
+                title: `The world is falling apart. The last 3 years are the explicit representatives of it.
+                The pandemic, economics crisis, protests, wars. Without peering, it may seems
+                like the humanity is in the right way, but no it is not. Despite all that technological
+                advances and scientific progress, there are still many problems that have to be solved,
+                but are ignored. asd123
+
+                Do you know that there is more than enough capital in the world to make the Africa
+                green again? But 256 children already died there while you were reading this, due to
+                hunger and water scarcity. Would not you change this if you had the opportunity?
+                So we are giving that.`,
+            },
+            showFirst: true
+        },
+        
+    ]);
 
     return (
         <Box>
@@ -96,39 +232,39 @@ const AboutCharity = () => {
                         pt={50}
                         justifyContent={'space-between'}
                         flexWrap={'wrap'}
-                        alignItems={'flex-start'}
+                        alignItems={'center'}
                     >
                         <Box w={{md: "20%", sm: '48%'}} mb={10}>
                             <Heading>1</Heading>
-                            <Text fontSize={"20px"} fontWeight={400}>List of problems are offered by the platform</Text>
+                            <Text fontSize={"20px"} fontWeight={400} minH={"60px"}>List of problems are offered by the platform</Text>
                             <Square w={"145px"} h={"143px"} bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), #6C8693"}>
                                 <Image src={question}/>
                             </Square>
                         </Box>
                         <Box w={{md: "20%", sm: '50%'}} mb={10}>
                             <Heading>2</Heading>
-                            <Text fontSize={"20px"} fontWeight={400}>Community selects <br/> the one</Text>
+                            <Text fontSize={"20px"} fontWeight={400} minH={"60px"}>Community selects <br/> the one</Text>
                             <Square w={"145px"} h={"143px"} bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), #6C8693"}>
                                 <Image src={group}/>
                             </Square>
                         </Box>
                         <Box w={{md: "20%", sm: '50%'}} mb={10}>
                             <Heading>3</Heading>
-                            <Text fontSize={"20px"} fontWeight={400}>The needed capital is gathered</Text>
+                            <Text fontSize={"20px"} fontWeight={400} minH={"60px"}>The needed capital is gathered</Text>
                             <Square w={"145px"} h={"143px"} bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), #6C8693"}>
                                 <Image src={dollar}/>
                             </Square>
                         </Box>
                         <Box w={{md: "20%", sm: '50%'}} mb={10}>
                             <Heading>4</Heading>
-                            <Text fontSize={"20px"} fontWeight={400}>The project processes implementation</Text>
+                            <Text fontSize={"20px"} fontWeight={400} minH={"60px"}>The project processes implementation</Text>
                             <Square w={"145px"} h={"143px"} bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), #6C8693"}>
                                 <Image src={settings}/>
                             </Square>
                         </Box>
                         <Box w={{md: "20%", sm: '50%'}} mb={10}>
                             <Heading>5</Heading>
-                            <Text fontSize={"20px"} fontWeight={400}>The problem is solved and the world is better</Text>
+                            <Text fontSize={"20px"} fontWeight={400} minH={"60px"}>The problem is solved and the world is better</Text>
                             <Square w={"145px"} h={"143px"} bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), #6C8693"}>
                                 <Image src={world}/>
                             </Square>
@@ -152,195 +288,104 @@ const AboutCharity = () => {
                         gap={"20px"}
                         color={"#fff"}
                     >
-                        <Flex
-                            w={{md: "48%", sm: '100%'}}
-                            h={"447px"}
-                            flexDirection={"column"}
-                            justifyContent={"space-between"}
-                            bgImage={africa.src}
-                            bgSize={"cover"}
-                            bgPosition={"top"}
-                            p={"40px"}
-                        >
-                            <Flex flexDir={{md: 'row', sm: 'column'}}>
-                                <Heading fontFamily={"QtOpt"} fontSize={"50px"} fontWeight={700}>Make the Africa green again!</Heading>
-                                <Box>
-                                    <Text m={0} fontWeight={400} fontSize={"20px"}>Needed amount</Text>
-                                    <Text m={0} fontWeight={600} fontSize={"30px"}>125.000.000$</Text>
+
+                        {projects.map((item) => {
+
+                            if(item.showFirst){
+
+                                return <Flex key={item.id}
+                                        w={{md: "48%", sm: '100%'}}
+                                        h={"447px"}
+                                        flexDirection={"column"}
+                                        justifyContent={"space-between"}
+                                        bgImage={africa.src}
+                                        bgSize={"cover"}
+                                        bgPosition={"top"}
+                                        p={"40px"}
+                                    >
+                                        <Flex flexDir={{md: 'row', sm: 'column'}}>
+                                            <Heading fontFamily={"QtOpt"} fontSize={"50px"} fontWeight={700}>{item.firstBlock.title}</Heading>
+                                            <Box>
+                                                <Text m={0} fontWeight={400} fontSize={"20px"}>Needed amount</Text>
+                                                <Text m={0} fontWeight={600} fontSize={"30px"}>{item.firstBlock.amountOfMoney}</Text>
+                                            </Box>
+                                        </Flex>
+
+                                        <ButtonGroup
+                                            display={"flex"}
+                                            justifyContent={"space-between"}
+                                        >
+                                            <Button w={"175px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}
+                                                onClick={() => {
+                                                    setProjects([
+                                                        ...projects.map((el) => {
+                                                            if (el.id === item.id) {
+                                                                return {
+                                                                    ...item,
+                                                                    showFirst: false
+                                                                }
+                                                            }
+                                                            return el;
+                                                        })
+                                                    ]);
+                                                }}
+                                            >
+                                                More
+                                            </Button>
+
+                                            <Button w={"254px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}>
+                                                Select
+                                            </Button>
+                                        </ButtonGroup>
+                                    </Flex>
+                            }
+                            else {
+                                const text = item.secondBlock.title.replace("asd123", '<br/><br/>');
+                                const firstText = item.secondBlock.title.substring(0, item.secondBlock.title.indexOf("asd123"));
+                                const secondText = item.secondBlock.title.substring(item.secondBlock.title.indexOf("asd123") + 6, item.secondBlock.title.length);
+
+                                return <Box key={item.id}
+                                    w={{md: "48%", sm: '100%'}}
+                                    h={"447px"}
+                                    display={"flex"}
+                                    flexDirection={"column"}
+                                    justifyContent={"space-between"}
+                                    p={"40px"}
+                                    bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), #6C8693"}
+
+                                >
+                                    <Text m={0}>
+                                        {firstText}<br/><br/>
+                                        {secondText}
+                                    </Text>
+
+                                    <Button
+                                        w={"175px"}
+                                        h={"82px"}
+                                        bg={"rgba(255, 255, 255, 0.1)"}
+                                        border={"2px solid #fff"}
+                                        borderRadius={0}
+                                        onClick={() => {
+                                            setProjects([
+                                                ...projects.map((el) => {
+                                                    if (el.id === item.id) {
+                                                        return {
+                                                            ...item,
+                                                            showFirst: true
+                                                        }
+                                                    }
+                                                    return el;
+                                                })
+                                            ]);
+                                        }}
+                                    >
+                                        Back
+                                    </Button>
                                 </Box>
-                            </Flex>
 
-                            <ButtonGroup
-                                display={"flex"}
-                                justifyContent={"space-between"}
-                            >
-                                <Button w={"175px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}>
-                                    More
-                                </Button>
-
-                                <Button w={"254px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}>
-                                    Select
-                                </Button>
-                            </ButtonGroup>
-                        </Flex>
-                        <Box
-                            w={{md: "48%", sm: '100%'}}
-                            h={"447px"}
-                            display={"flex"}
-                            flexDirection={"column"}
-                            justifyContent={"space-between"}
-                            p={"40px"}
-                            bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(203, 225, 239, 0) 100%), #6C8693"}
-
-                        >
-                            <Text m={0}>
-                                The world is falling apart. The last 3 years are the explicit representatives of it.
-                                The pandemic, economics crisis, protests, wars. Without peering, it may seems
-                                like the humanity is in the right way, but no it is not. Despite all that technological
-                                advances and scientific progress, there are still many problems that have to be solved,
-                                but are ignored. <br/><br/>
-
-                                Do you know that there is more than enough capital in the world to make the Africa
-                                green again? But 256 children already died there while you were reading this, due to
-                                hunger and water scarcity. Would not you change this if you had the opportunity?
-                                So we are giving that.
-                            </Text>
-
-                            <Button
-                                w={"175px"}
-                                h={"82px"}
-                                bg={"rgba(255, 255, 255, 0.1)"}
-                                border={"2px solid #fff"}
-                                borderRadius={0}
-                            >
-                                Back
-                            </Button>
-                        </Box>
-                        <Flex
-                            w={{md: "48%", sm: '100%'}}
-                            h={"447px"}
-                            flexDirection={"column"}
-                            justifyContent={"space-between"}
-                            bgImage={africa.src}
-                            bgSize={"cover"}
-                            bgPosition={"top"}
-                            p={"40px"}
-                        >
-                            <Flex flexDir={{md: 'row', sm: 'column'}}>
-                                <Heading fontFamily={"QtOpt"} fontSize={"50px"} fontWeight={700}>Make the Africa green again!</Heading>
-                                <Box>
-                                    <Text m={0} fontWeight={400} fontSize={"20px"}>Needed amount</Text>
-                                    <Text m={0} fontWeight={600} fontSize={"30px"}>125.000.000$</Text>
-                                </Box>
-                            </Flex>
-
-                            <ButtonGroup
-                                display={"flex"}
-                                justifyContent={"space-between"}
-                            >
-                                <Button w={"175px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}>
-                                    More
-                                </Button>
-
-                                <Button w={"254px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}>
-                                    Select
-                                </Button>
-                            </ButtonGroup>
-                        </Flex>
-                        <Flex
-                            w={{md: "48%", sm: '100%'}}
-                            h={"447px"}
-                            flexDirection={"column"}
-                            justifyContent={"space-between"}
-                            bgImage={africa.src}
-                            bgSize={"cover"}
-                            bgPosition={"top"}
-                            p={"40px"}
-                        >
-                            <Flex flexDir={{md: 'row', sm: 'column'}}>
-                                <Heading fontFamily={"QtOpt"} fontSize={"50px"} fontWeight={700}>Make the Africa green again!</Heading>
-                                <Box>
-                                    <Text m={0} fontWeight={400} fontSize={"20px"}>Needed amount</Text>
-                                    <Text m={0} fontWeight={600} fontSize={"30px"}>125.000.000$</Text>
-                                </Box>
-                            </Flex>
-
-                            <ButtonGroup
-                                display={"flex"}
-                                justifyContent={"space-between"}
-                            >
-                                <Button w={"175px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}>
-                                    More
-                                </Button>
-
-                                <Button w={"254px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}>
-                                    Select
-                                </Button>
-                            </ButtonGroup>
-                        </Flex>
-                        <Flex
-                            w={{md: "48%", sm: '100%'}}
-                            h={"447px"}
-                            flexDirection={"column"}
-                            justifyContent={"space-between"}
-                            bgImage={africa.src}
-                            bgSize={"cover"}
-                            bgPosition={"top"}
-                            p={"40px"}
-                        >
-                            <Flex flexDir={{md: 'row', sm: 'column'}}>
-                                <Heading fontFamily={"QtOpt"} fontSize={"50px"} fontWeight={700}>Make the Africa green again!</Heading>
-                                <Box>
-                                    <Text m={0} fontWeight={400} fontSize={"20px"}>Needed amount</Text>
-                                    <Text m={0} fontWeight={600} fontSize={"30px"}>125.000.000$</Text>
-                                </Box>
-                            </Flex>
-
-                            <ButtonGroup
-                                display={"flex"}
-                                justifyContent={"space-between"}
-                            >
-                                <Button w={"175px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}>
-                                    More
-                                </Button>
-
-                                <Button w={"254px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}>
-                                    Select
-                                </Button>
-                            </ButtonGroup>
-                        </Flex>
-                        <Flex
-                            w={{md: "48%", sm: '100%'}}
-                            h={"447px"}
-                            flexDirection={"column"}
-                            justifyContent={"space-between"}
-                            bgImage={africa.src}
-                            bgSize={"cover"}
-                            bgPosition={"top"}
-                            p={"40px"}
-                        >
-                            <Flex flexDir={{md: 'row', sm: 'column'}}>
-                                <Heading fontFamily={"QtOpt"} fontSize={"50px"} fontWeight={700}>Make the Africa green again!</Heading>
-                                <Box>
-                                    <Text m={0} fontWeight={400} fontSize={"20px"}>Needed amount</Text>
-                                    <Text m={0} fontWeight={600} fontSize={"30px"}>125.000.000$</Text>
-                                </Box>
-                            </Flex>
-
-                            <ButtonGroup
-                                display={"flex"}
-                                justifyContent={"space-between"}
-                            >
-                                <Button w={"175px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}>
-                                    More
-                                </Button>
-
-                                <Button w={"254px"} h={"82px"} bg={"rgba(255, 255, 255, 0.1)"} border={"2px solid #fff"} borderRadius={"0"}>
-                                    Select
-                                </Button>
-                            </ButtonGroup>
-                        </Flex>
-
+                            }
+                        })}
+                        
                     </Flex>
                 </Box>
 

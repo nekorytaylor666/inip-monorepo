@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
                 >
                     <Heading
                         as='h2'
-                        fontFamily={'QtOpt'}
+                        fontFamily={"SangSunrise"}
                         color={"#fff"}
                         fontSize={'52px'}
                     >
@@ -145,14 +145,14 @@ export const Footer: React.FC = () => {
                 >
                     <Link href="/">
                         <a>
-                            <Text mb={0} color={"#fff"}>
+                            <Text mb={0} color={"rgba(255, 255, 255, 0.5)"} _hover={{color: "#fff"}}>
                                 Homepage
                             </Text>
                         </a>
                     </Link>
                     <Link href="/about-charity-projects">
                         <a>
-                            <Text mb={0} color={"rgba(255, 255, 255, 0.5)"}>
+                            <Text mb={0} color={"rgba(255, 255, 255, 0.5)"} _hover={{color: "#fff"}}>
                                 Charity Projects
                             </Text>
                         </a>
@@ -162,6 +162,7 @@ export const Footer: React.FC = () => {
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Search
                             </Text>
@@ -172,6 +173,7 @@ export const Footer: React.FC = () => {
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Kindness Rating
                             </Text>
@@ -182,6 +184,7 @@ export const Footer: React.FC = () => {
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Community
                             </Text>
@@ -192,6 +195,7 @@ export const Footer: React.FC = () => {
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 INIP token
                             </Text>
@@ -202,6 +206,7 @@ export const Footer: React.FC = () => {
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Louvre
                             </Text>
