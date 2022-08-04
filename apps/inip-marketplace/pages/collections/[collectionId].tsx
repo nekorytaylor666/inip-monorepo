@@ -416,12 +416,12 @@ const CollectionHeader = () => {
                 top={"-5%"}
                 left={"-5%"}
                 zIndex={-1}
-                bg={"navy"}
+                bg={"black"}
             >
                 <MediaRenderer
                     style={{
                         objectFit: "cover",
-                        opacity: 0.9,
+                        opacity: 0.4,
                     }}
                     width="100%"
                     src={collectionMetadata.image}
