@@ -201,7 +201,7 @@ export const Footer: React.FC = () => {
                             </Text>
                         </a>
                     </Link>
-                    <Link href="/collections">
+                    <Link href="/louvre">
                         <a>
                             <Text
                                 mb={0}

@@ -33,6 +33,7 @@ import {ListingType, PopularType} from "src/types/types";
 import { MediaRenderer } from "@thirdweb-dev/react";
 import frameLil from "@public/icons/community/frame.png";
 import Listing from "@components/collectionOfListing";
+// import {Carousel} from '3d-react-carousal';
 
 export const Container: React.FC = () => {
     const {data: listingsReq, isLoading: listingsLoading} = useQuery<ListingType[]>(
@@ -556,7 +557,7 @@ export const Container: React.FC = () => {
 
             <Flex flexDirection={"column"} padding={"10% 10%"} gap={"50px"}>
                 <Box>
-                    <Heading fontFamily={"SangSunrise"} fontWeight={700}>
+                    <Heading fontFamily={"QtOpt"} fontWeight={700}>
                         our benefits.
                     </Heading>
                     <Text fontWeight={600}>
@@ -569,7 +570,7 @@ export const Container: React.FC = () => {
 
             <Box flexDirection={"column"} p={"0 10%"}>
                 <Box>
-                    <Heading fontFamily={"SangSunrise"} fontWeight={700}>
+                    <Heading fontFamily={"QtOpt"} fontWeight={700}>
                         kindness rating.
                     </Heading>
                     <Text fontWeight={600} color={"#1C2529"} fontSize={"20px"}>
@@ -626,11 +627,19 @@ export const Container: React.FC = () => {
                 </Flex>
             </Box>
             <Flex flexDirection={"column"} mt={20} mb={20}>
-                <Heading textAlign={'center'} fontWeight={900} fontFamily={"SangSunrise"}>
+                <Heading textAlign={'center'} fontWeight={900} fontFamily={"QtOpt"}>
                     our partners.
                 </Heading>
                 <Partners partners={partners} />
             </Flex>
+
+            {/* <Box p={"150px 200px"}>
+                <Carousel 
+                    slides={videos} 
+                    autoplay={true} 
+                    interval={1000} 
+                />
+            </Box> */}
         </Box>
     );
 };

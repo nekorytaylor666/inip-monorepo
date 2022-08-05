@@ -20,7 +20,7 @@ const NFTItem = ({item, liked}: NFTItemType) => {
 
     return (
         <Box 
-            maxWidth={"30%"} 
+            maxWidth={"31%"} 
             key={item.id}   
             position={"relative"}
         >

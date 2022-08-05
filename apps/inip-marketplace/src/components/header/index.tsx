@@ -70,7 +70,7 @@ export const Header: React.FC = () => {
                         <Text mb={0} _hover={{ fontWeight: "bold" }}>Homepage</Text>
                     </a>
                 </Link>
-                <Link href="/collections">
+                <Link href="/louvre">
                     <a>
                         <Text mb={0} _hover={{ fontWeight: "bold" }}>Louvre</Text>
                     </a>
@@ -238,7 +238,27 @@ export const Header: React.FC = () => {
     );
 };
 
-export const DreamHeader: React.FC = () => {
+export const DreamHeader: React.FC = ({setBgImg}: {setBgImg: boolean}) => {
+
+
+
+    const [offset, setOffset] = useState(0);
+    const [dreamBlock, setDreamsBlock] = useState(0);
+    useEffect(() => {
+        const id = document.getElementById("__next");
+
+        const dreamsComeTrue = document.getElementById("dreams");
+        if(dreamsComeTrue){
+            setDreamsBlock(dreamsComeTrue?.clientHeight);
+        }
+        const onScroll = () => setOffset(window.pageYOffset);
+        
+
+        window.removeEventListener('scroll', onScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+
+    }, []);
 
 
     return (
@@ -247,10 +267,11 @@ export const DreamHeader: React.FC = () => {
             gap={"50px"}
             bgSize={"cover"}
             color={"#fff"}
-            position={'absolute'}
+            position={'fixed'}
             zIndex={1}
             width={'100%'}
             borderBottom={'1px solid #ECECEC'}
+            bgImage={setBgImg ? sky.src : (offset > dreamBlock/2 - 250 ? sky.src : "")} 
         >
             <Flex w={'100%'} gap={"40px"} alignItems={'center'} flexWrap={'wrap'}>
 
@@ -277,15 +298,19 @@ export const DreamHeader: React.FC = () => {
 
                 <Flex gap={10} order={{md: 1, sm: 2}}>
                     <Link href="/dreams-come-true">
+                        <a>
                         <Box fontFamily={"SangSunrise"} fontWeight={700}>
-                            <a>DREAMS COME TRUE</a>
+                            DREAMS COME TRUE
                         </Box>
+                        </a>
                     </Link>
 
                     <Link href="/dreams">
-                        <Box fontFamily={"Inter"}>
-                            <a>Dreams</a>
-                        </Box>
+                        <a>
+                            <Box fontFamily={"Inter"}>
+                                Dreams
+                            </Box>
+                        </a>
                     </Link>
                 </Flex>
 
