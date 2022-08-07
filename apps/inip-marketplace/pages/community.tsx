@@ -111,7 +111,7 @@ const Community = () => {
 
     return (
 
-        <Box
+        <Box p={"100px 0"}
         >
             <Box
                 bgImage={community.src}

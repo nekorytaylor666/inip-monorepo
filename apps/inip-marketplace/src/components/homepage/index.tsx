@@ -33,6 +33,7 @@ import {ListingType, PopularType} from "src/types/types";
 import { MediaRenderer } from "@thirdweb-dev/react";
 import frameLil from "@public/icons/community/frame.png";
 import Listing from "@components/collectionOfListing";
+import collectionFrame from "@public/icons/collectionframe.png";
 // import {Carousel} from '3d-react-carousal';
 
 export const Container: React.FC = () => {
@@ -323,7 +324,7 @@ export const Container: React.FC = () => {
                                 backgroundPosition={'center'}
                             >
                                 <img
-                                    src={frame.src}
+                                    src={collectionFrame.src}
                                     style={{
                                         height: "100%",
                                         width: '100%',

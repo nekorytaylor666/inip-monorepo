@@ -169,7 +169,7 @@ const AboutCharity = () => {
     ]);
 
     return (
-        <Box>
+        <Box p={"100px 0"}>
             <Flex
                 bgImage={charity.src}
                 bgPosition={"top"}
@@ -403,7 +403,7 @@ const AboutCharity = () => {
                 </Center>
             </Box>
 
-            <Flex
+            <Box
                 w={"100%"}
                 minH={"153px"}
                 bgColor={"#6c8693"}
@@ -411,6 +411,18 @@ const AboutCharity = () => {
                 fontFamily={"QtOpt"}
                 gap={"45px"}
                 overflowX={"scroll"}
+                display={"flex"}
+                p={"50px 0"}
+                __css={{
+                    '&::-webkit-scrollbar': {
+                        height: "3px",
+                        width: "50%",
+                        backgroundColor: `rgba(0, 0, 0, 0.05)`,
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                        backgroundColor: `#758F9D`,
+                    },
+                }}
             >
                 <Flex
                     minW={"260px"}
@@ -483,7 +495,7 @@ const AboutCharity = () => {
                     latest projects.
                 </Flex>
 
-            </Flex>
+            </Box>
 
             <Flex
                 p={"102px 10% 116px"}

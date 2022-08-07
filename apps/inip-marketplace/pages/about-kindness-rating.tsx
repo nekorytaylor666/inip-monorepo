@@ -81,7 +81,7 @@ const AboutKindnessRating = () => {
 
 
     return (
-        <Box>
+        <Box p={"100px 0"}>
             <Flex
                 bgImage={kindnessBgim.src}
                 backgroundSize={{md: 'cover'}}
