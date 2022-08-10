@@ -9,8 +9,11 @@ import {
     Button,
     ButtonGroup,
     Progress,
+    Link,
+    textDecoration
 } from "@chakra-ui/react";
 import Image from "next/image";
+// import Link from "next/link";
 import mainIcon from "@public/icons/homepage/mainIcon.svg";
 import dream from "@public/icons/homepage/latest_dreams.jpg";
 import henocyde from "@public/icons/homepage/henocyde.jpg";
@@ -30,6 +33,8 @@ import {ListingType, PopularType} from "src/types/types";
 import { MediaRenderer } from "@thirdweb-dev/react";
 import frameLil from "@public/icons/community/frame.png";
 import Listing from "@components/collectionOfListing";
+import collectionFrame from "@public/icons/collectionframe.png";
+// import {Carousel} from '3d-react-carousal';
 
 export const Container: React.FC = () => {
     const {data: listingsReq, isLoading: listingsLoading} = useQuery<ListingType[]>(
@@ -124,6 +129,35 @@ export const Container: React.FC = () => {
             title: "HENOCYDE",
             author: "BINSKY",
         },
+        {
+            id: "6",
+            image: louvre,
+            price: 546,
+            lastPrice: 645,
+            title: "HENOCYDE",
+            author: "BINSKY",
+        },{
+            id: "7",
+            image: louvre,
+            price: 546,
+            lastPrice: 645,
+            title: "HENOCYDE",
+            author: "BINSKY",
+        },{
+            id: "8",
+            image: louvre,
+            price: 546,
+            lastPrice: 645,
+            title: "HENOCYDE",
+            author: "BINSKY",
+        },{
+            id: "9",
+            image: louvre,
+            price: 546,
+            lastPrice: 645,
+            title: "HENOCYDE",
+            author: "BINSKY",
+        },
     ];
 
     const charity = [
@@ -131,6 +165,7 @@ export const Container: React.FC = () => {
             id: "1",
             image: charityImg,
             title: "Charity Projects",
+            link: "/about-charity-project",
             description:
                 "There is a 3% comission in each transaction. Commission from each purchase and resale of NFT will be donated to charitable projects",
         },
@@ -138,6 +173,7 @@ export const Container: React.FC = () => {
             id: "2",
             image: charityImg,
             title: "Personal Dreams",
+            link: "/dreams",
             description:
                 "Everyone has a dream. Make them come true with us. To do this, you have to upload an NFT with a detailed description of your dream, and indicate the price.",
         },
@@ -145,6 +181,7 @@ export const Container: React.FC = () => {
             id: "3",
             image: charityImg,
             title: "Creator Support",
+            link: "/creator-support",
             description:
                 "Are you the NFT creator? Submit your candidacy, and perhaps it is you who will receive full financial and promotional support from the INIP Marketplace.",
         },
@@ -152,6 +189,7 @@ export const Container: React.FC = () => {
             id: "4",
             image: charityImg,
             title: "Community",
+            link: "/community/1",
             description:
                 "The community will be selected like-minded people from different areas with the same goals - to improve the world. It will also play a key role in the selection of charity projects and future artists.",
         },
@@ -217,31 +255,46 @@ export const Container: React.FC = () => {
                                 around the world.
                             </Text>
                             <Flex mt={"70px"} justifyContent={{md: 'flex-start', sm: 'space-between'}}>
-                                <Button
+                                
+                                <Link 
+                                    href="/collections"
                                     width={'45%'}
                                     minHeight={"80px"}
-                                    bg={
-                                        "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%) #748E9C"
-                                    }
-                                    color={"#fff"}
-                                    fontSize={"20px"}
-                                    borderRadius={"0"}
+                                    _hover={{textDecoration: 'none'}}
                                 >
-                                    Start collecting
-                                </Button>
+                                    <Button
+                                        bg={
+                                            "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%) #748E9C"
+                                        }
+                                        color={"#fff"}
+                                        borderRadius={"0"}    
+                                        w={"100%"}
+                                        h={"100%"}    
+                                        fontSize={"20px"}
+                                    >
 
-                                <Button
+                                        Start collecting
+                                    </Button>
+                                </Link>
+
+                                <Link href="/dreams-come-true"
                                     width={'50%'}
                                     minHeight={"80px"}
-                                    bg={"none"}
-                                    fontSize={"20px"}
-                                    color={"#1C2529"}
-                                    borderRadius={"0"}
-                                    border={"2px solid #DEDEDE"}
                                     marginLeft={{md: 10, sm: 0}}
+                                    _hover={{textDecoration: 'none'}}
                                 >
-                                    Dreams Come True
-                                </Button>
+                                    <Button
+                                        color={"#1C2529"}
+                                        bg={"none"}
+                                        borderRadius={"0"}
+                                        border={"2px solid #DEDEDE"}
+                                        w={"100%"}
+                                        h={"100%"}
+                                        fontSize={"20px"}    
+                                    >
+                                        Dreams Come True
+                                    </Button>
+                                </Link>
                             </Flex>
                         </Box>
                         <Box
@@ -271,7 +324,7 @@ export const Container: React.FC = () => {
                                 backgroundPosition={'center'}
                             >
                                 <img
-                                    src={frame.src}
+                                    src={collectionFrame.src}
                                     style={{
                                         height: "100%",
                                         width: '100%',
@@ -434,6 +487,7 @@ export const Container: React.FC = () => {
                     <Button
                         backgroundColor={"rgba(255, 255, 255, 0.1)"}
                         border={"1px solid #DEDEDE"}
+                        borderRadius={0}
                         minWidth={"316px"}
                         maxWidth={"316px"}
                         minHeight={"80px"}
@@ -458,6 +512,7 @@ export const Container: React.FC = () => {
                     <Button
                         background={"rgba(255, 255, 255, 0.1)"}
                         border={"1px solid #DEDEDE"}
+                        borderRadius={0}
                         minWidth={"316px"}
                         maxWidth={"316px"}
                         minHeight={"80px"}
@@ -503,7 +558,7 @@ export const Container: React.FC = () => {
 
             <Flex flexDirection={"column"} padding={"10% 10%"} gap={"50px"}>
                 <Box>
-                    <Heading fontFamily={"SangSunrise"} fontWeight={700}>
+                    <Heading fontFamily={"QtOpt"} fontWeight={700}>
                         our benefits.
                     </Heading>
                     <Text fontWeight={600}>
@@ -516,7 +571,7 @@ export const Container: React.FC = () => {
 
             <Box flexDirection={"column"} p={"0 10%"}>
                 <Box>
-                    <Heading fontFamily={"SangSunrise"} fontWeight={700}>
+                    <Heading fontFamily={"QtOpt"} fontWeight={700}>
                         kindness rating.
                     </Heading>
                     <Text fontWeight={600} color={"#1C2529"} fontSize={"20px"}>
@@ -563,6 +618,7 @@ export const Container: React.FC = () => {
                     <Button
                         background={"rgba(255, 255, 255, 0.1)"}
                         border={"1px solid #DEDEDE"}
+                        borderRadius={0}
                         minWidth={"316px"}
                         minHeight={"80px"}
                         mt={"40px"}
@@ -572,11 +628,19 @@ export const Container: React.FC = () => {
                 </Flex>
             </Box>
             <Flex flexDirection={"column"} mt={20} mb={20}>
-                <Heading textAlign={'center'} fontWeight={900} fontFamily={"SangSunrise"}>
+                <Heading textAlign={'center'} fontWeight={900} fontFamily={"QtOpt"}>
                     our partners.
                 </Heading>
                 <Partners partners={partners} />
             </Flex>
+
+            {/* <Box p={"150px 200px"}>
+                <Carousel 
+                    slides={videos} 
+                    autoplay={true} 
+                    interval={1000} 
+                />
+            </Box> */}
         </Box>
     );
 };

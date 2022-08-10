@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -31,11 +31,87 @@ import louvre from "@public/icons/community/louvre.jpg";
 import frameCommunity from "@public/icons/community/frameCommunity.png";
 
 
+interface ICommunityLevels {
+    id: string,
+    firstBlock: {
+        title: string,
+        description: string
+    },
+    secondBlock: {
+        howToJoin: string[],
+        right: string[]
+    },
+    showFirst: boolean
+}
+
 const Community = () => {
+
+    const [communityLevels, setLevels] = useState<ICommunityLevels[]>([
+        {
+            id: '1',
+            firstBlock: {
+                title: 'Louvre Staff', 
+                description: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod.'
+            },
+            secondBlock: {
+                howToJoin: [
+                    'Free joining',
+                ],
+                right: [
+                    'Chatting with other members',
+                ]
+            },
+            showFirst: true
+        },
+        {
+            id: '2',
+            firstBlock: {
+                title: 'Louvre Staff', 
+                description: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod.'
+            },
+            secondBlock: {
+                howToJoin: [
+                    'Invites',
+                    'Whitelists',
+                    'Kindness rating',
+                    'Dreams',
+                    'Act of kindness'
+                ],
+                right: [
+                    'Chatting with other',
+                    'Selecting charity projects',
+                    'Chatting with other',
+                    'Voting in the democratic rating'
+                ]
+            },
+            showFirst: true
+        },
+        {
+            id: '3',
+            firstBlock: {
+                title: 'Louvre Staff', 
+                description: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod.'
+            },
+            secondBlock: {
+                howToJoin: [
+                    'Voting',
+                    'Special invites'
+                ],
+                right: [
+                    'Chatting with other',
+                    'Selecting charity projects',
+                    'Make offers regarding projects',
+                    'Voting in the democratic rating',
+                    'Selecting creators for support',
+                ]
+            },
+            showFirst: true
+        }
+    ])
 
     return (
 
-        <Box
+        <Box p={"100px 0"}
         >
             <Box
                 bgImage={community.src}
@@ -124,125 +200,122 @@ const Community = () => {
 
                 <Heading color={"#365262"} fontFamily={"QtOpt"}>community levels.</Heading>
 
-                <Flex gap={"54px"} color={"#fff"} justifyContent={"space-between"} p={"45px 0 65px"}>
-                    <Flex
-                        minH={"644px"}
-                        minW={"465px"}
-                        p={"40px"}
-                        justifyContent={"space-between"}
-                        flexDir={"column"}
-                        bgImage={louvre.src}
-                        bgSize={"cover"}
-                        bgPos={"top"}
-                    >
-
-                        <Flex
-                            flexDir={"column"}
-                            justifyContent={"end"}
-                            h={"100%"}
-                            gap={"35px"}
-                        >
-                            <Flex
-                                flexDir={"column"}
+                <Flex gap={"54px"} color={"#fff"} justifyContent={"space-between"} p={"45px 0 65px"} flexDir={{md: 'row', sm: 'column'}}>
+                    {communityLevels.map((item) => {
+                        
+                        if(item.showFirst){
+                            return <Flex
+                                key={item.id}
+                                minH={"644px"}
+                                minW={"465px"}
+                                p={"40px"}
                                 justifyContent={"space-between"}
-                                gap={"15px"}
-                            >
-                                <Heading color={"#1e4257"} fontFamily={"QtOpt"} fontSize={"30px"} fontWeight={700}>Louvre Staff</Heading>
-                                <Text color={"#365262"} fontWeight={700}>
-                                    Lorem ipsum dolor sit amet, consec 
-                                    tetur adipiscing elit, sed do eiusmod.
-                                </Text>
-                            </Flex>
-                            <Button
-                                w={"186px"}
-                                h={"74px"}
-                                border={"2px solid #dedede"}
-                                borderRadius={0}
-                                bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(167, 194, 211, 0) 100%), #6C8693"}
-                            >
-                                More
-                            </Button>
-                        </Flex>
-                    </Flex>
-                    <Flex
-                        minH={"644px"}
-                        minW={"465px"}
-                        p={"40px"}
-                        justifyContent={"space-between"}
-                        flexDir={"column"}
-                        bgImage={louvre.src}
-                        bgSize={"cover"}
-                        bgPos={"top"}
-                    >
-
-                        <Flex
-                            flexDir={"column"}
-                            justifyContent={"end"}
-                            h={"100%"}
-                            gap={"35px"}
-                        >
-                            <Flex
                                 flexDir={"column"}
-                                justifyContent={"space-between"}
-                                gap={"15px"}
+                                bgImage={louvre.src}
+                                bgSize={"cover"}
+                                bgPos={"top"}
                             >
-                                <Heading color={"#1e4257"} fontFamily={"QtOpt"} fontSize={"30px"} fontWeight={700}>Louvre Staff</Heading>
-                                <Text color={"#365262"} fontWeight={700}>
-                                    Lorem ipsum dolor sit amet, consec 
-                                    tetur adipiscing elit, sed do eiusmod.
-                                </Text>
-                            </Flex>
-                            <Button
-                                w={"186px"}
-                                h={"74px"}
-                                border={"2px solid #dedede"}
-                                borderRadius={0}
-                                bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(167, 194, 211, 0) 100%), #6C8693"}
-                            >
-                                More
-                            </Button>
-                        </Flex>
-                    </Flex>
-                    <Flex
-                        minH={"644px"}
-                        minW={"465px"}
-                        p={"40px"}
-                        justifyContent={"space-between"}
-                        flexDir={"column"}
-                        bgImage={louvre.src}
-                        bgSize={"cover"}
-                        bgPos={"top"}
-                    >
 
-                        <Flex
-                            flexDir={"column"}
-                            justifyContent={"end"}
-                            h={"100%"}
-                            gap={"35px"}
-                        >
-                            <Flex
+                                <Flex
+                                    flexDir={"column"}
+                                    justifyContent={"end"}
+                                    h={"100%"}
+                                    gap={"35px"}
+                                >
+                                    <Flex
+                                        flexDir={"column"}
+                                        justifyContent={"space-between"}
+                                        gap={"15px"}
+                                    >
+                                        <Heading color={"#1e4257"} fontFamily={"QtOpt"} fontSize={"30px"} fontWeight={700}>{item.firstBlock.title}</Heading>
+                                        <Text color={"#365262"} fontWeight={700}>
+                                            {item.firstBlock.description}
+                                        </Text>
+                                    </Flex>
+                                    <Button
+                                        w={"186px"}
+                                        h={"74px"}
+                                        border={"2px solid #dedede"}
+                                        borderRadius={0}
+                                        bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(167, 194, 211, 0) 100%), #6C8693"}
+                                        onClick={() => {
+                                            const res = communityLevels.filter((el) => el.id === item.id);
+                                            setLevels([
+                                                ...communityLevels.map((el) => {
+                                                    if(el.id === item.id){
+                                                        return {
+                                                            id: el.id,
+                                                            firstBlock: el.firstBlock,
+                                                            secondBlock: el.secondBlock,
+                                                            showFirst: false
+                                                        }
+                                                    }
+                                                    return el;
+                                                })
+                                            ])
+                                        }}
+                                    >
+                                        More
+                                    </Button>
+                                </Flex>
+                            </Flex>
+
+                        }
+                        else {
+                            return <Flex
+                                minH={"644px"}
+                                minW={"465px"}
+                                p={"40px"}
+                                justifyContent={"space-between"}
+                                bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(167, 194, 211, 0) 100%), #6C8693"}
                                 flexDir={"column"}
-                                justifyContent={"space-between"}
-                                gap={"15px"}
                             >
-                                <Heading color={"#1e4257"} fontFamily={"QtOpt"} fontSize={"30px"} fontWeight={700}>Louvre Staff</Heading>
-                                <Text color={"#365262"} fontWeight={700}>
-                                    Lorem ipsum dolor sit amet, consec 
-                                    tetur adipiscing elit, sed do eiusmod.
-                                </Text>
-                            </Flex>
-                            <Button
-                                w={"186px"}
-                                h={"74px"}
-                                border={"2px solid #dedede"}
-                                borderRadius={0}
-                                bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(167, 194, 211, 0) 100%), #6C8693"}
-                            >
-                                More
-                            </Button>
-                        </Flex>
+                                <Box minH={"160px"}>
+                                    <Text fontFamily={"QtOpt"} fontSize={"24px"} fontWeight={900}>how to join?</Text>
+                                    <UnorderedList>
 
-                    </Flex>
+                                        {item.secondBlock?.howToJoin.map((el, index) => <ListItem key={index}>{el}</ListItem>)}
+                                    </UnorderedList>
+                                </Box>
+                                <Box minH={"180px"}>
+                                    <Text fontFamily={"QtOpt"} fontSize={"24px"} fontWeight={900}>rights</Text>
+                                    <UnorderedList>
+
+                                        {item.secondBlock?.right.map((el, index) => <ListItem key={index}>{el}</ListItem>)}
+                                    </UnorderedList>
+                                </Box>
+
+                                <Button
+                                    w={"186px"}
+                                    h={"74px"}
+                                    border={"2px solid #dedede"}
+                                    borderRadius={0}
+                                    bg={"rgba(255, 255, 255, 0.2)"}
+                                    onClick={() => {
+                                        const res = communityLevels.filter((el) => el.id === item.id);
+
+                                        setLevels([
+                                            ...communityLevels.map((el) => {
+                                                if(el.id === item.id){
+                                                    return {
+                                                        id: el.id,
+                                                        firstBlock: el.firstBlock,
+                                                        secondBlock: el.secondBlock,
+                                                        showFirst: true
+                                                    }
+                                                }
+                                                return el;
+                                            })
+                                            ]
+                                        )
+                                    }}
+                                >
+                                    Back
+                                </Button>
+                            </Flex>
+                        }
+                    })}
+                    
                 </Flex>
 
                 <Center>

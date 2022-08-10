@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Image from "next/image";
 import {
     Box,
@@ -51,9 +51,11 @@ const DreamsComeTrue = () => {
 
     const partners = [0, 1, 2, 3, 4, 5];
 
+    
     return (
         <Box>
             <Box
+                id="dreams"
                 bgImage={sky.src}
                 maxH={"850px"}
                 p={"0 10%"}

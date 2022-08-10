@@ -98,7 +98,7 @@ const Dreams = () => {
 
     return (
         <Box>
-            <Box p={"120px 10%"} color={"#1c2529"}>
+            <Box p={"15% 10%"} color={"#1c2529"}>
                 <Heading fontFamily={"Swing"} fontSize={"140px"} fontWeight={400} >Dreams</Heading>
                 <Text
                     maxW={"470px"}
@@ -167,7 +167,7 @@ const Dreams = () => {
 
 Dreams.getLayout = function getLayout(page: ReactElement){
 
-    return <DreamsLayout>
+    return <DreamsLayout setBgImg={true}>
         <>
             {page}
         </>

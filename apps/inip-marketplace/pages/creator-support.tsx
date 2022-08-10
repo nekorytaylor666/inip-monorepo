@@ -75,7 +75,7 @@ const CreatorSupport = () => {
     ];
 
     return (
-        <Box>
+        <Box p={"100px 0"}>
             <Flex
                 flexDirection={"column"}
                 bgImage={support.src}

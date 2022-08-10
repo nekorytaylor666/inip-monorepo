@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
                 >
                     <Heading
                         as='h2'
-                        fontFamily={'QtOpt'}
+                        fontFamily={"SangSunrise"}
                         color={"#fff"}
                         fontSize={'52px'}
                     >
@@ -143,65 +143,70 @@ export const Footer: React.FC = () => {
                     flexDir={{md: 'row', sm: 'column'}}
                     alignItems={'center'}
                 >
-                    <Link href="">
+                    <Link href="/">
                         <a>
-                            <Text mb={0} color={"#fff"}>
+                            <Text mb={0} color={"rgba(255, 255, 255, 0.5)"} _hover={{color: "#fff"}}>
                                 Homepage
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/about-charity-projects">
                         <a>
-                            <Text mb={0} color={"rgba(255, 255, 255, 0.5)"}>
+                            <Text mb={0} color={"rgba(255, 255, 255, 0.5)"} _hover={{color: "#fff"}}>
                                 Charity Projects
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/search">
                         <a>
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Search
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/about-kindness-rating">
                         <a>
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Kindness Rating
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/community">
                         <a>
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Community
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/">
                         <a>
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 INIP token
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/louvre">
                         <a>
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Louvre
                             </Text>
