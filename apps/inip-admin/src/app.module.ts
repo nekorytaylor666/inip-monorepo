@@ -21,7 +21,7 @@ import { StatiscticModule } from './statistics/statistic.module';
   imports: [
     ScheduleModule.forRoot(),
     MongooseModule.forRoot(
-      'mongodb://INIP:4c1ba9a0-1add-4837-bfae-7fe489f8f37c@68.183.74.222:27017/?authMechanism=DEFAULT',
+      'mongodb://INIP:4c1ba9a0-1add-4837-bfae-7fe489f8f37c@46.101.212.151:27017/?authMechanism=DEFAULT',
       {
         dbName: 'INIP',
       },
