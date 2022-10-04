@@ -26,25 +26,26 @@ import Link from "next/link";
 
 const DreamsCollection = (props) => {
 
-    const [dreamsNFT, setDreamsNFT] = useState(props.dreams); 
+    const [dreamsNFT, setDreamsNFT] = useState(props.dreams);
 
     return (
-        
+
             <Flex
                 flexWrap={"wrap"}
-                gap={"45px"}
+                justifyContent={'space-between'}
             >
                 {dreamsNFT.map((item, index) => {
 
-                    return <Box 
+                    return <Box
                             key={item.id}
                             minH={"647px"}
                             maxH={"680px"}
-                            maxW={"465px"}
+                            maxW={"29%"}
+                            mb={14}
                         >
                             <Image width={"500px"} height={"500px"} src={item.img.src}/>
-                            <Flex 
-                                pt={"10px"} 
+                            <Flex
+                                pt={"10px"}
                                 justifyContent={"space-between"}
                                 color={"#1c2529"}
                                 alignItems={"center"}
@@ -76,7 +77,7 @@ const DreamsCollection = (props) => {
                                 fontWeight={700}
                                 fontFamily={"Inter"}
                                 bg={
-                                    (index + 1) % 3 === 1 
+                                    (index + 1) % 3 === 1
                                     ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
                                     : (
                                         (index + 1) % 3 === 2

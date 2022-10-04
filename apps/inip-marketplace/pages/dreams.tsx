@@ -98,21 +98,20 @@ const Dreams = () => {
 
     return (
         <Box>
-
-            <Box p={"120px 200px 0"} color={"#1c2529"}>
+            <Box p={"15% 10%"} color={"#1c2529"}>
                 <Heading fontFamily={"Swing"} fontSize={"140px"} fontWeight={400} >Dreams</Heading>
-                <Text 
+                <Text
                     maxW={"470px"}
-                    fontFamily={"Inter"} 
-                    fontSize={"20px"} 
-                    fontWeight={500} 
+                    fontFamily={"Inter"}
+                    fontSize={"20px"}
+                    fontWeight={500}
                     color={"#aaa"}
                     pb={"40px"}
                 >
                     Collect, sell and buy NFT's from the best creators around the world. Just in clicks
                 </Text>
-                <Button 
-                    minW={"220px"} 
+                <Button
+                    minW={"220px"}
                     minH={"74px"}
                     border={"2px solid #dedede"}
                     bg={"transparent"}
@@ -122,18 +121,10 @@ const Dreams = () => {
                 </Button>
             </Box>
 
-            <Box 
-                mt={"180px"}  
-                p={"0 200px 300px"}
-            >
-                <Flex
-                    pb={"30px"}
-                >
-                    <Box
-                        minW={"45px"}
-                        position={"relative"}
-                    >
-                        <Image 
+            <Box p={"0 10%"}>
+                <Flex pb={"30px"}>
+                    <Box minW={"45px"} position={"relative"}>
+                        <Image
                             src={showCriteria ? upward : downward}
                             onClick={() => setShowCriteria(!showCriteria)}
                         />
@@ -141,15 +132,15 @@ const Dreams = () => {
                         {!showCriteria && <Flex
                             flexDir={"column"}
                             gap={"30px"}
-                            position={"absolute"} 
+                            position={"absolute"}
                             zIndex={1}
                             bg={"#fff"}
                             p={"100px 70px 100px"}
                             mt={"30px"}
-                            border={"1px solid #d9d9d9"}  
+                            border={"1px solid #d9d9d9"}
                             color={"#1c2529"}
                             fontSize={"20px"}
-                            fontWeight={400}  
+                            fontWeight={400}
                         >
                             <Checkbox size={"md"} gap={"30px"}>
                                 New
@@ -176,7 +167,7 @@ const Dreams = () => {
 
 Dreams.getLayout = function getLayout(page: ReactElement){
 
-    return <DreamsLayout>
+    return <DreamsLayout setBgImg={true}>
         <>
             {page}
         </>

@@ -13,24 +13,30 @@ import Image from "next/image";
 import PartnerItem from "./partnerItem";
 
 const Partners = ({partners}) => {
-
     return (
-        <Flex
+        <Box
             mt={"50px"}
-            scrollSnapType={"x mandatory"}
-            width={"100%"}
-            height={"250px"}
-            gap={"30px"}
+            minW={'100%'}
+            height={220}
             overflowX={"scroll"}
+            overflowY={'hidden'}
+            whiteSpace={'nowrap'}
+            __css={{
+                '&::-webkit-scrollbar': {
+                    height: "3px",
+                    width: "50%",
+                    backgroundColor: `rgba(0, 0, 0, 0.05)`,
+                },
+                '&::-webkit-scrollbar-thumb': {
+                    backgroundColor: `#758F9D`,
+                },
+            }}
         >
             {partners.map((item, index) => {
-
                 return <PartnerItem item={index}/>
             })}
-        </Flex>
+        </Box>
     );
 }
-
-
 
 export default Partners;

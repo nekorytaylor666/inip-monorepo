@@ -1,5 +1,6 @@
 import {
     Box,
+    Flex,
     Center,
     Container,
     Heading,
@@ -52,16 +53,27 @@ const CollectionsPage = () => {
     const searchClient = instantMeiliSearch(SEARCH_URL, SEARCH_TOKEN);
 
     return (
-        <Container mt="14" minH={"container.xl"} maxW={"container.xxl"}>
+        <Box padding={'5% 10%'} mt="14">
             <Heading mb={8} as="h1">
-                Find collection.
+                Find collections.
             </Heading>
+            <Flex gap={"20px"} pb={"50px"}>
+                <Box color={"#979391"} fontWeight={700}>
+                    <Text mb={0}>NFTs</Text>
+                    <Text>248 645</Text>
+                </Box>
+                <Box color={"#1c2529"} fontWeight={700}>
+                    <Text mb={0}>Collections</Text>
+                    <Text>24 863</Text>
+                </Box>
+                
+            </Flex>
             <InstantSearch indexName="collection" searchClient={searchClient}>
                 <CustomSearchBox />
                 <Configure hitsPerPage={9}></Configure>
                 <CustomHits mt={8} hitComponent={Hit} />
             </InstantSearch>
-        </Container>
+        </Box>
     );
 };
 
@@ -90,7 +102,7 @@ const CollectionItem = ({ collection }: { collection: INFTCollection }) => (
         >
             <img
                 style={{
-                    zIndex: 20,
+                    zIndex: 2,
                     position: "absolute",
                     height: "540px",
                     width: "100%",
@@ -106,6 +118,7 @@ const CollectionItem = ({ collection }: { collection: INFTCollection }) => (
                         objectFit: "cover",
                         height: "540px",
                         width: "100%",
+                        zIndex: 1
                     }}
                     src={collection.metadata.image}
                     alt="collection"
@@ -124,7 +137,7 @@ const CollectionItem = ({ collection }: { collection: INFTCollection }) => (
                 }}
                 h="540px"
                 w="full"
-                zIndex={10}
+                zIndex={3}
                 position="relative"
                 padding={"40px"}
             >
@@ -146,7 +159,7 @@ const renderCollectionItem = (collection: INFTCollection) => (
     </Link>
 );
 const Hits: React.FC = ({ hits, ...props }: { hits: any[] }) => (
-    <SimpleGrid columns={"3"} gap={"8"} {...props}>
+    <SimpleGrid columns={{md: "3", sm: '1'}} gap={"8"} {...props}>
         {hits?.map(renderCollectionItem)}
     </SimpleGrid>
 );

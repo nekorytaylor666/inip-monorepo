@@ -81,19 +81,19 @@ const AboutKindnessRating = () => {
 
 
     return (
-        <Box>
+        <Box p={"100px 0"}>
             <Flex
                 bgImage={kindnessBgim.src}
-                p={"0 200px"}
-                minH={"800px"}
+                backgroundSize={{md: 'cover'}}
+                padding={'10%'}
                 alignItems={"center"}
             >
-                <Flex 
+                <Flex
                     maxW={"662px"}
                     flexDir={"column"}
                     gap={"40px"}
                 >
-                    <Heading 
+                    <Heading
                         fontWeight={500}
                         fontFamily={"QtOpt"}
                         fontSize={"64px"}
@@ -116,11 +116,12 @@ const AboutKindnessRating = () => {
             </Flex>
 
             <Box
-                p={"100px 200px"}
+                marginY={70}
+                p={"0 10%"}
             >
                 <Flex gap={"70px"} alignItems={"center"}>
-                    <Square 
-                        h={"102px"} 
+                    <Square
+                        h={"102px"}
                         w={"100px"}
                         border={"1px solid #476676"}
                         color={"#365262"}
@@ -135,15 +136,15 @@ const AboutKindnessRating = () => {
                     >
                         <Heading color={"#365262"}>how it works.</Heading>
                         <Text color={"#476676"} fontSize={"18px"} fontWeight={400} mt={"20px"}>
-                            Kindness Rating allows users to compete in kindness. 
-                            Compete and improve the world! For each action on the marketplace and outside it, you will earn 
-                            points. Each action is evaluated differently and divided into three 
+                            Kindness Rating allows users to compete in kindness.
+                            Compete and improve the world! For each action on the marketplace and outside it, you will earn
+                            points. Each action is evaluated differently and divided into three
                             sectors: democratic, financial, quantitative.
                         </Text>
                     </Box>
                 </Flex>
 
-                <Flex gap={"24px"} mt={"90px"}>
+                <Flex gap={"24px"} flexDir={{md: 'row', sm: 'column'}} mt={"90px"}>
                     <Flex
                         minW={"465px"}
                         minH={"282px"}
@@ -158,18 +159,18 @@ const AboutKindnessRating = () => {
                             gap={"21px"}
                         >
                             <Heading
-                                fontWeight={700} 
-                                fontSize={"30px"} 
+                                fontWeight={700}
+                                fontSize={"30px"}
                                 fontFamily={"QtOpt"}
-                                color={"#476676"}        
+                                color={"#476676"}
                             >
                                 Quantitive
                             </Heading>
                             <Text fontWeight={400} fontSize={"18px"} fontFamily={"Inter"}>
-                                The ranking is based 
-                                on the number of 
-                                persons assisted by the person. 
-                                This rating is independent of the 
+                                The ranking is based
+                                on the number of
+                                persons assisted by the person.
+                                This rating is independent of the
                                 amount of donated capital.
                             </Text>
                         </Flex>
@@ -188,19 +189,19 @@ const AboutKindnessRating = () => {
                             flexDir={"column"}
                             gap={"21px"}
                         >
-                            <Heading 
-                                fontWeight={700} 
-                                fontSize={"30px"} 
+                            <Heading
+                                fontWeight={700}
+                                fontSize={"30px"}
                                 fontFamily={"QtOpt"}
-                                color={"#476676"}    
+                                color={"#476676"}
                             >
                                 Financial
                             </Heading>
                             <Text fontWeight={400} fontSize={"18px"} fontFamily={"Inter"}>
-                                The rating is based on the amount of 
-                                money that the person ultimately 
-                                donated to the marketplace. 
-                                This rating is independent of the 
+                                The rating is based on the amount of
+                                money that the person ultimately
+                                donated to the marketplace.
+                                This rating is independent of the
                                 number of acts of kindness.
                             </Text>
                         </Flex>
@@ -220,19 +221,19 @@ const AboutKindnessRating = () => {
                             flexDir={"column"}
                             gap={"21px"}
                         >
-                            <Heading 
-                                fontWeight={700} 
-                                fontSize={"30px"} 
+                            <Heading
+                                fontWeight={700}
+                                fontSize={"30px"}
                                 fontFamily={"QtOpt"}
-                                color={"#476676"}    
+                                color={"#476676"}
                             >
                                 Democratic
                             </Heading>
                             <Text fontWeight={400} fontSize={"18px"} fontFamily={"Inter"}>
-                                Rating is formed by voting in the 
-                                community (will be explained later). 
-                                Every month a poll will be 
-                                conducted - the persons with the 
+                                Rating is formed by voting in the
+                                community (will be explained later).
+                                Every month a poll will be
+                                conducted - the persons with the
                                 most votes will be in the top.
                             </Text>
                         </Flex>
@@ -242,26 +243,25 @@ const AboutKindnessRating = () => {
             </Box>
 
             <Flex
-                p={"60px 200px 80px"}
+                marginTop={70}
+                p={"50px 10%"}
                 gap={"85px"}
                 bg={"radial-gradient(50% 50% at 50% 50%, rgba(203, 225, 239, 0.25) 0%, rgba(167, 194, 211, 0) 100%), #6C8693"}
                 color={"#fff"}
+                justifyContent={'space-between'}
             >
-
-                <Box>
+                <Box width={'100%'}>
                     <Heading>rewards.</Heading>
                     <Text maxW={"754px"} mt={"20px"} fontFamily={"Inter"} fontWeight={100} fontSize={"20px"}>The rating is updated every month. Points from all three sectors are summed up and a full number of your points is obtained.</Text>
                     <Flex pt={"50px"} justifyContent={"space-between"}>
-                        <Flex
-                            flexWrap={"wrap"}
-                            gap={"20px"}
-                        >
+                        <Flex gap={"20px"} flexDir={{md: 'row', sm: 'column'}}>
                             <Flex
-                                minW={"594px"}
+                                width={{md: "50%", sm: '100%'}}
                                 minH={"190px"}
                                 flexDir={"column"}
                                 border={"1px solid #b1d0d8"}
                                 p={"35px"}
+                                boxSizing={'border-box'}
                                 gap={"25px"}
                             >
                                 <Heading>
@@ -269,12 +269,12 @@ const AboutKindnessRating = () => {
                                 </Heading>
 
                                 <Text maxW={"400px"}>
-                                    Get into the top 50 and get access to a community 
+                                    Get into the top 50 and get access to a community
                                     that will change the whole world!
                                 </Text>
                             </Flex>
                             <Flex
-                                minW={"594px"}
+                                width={{md: "50%", sm: '100%'}}
                                 minH={"190px"}
                                 flexDir={"column"}
                                 border={"1px solid #b1d0d8"}
@@ -286,33 +286,31 @@ const AboutKindnessRating = () => {
                                 </Heading>
 
                                 <Text maxW={"400px"}>
-                                    Get into the top 50 and get access to a community 
+                                    Get into the top 50 and get access to a community
                                     that will change the whole world!
                                 </Text>
                             </Flex>
-                        
-
                         </Flex>
                     </Flex>
                 </Box>
                 <Flex
                     alignItems={"center"}
+                    display={{md: 'flex', sm: 'none'}}
                 >
                     <Image src={reward}/>
                 </Flex>
-
             </Flex>
 
             <Box
-                p={"120px 200px"}
+                p={"120px 10%"}
             >
                 <Heading>kindness rating.</Heading>
 
                 <Flex mt={"50px"}>
-                    <Flex 
-                        minW={"160px"} 
-                        minH={"80px"} 
-                        justifyContent={"center"} 
+                    <Flex
+                        minW={"160px"}
+                        minH={"80px"}
+                        justifyContent={"center"}
                         alignItems={"center"}
                         onClick={() => setKindnessChoice("quantitive")}
                         border={kindnessChoice === "quantitive" ? "1px solid #d9d9d9" : ""}
@@ -324,10 +322,10 @@ const AboutKindnessRating = () => {
                         </Heading>
 
                     </Flex>
-                    <Flex 
-                        minW={"160px"} 
-                        minH={"80px"} 
-                        justifyContent={"center"} 
+                    <Flex
+                        minW={"160px"}
+                        minH={"80px"}
+                        justifyContent={"center"}
                         alignItems={"center"}
                         onClick={() => setKindnessChoice("financial")}
                         border={kindnessChoice === "financial" ? "1px solid #d9d9d9" : ""}
@@ -338,10 +336,10 @@ const AboutKindnessRating = () => {
                             Financial
                         </Heading>
                     </Flex>
-                    <Flex 
-                        minW={"160px"} 
-                        minH={"80px"} 
-                        justifyContent={"center"} 
+                    <Flex
+                        minW={"160px"}
+                        minH={"80px"}
+                        justifyContent={"center"}
                         alignItems={"center"}
                         onClick={() => setKindnessChoice("democratic")}
                         border={kindnessChoice === "democratic" ? "1px solid #d9d9d9" : ""}
@@ -358,10 +356,10 @@ const AboutKindnessRating = () => {
                     <Rating ratings={kindness}/>
 
                     <Center mt={"70px"}>
-                        <Button 
-                            minW={"316px"} 
-                            minH={"80px"} 
-                            color={"#365262"} 
+                        <Button
+                            minW={"316px"}
+                            minH={"80px"}
+                            color={"#365262"}
                             fontSize={"20px"}
                             bg={"transparent"}
                             borderRadius={0}

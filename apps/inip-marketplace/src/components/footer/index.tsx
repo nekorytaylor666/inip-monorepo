@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
         <Center
             bg={"#394348"}
             py={10}
-            p={'100px 200px 120px'}
+            p={{md: '0 200px 120px', sm: '2% 5%'}}
             color={'rgba(255, 255, 255, 0.5)'}
             flexDirection={'column'}
         >
@@ -32,6 +32,7 @@ export const Footer: React.FC = () => {
                     pt={"100px"}
                     width={"100%"}
                     justifyContent={"space-between"}
+                    flexDir={{md: 'row', sm: 'column-reverse'}}
                 >
                     <Box>
                         <Heading
@@ -42,12 +43,12 @@ export const Footer: React.FC = () => {
                         <Text
                             maxWidth={'500px'}
                         >
-                            Subscribe our mailing list to get daily news about Charity Projects, 
+                            Subscribe our mailing list to get daily news about Charity Projects,
                             Dreams, Kindness Rating, Community and other stuff.
-                        </Text>    
+                        </Text>
                     </Box>
 
-                    <HStack color={'white'}>
+                    <HStack color={'white'} mb={{md: 0, sm: 10}}>
                         <Square
                             size={'40px'}
                             border={'2px solid #FFFFFF'}
@@ -70,7 +71,7 @@ export const Footer: React.FC = () => {
 
                     <Flex
                         gap={'20px'}
-                        width={'45%'}
+                        width={{md: '45%', sm: '100%'}}
                     >
                         <Input
                             placeholder='Your email adress'
@@ -80,10 +81,10 @@ export const Footer: React.FC = () => {
                             borderRadius={'none'}
 
                         />
-                        <Button 
+                        <Button
                             color={'#6A5843'}
                             height={'100%'}
-                            width={'25%'}
+                            width={{md: '25%', sm: '100%'}}
                             borderRadius={'none'}
 
                             onClick={() => console.log('asd')}
@@ -91,24 +92,27 @@ export const Footer: React.FC = () => {
                             Submit
                         </Button>
                     </Flex>
-                    
+
                 </Flex>
 
             </Box>
 
             <Flex
-                pt={'100px'}
+                pt={'80px'}
+                pb={{md: 0, sm: 20}}
                 width={'100%'}
                 gap={"25px"}
                 justifyContent={'space-between'}
+                flexDir={{md: 'row', sm: 'column-reverse'}}
             >
                 <Flex
                     alignItems={'center'}
                     gap={"10px"}
+                    justifyContent={{md: 'space-between', sm: 'center'}}
                 >
-                    <Heading 
-                        as='h2' 
-                        fontFamily={'QtOpt'} 
+                    <Heading
+                        as='h2'
+                        fontFamily={"SangSunrise"}
                         color={"#fff"}
                         fontSize={'52px'}
                     >
@@ -131,79 +135,85 @@ export const Footer: React.FC = () => {
 
                 <Box
                     display="flex"
-                    alignItems="center"
                     justifyContent="space-between"
-                    gap={"60px"}
+                    gap={{md: "60px", sm: '20px'}}
                     fontSize={"18px"}
                     fontFamily={"Inter"}
                     fontWeight={"500"}
+                    flexDir={{md: 'row', sm: 'column'}}
+                    alignItems={'center'}
                 >
-                    <Link href="">
+                    <Link href="/">
                         <a>
-                            <Text mb={0} color={"#fff"}>
+                            <Text mb={0} color={"rgba(255, 255, 255, 0.5)"} _hover={{color: "#fff"}}>
                                 Homepage
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/about-charity-projects">
                         <a>
-                            <Text mb={0} color={"rgba(255, 255, 255, 0.5)"}>
+                            <Text mb={0} color={"rgba(255, 255, 255, 0.5)"} _hover={{color: "#fff"}}>
                                 Charity Projects
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/search">
                         <a>
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Search
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/about-kindness-rating">
                         <a>
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Kindness Rating
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/community">
                         <a>
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Community
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/">
                         <a>
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 INIP token
                             </Text>
                         </a>
                     </Link>
-                    <Link href="">
+                    <Link href="/louvre">
                         <a>
                             <Text
                                 mb={0}
                                 color={"#rgba(255, 255, 255, 0.5)"}
+                                _hover={{color: "#fff"}}
                             >
                                 Louvre
                             </Text>
                         </a>
                     </Link>
                 </Box>
-                
+
             </Flex>
         </Center>
     );
