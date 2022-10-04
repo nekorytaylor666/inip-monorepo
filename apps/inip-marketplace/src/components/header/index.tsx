@@ -10,7 +10,7 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    Button
+    Button,
 } from "@chakra-ui/react";
 import account from "@public/icons/header/account.svg";
 import Link from "next/link";
@@ -27,12 +27,12 @@ import sky from "@public/icons/dreams-come-true/sky.jpg";
 export const Header: React.FC = () => {
     return (
         <Box
-            display={'flex'}
-            flexDir={{md: 'row', xs: 'column'}}
-            alignItems={'center'}
+            display={"flex"}
+            flexDir={{ md: "row", xs: "column" }}
+            alignItems={"center"}
             justifyContent={"space-between"}
-            p={'30px 10%'}
-            flexWrap={'wrap'}
+            p={"30px 10%"}
+            flexWrap={"wrap"}
             borderBottom={"1px solid #E6E6E6"}
             position={"fixed"}
             top={0}
@@ -56,27 +56,29 @@ export const Header: React.FC = () => {
                 display="flex"
                 alignItems="center"
                 justifyContent="flex-start"
-                flexDir={{md: 'row', xs: 'column'}}
+                flexDir={{ md: "row", xs: "column" }}
                 gap="30px"
-                fontSize={{md: '0.9vw', sm: '3vw'}}
-                mt={{md: 0, sm: 10}}
+                fontSize={{ md: "0.9vw", sm: "3vw" }}
+                mt={{ md: 0, sm: 10 }}
                 fontFamily={"Inter"}
                 fontWeight={"500"}
-                order={{md: 1, sm: 2}}
-                flexWrap={{md: 'no-wrap', sm: 'wrap'}}
+                order={{ md: 1, sm: 2 }}
+                flexWrap={{ md: "no-wrap", sm: "wrap" }}
             >
                 <Link href="/">
                     <a>
-                        <Text mb={0} _hover={{ fontWeight: "bold" }}>Homepage</Text>
+                        <Text mb={0} _hover={{ fontWeight: "bold" }}>
+                            Homepage
+                        </Text>
                     </a>
                 </Link>
-                <Link href="/louvre">
+                {/* <Link href="/louvre">
                     <a>
                         <Text mb={0} _hover={{ fontWeight: "bold" }}>Louvre</Text>
                     </a>
-                </Link>
+                </Link> */}
 
-                <Menu>
+                {/* <Menu>
                     <MenuButton _hover={{ fontWeight: "bold" }}>
                         Charity Projects
                     </MenuButton>
@@ -106,7 +108,7 @@ export const Header: React.FC = () => {
                             </Link>
                         </MenuItem>
                     </MenuList>
-                </Menu>
+                </Menu> */}
 
                 <Menu>
                     <MenuButton _hover={{ fontWeight: "bold" }}>
@@ -123,14 +125,18 @@ export const Header: React.FC = () => {
                         ml={"-30px"}
                         mt={"35px"}
                     >
-                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold"}}>
+                        <MenuItem
+                            _focus={{ color: "#365262", fontWeight: "bold" }}
+                        >
                             <Link href="/dreams-come-true">
                                 <a>
                                     <Text mb={0}>Dreams Come True</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
+                        <MenuItem
+                            _focus={{ color: "#365262", fontWeight: "bold" }}
+                        >
                             <Link href="/dreams">
                                 <a>
                                     <Text mb={0}>Dreams</Text>
@@ -140,7 +146,7 @@ export const Header: React.FC = () => {
                     </MenuList>
                 </Menu>
 
-                <Menu>
+                {/* <Menu>
                     <MenuButton _hover={{ fontWeight: "bold" }}>
                         Kindness Rating
                     </MenuButton>
@@ -155,14 +161,18 @@ export const Header: React.FC = () => {
                         ml={"-30px"}
                         mt={"35px"}
                     >
-                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
+                        <MenuItem
+                            _focus={{ color: "#365262", fontWeight: "bold" }}
+                        >
                             <Link href="/about-kindness-rating">
                                 <a>
                                     <Text mb={0}>About Rating</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
+                        <MenuItem
+                            _focus={{ color: "#365262", fontWeight: "bold" }}
+                        >
                             <Link href="/">
                                 <a>
                                     <Text mb={0}>Rating</Text>
@@ -170,8 +180,8 @@ export const Header: React.FC = () => {
                             </Link>
                         </MenuItem>
                     </MenuList>
-                </Menu>
-
+                </Menu> */}
+                {/* 
                 <Menu>
                     <MenuButton _hover={{ fontWeight: "bold" }}>
                         Community
@@ -187,14 +197,18 @@ export const Header: React.FC = () => {
                         ml={"-30px"}
                         mt={"35px"}
                     >
-                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
+                        <MenuItem
+                            _focus={{ color: "#365262", fontWeight: "bold" }}
+                        >
                             <Link href="/community">
                                 <a>
                                     <Text mb={0}>INIP Community</Text>
                                 </a>
                             </Link>
                         </MenuItem>
-                        <MenuItem _focus={{ color: "#365262", fontWeight: "bold" }}>
+                        <MenuItem
+                            _focus={{ color: "#365262", fontWeight: "bold" }}
+                        >
                             <Link href="/creator-support">
                                 <a>
                                     <Text mb={0}>Creator support</Text>
@@ -210,7 +224,7 @@ export const Header: React.FC = () => {
                             INIP token
                         </Text>
                     </a>
-                </Link>
+                </Link> */}
                 <Link href="/collections">
                     <a>
                         <Text mb={0} _hover={{ fontWeight: "bold" }}>
@@ -220,7 +234,7 @@ export const Header: React.FC = () => {
                 </Link>
             </Box>
 
-            <Flex gap={"18px"} order={{md: 2, sm: 1}}>
+            <Flex gap={"18px"} order={{ md: 2, sm: 1 }}>
                 <Link href="/profile">
                     <a>
                         <Square
@@ -238,28 +252,22 @@ export const Header: React.FC = () => {
     );
 };
 
-export const DreamHeader: React.FC = ({setBgImg}: {setBgImg: boolean}) => {
-
-
-
+export const DreamHeader: React.FC = ({ setBgImg }: { setBgImg: boolean }) => {
     const [offset, setOffset] = useState(0);
     const [dreamBlock, setDreamsBlock] = useState(0);
     useEffect(() => {
         const id = document.getElementById("__next");
 
         const dreamsComeTrue = document.getElementById("dreams");
-        if(dreamsComeTrue){
+        if (dreamsComeTrue) {
             setDreamsBlock(dreamsComeTrue?.clientHeight);
         }
         const onScroll = () => setOffset(window.pageYOffset);
-        
 
-        window.removeEventListener('scroll', onScroll);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
-
+        window.removeEventListener("scroll", onScroll);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
     }, []);
-
 
     return (
         <Box
@@ -267,14 +275,24 @@ export const DreamHeader: React.FC = ({setBgImg}: {setBgImg: boolean}) => {
             gap={"50px"}
             bgSize={"cover"}
             color={"#fff"}
-            position={'fixed'}
+            position={"fixed"}
             zIndex={1}
-            width={'100%'}
-            borderBottom={'1px solid #ECECEC'}
-            bgImage={setBgImg ? sky.src : (offset > dreamBlock/2 - 250 ? sky.src : "")} 
+            width={"100%"}
+            borderBottom={"1px solid #ECECEC"}
+            bgImage={
+                setBgImg
+                    ? sky.src
+                    : offset > dreamBlock / 2 - 250
+                    ? sky.src
+                    : ""
+            }
         >
-            <Flex w={'100%'} gap={"40px"} alignItems={'center'} flexWrap={'wrap'}>
-
+            <Flex
+                w={"100%"}
+                gap={"40px"}
+                alignItems={"center"}
+                flexWrap={"wrap"}
+            >
                 <Link href="/">
                     <a>
                         <Box
@@ -286,35 +304,38 @@ export const DreamHeader: React.FC = ({setBgImg}: {setBgImg: boolean}) => {
                             minH={"56px"}
                             fontFamily={"Inter"}
                             fontWeight={900}
-                            display={'flex'}
-                            alignItems={'center'}
-                            justifyContent={'center'}
-                            order={{md: 0, sm: 0}}
+                            display={"flex"}
+                            alignItems={"center"}
+                            justifyContent={"center"}
+                            order={{ md: 0, sm: 0 }}
                         >
                             Back to INIP Marketplace
                         </Box>
                     </a>
                 </Link>
 
-                <Flex gap={10} order={{md: 1, sm: 2}}>
+                <Flex gap={10} order={{ md: 1, sm: 2 }}>
                     <Link href="/dreams-come-true">
                         <a>
-                        <Box fontFamily={"SangSunrise"} fontWeight={700}>
-                            DREAMS COME TRUE
-                        </Box>
+                            <Box fontFamily={"SangSunrise"} fontWeight={700}>
+                                DREAMS COME TRUE
+                            </Box>
                         </a>
                     </Link>
 
                     <Link href="/dreams">
                         <a>
-                            <Box fontFamily={"Inter"}>
-                                Dreams
-                            </Box>
+                            <Box fontFamily={"Inter"}>Dreams</Box>
                         </a>
                     </Link>
                 </Flex>
 
-                <Flex order={{md: 2, sm: 1}} gap={"20px"} flexGrow={1} justifyContent={"flex-end"}>
+                <Flex
+                    order={{ md: 2, sm: 1 }}
+                    gap={"20px"}
+                    flexGrow={1}
+                    justifyContent={"flex-end"}
+                >
                     <Square w={"52px"} h={"52px"} border={"1px solid #ececec"}>
                         <Image src={white_account} />
                     </Square>
