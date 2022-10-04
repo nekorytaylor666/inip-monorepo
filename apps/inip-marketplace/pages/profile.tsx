@@ -246,7 +246,7 @@ const NFTGrid = ({ tokenAddress }: { tokenAddress?: string }) => {
         `nftsByOwner:${walletAddress}`,
         async () => {
             const res = await axios.get<OwnedNftsResponse>(
-                `/api/nfts-by-owner/${walletAddress}`,
+                `/api/nfts-by-ownr/${walletAddress}`,
             );
             return res.data;
         },

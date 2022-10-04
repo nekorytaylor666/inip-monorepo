@@ -1,13 +1,13 @@
 import { ChainId, ThirdwebSDK } from "@thirdweb-dev/sdk";
 
 export const chainRpc = {
-    [ChainId.Rinkeby]:
-        "https://eth-rinkeby.alchemyapi.io/v2/uCzPq-Nhfd_Ne3eu5OYRqkS8ziXyv17x",
+    [ChainId.Goerli]:
+        "https://eth-goerli.g.alchemy.com/v2/CbZLQTZUeBjEjHc0ZKqASWJWeW0HZPGv",
 };
 
-export const sdk = new ThirdwebSDK("rinkeby", {
+export const sdk = new ThirdwebSDK("goerli", {
     readonlySettings: {
-        rpcUrl: chainRpc[ChainId.Rinkeby],
-        chainId: ChainId.Rinkeby,
+        rpcUrl: chainRpc[ChainId.Goerli],
+        chainId: ChainId.Goerli,
     },
 });
