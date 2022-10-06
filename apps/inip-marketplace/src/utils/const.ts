@@ -3,7 +3,7 @@ export const DREAMS_COME_TRUE_COLLECTION_ADDRESS =
 
 export const MARKETPLACE_ADDRESS = "0x5B360DbE1d039B80beEF7dE29EC2B0B832964d1f";
 
-export const API_BASE_URL = "http://46.101.212.151:3001";
+export const API_BASE_URL = "https://api.inip.io";
 
-export const SEARCH_URL = "http://46.101.212.151:7700";
+export const SEARCH_URL = "https://api.inip.io";
 export const SEARCH_TOKEN = "gefest20202021";
