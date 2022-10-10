@@ -1,97 +1,102 @@
-import React, {useState} from "react";
+import React from "react";
 
+import { Box, Button, Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import { Erc1155 } from "@thirdweb-dev/sdk";
 import {
-    Box,
-    ButtonGroup,
-    Button,
-    Center,
-    Container,
-    Flex,
-    Heading,
-    HStack,
-    SimpleGrid,
-    Skeleton,
-    Square,
-    Text,
-    VStack,
-    Checkbox
-} from "@chakra-ui/react";
-import { DreamsNFT } from "pages/dreams";
-import eth from "@public/icons/homepage/ethereum.svg";
+    MediaRenderer,
+    NFT,
+    useClaimConditions,
+    useEditionDrop,
+} from "@thirdweb-dev/react";
+import { DREAMS_COME_TRUE_EDITION_ADDRESS } from "../../utils/const";
+import { AvailableCoins, CRYPTO_ICONS } from "../../utils/crypto_icons";
 import Image from "next/image";
-import Link from "next/link";
 
-
-
-
-const DreamsCollection = (props) => {
-
-    const [dreamsNFT, setDreamsNFT] = useState(props.dreams);
-
+const DreamsCollection = ({ dreams }: { dreams: NFT<Erc1155>[] }) => {
     return (
-
-            <Flex
-                flexWrap={"wrap"}
-                justifyContent={'space-between'}
-            >
-                {dreamsNFT.map((item, index) => {
-
-                    return <Box
-                            key={item.id}
-                            minH={"647px"}
-                            maxH={"680px"}
-                            maxW={"29%"}
-                            mb={14}
-                        >
-                            <Image width={"500px"} height={"500px"} src={item.img.src}/>
-                            <Flex
-                                pt={"10px"}
-                                justifyContent={"space-between"}
-                                color={"#1c2529"}
-                                alignItems={"center"}
-                            >
-                                <Heading fontSize={"20px"} fontWeight={700} fontFamily={"QtOpt"}>{item.name}</Heading>
-                                <Flex
-                                    fontWeight={600}
-                                    fontFamily={"Inter"}
-                                    fontSize={"24px"}
-                                    gap={"12px"}
-                                >
-                                    5468
-                                    <Image src={eth}/>
-                                </Flex>
-                            </Flex>
-                            <Text
-                                color={"#979391"}
-                                fontWeight={500}
-                                fontFamily={"QtOpt"}
-                            >
-                                {item.desc}
-                            </Text>
-                            <Button
-                                w={"100%"}
-                                minH={"74px"}
-                                borderRadius={0}
-                                color={"#fff"}
-                                fontSize={"20px"}
-                                fontWeight={700}
-                                fontFamily={"Inter"}
-                                bg={
-                                    (index + 1) % 3 === 1
-                                    ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
-                                    : (
-                                        (index + 1) % 3 === 2
-                                        ? "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #9DB1BC"
-                                        : "radial-gradient(43.08% 63.75% at 50% 50%, rgba(240, 249, 255, 0.5) 0%, rgba(241, 250, 255, 0) 100%), #B8BEC1"
-                                    )
-                                }
-                            >
-                                Succeed by {item.author}
-                            </Button>
-                        </Box>
-                })}
-            </Flex>
+        <SimpleGrid columns={3} gap={8}>
+            {dreams?.map((item, index) => (
+                <DreamItem key={index} item={item}></DreamItem>
+            ))}
+        </SimpleGrid>
     );
-}
+};
+
+const DreamItem = ({ item }: { item: NFT<Erc1155> }) => {
+    const editionContract = useEditionDrop(DREAMS_COME_TRUE_EDITION_ADDRESS);
+    const { data: claimConditions, isLoading } = useClaimConditions(
+        editionContract,
+        item.metadata.id,
+    );
+    const initialClaimCondition = claimConditions?.[0];
+    return (
+        <Box width={"100%"} key={item.metadata.id.toString()}>
+            <MediaRenderer
+                width={"500px"}
+                height={"500px"}
+                src={item.metadata.image}
+            />
+            <Flex
+                pt={"10px"}
+                justifyContent={"space-between"}
+                color={"#1c2529"}
+                alignItems={"center"}
+            >
+                <Heading
+                    fontSize={"20px"}
+                    fontWeight={700}
+                    fontFamily={"QtOpt"}
+                >
+                    {item.metadata.name}
+                </Heading>
+                {initialClaimCondition && !isLoading ? (
+                    <Flex
+                        fontWeight={"bold"}
+                        fontFamily={"Inter"}
+                        fontSize={"18px"}
+                        gap={"4px"}
+                    >
+                        {initialClaimCondition.currencyMetadata.displayValue}
+                        <Image
+                            width={24}
+                            height={24}
+                            src={
+                                CRYPTO_ICONS[
+                                    initialClaimCondition.currencyMetadata
+                                        .symbol as AvailableCoins
+                                ]
+                            }
+                        />
+                    </Flex>
+                ) : (
+                    "Loading..."
+                )}
+            </Flex>
+            <Text
+                color={"#979391"}
+                fontWeight={500}
+                fontFamily={"QtOpt"}
+                height={120}
+                mt={1}
+            >
+                {item.metadata.description}
+            </Text>
+            <Button
+                w={"100%"}
+                minH={"74px"}
+                borderRadius={0}
+                color={"#fff"}
+                fontSize={"20px"}
+                fontWeight={700}
+                fontFamily={"Inter"}
+                bg={
+                    "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
+                }
+            >
+                Succeed by {item.owner}
+            </Button>
+        </Box>
+    );
+};
 
 export default DreamsCollection;
