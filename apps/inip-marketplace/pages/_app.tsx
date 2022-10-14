@@ -5,12 +5,9 @@ import theme from "@definitions/chakra/theme";
 import { StyledThemeProvider } from "@definitions/styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-
-// import { ThirdwebWeb3Provider } from "@3rdweb/hooks";
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import "regenerator-runtime/runtime";
 import Head from "next/head";
-// import {themeMain} from "../src/components/theme/theme";
 import "../public/css/style.css";
 import { NextPage } from "next";
 import Layout from "@components/layout/default-layout";

@@ -11,6 +11,7 @@ import {
     MenuList,
     MenuItem,
     Button,
+    Container,
 } from "@chakra-ui/react";
 import account from "@public/icons/header/account.svg";
 import Link from "next/link";
@@ -252,7 +253,7 @@ export const Header: React.FC = () => {
     );
 };
 
-export const DreamHeader: React.FC = ({ setBgImg }: { setBgImg: boolean }) => {
+export const DreamHeader: React.FC<{ setBgImg: boolean }> = ({ setBgImg }) => {
     const [offset, setOffset] = useState(0);
     const [dreamBlock, setDreamsBlock] = useState(0);
     useEffect(() => {
@@ -336,9 +337,16 @@ export const DreamHeader: React.FC = ({ setBgImg }: { setBgImg: boolean }) => {
                     flexGrow={1}
                     justifyContent={"flex-end"}
                 >
-                    <Square w={"52px"} h={"52px"} border={"1px solid #ececec"}>
-                        <Image src={white_account} />
-                    </Square>
+                    <Link href={"/profile"}>
+                        <Square
+                            cursor={"pointer"}
+                            w={"52px"}
+                            h={"52px"}
+                            border={"1px solid #ececec"}
+                        >
+                            <Image src={white_account} />
+                        </Square>
+                    </Link>{" "}
                     <ConnectWalletButton isTransparent />
                 </Flex>
             </Flex>

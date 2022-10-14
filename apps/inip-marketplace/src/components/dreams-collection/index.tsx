@@ -1,6 +1,13 @@
 import React from "react";
-
-import { Box, Button, Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import {
+    Box,
+    Button,
+    Flex,
+    Heading,
+    SimpleGrid,
+    Text,
+    Spinner,
+} from "@chakra-ui/react";
 import { Erc1155 } from "@thirdweb-dev/sdk";
 import {
     MediaRenderer,
@@ -11,10 +18,11 @@ import {
 import { DREAMS_COME_TRUE_EDITION_ADDRESS } from "../../utils/const";
 import { AvailableCoins, CRYPTO_ICONS } from "../../utils/crypto_icons";
 import Image from "next/image";
+import InipButton from "@components/button/inip_button";
 
 const DreamsCollection = ({ dreams }: { dreams: NFT<Erc1155>[] }) => {
     return (
-        <SimpleGrid columns={3} gap={8}>
+        <SimpleGrid columns={[1, 2, 3]} gap={8}>
             {dreams?.map((item, index) => (
                 <DreamItem key={index} item={item}></DreamItem>
             ))}
@@ -32,7 +40,8 @@ const DreamItem = ({ item }: { item: NFT<Erc1155> }) => {
     return (
         <Box width={"100%"} key={item.metadata.id.toString()}>
             <MediaRenderer
-                width={"500px"}
+                alt={"Dream image"}
+                width={"100%"}
                 height={"500px"}
                 src={item.metadata.image}
             />
@@ -69,7 +78,7 @@ const DreamItem = ({ item }: { item: NFT<Erc1155> }) => {
                         />
                     </Flex>
                 ) : (
-                    "Loading..."
+                    <Spinner></Spinner>
                 )}
             </Flex>
             <Text
@@ -78,23 +87,11 @@ const DreamItem = ({ item }: { item: NFT<Erc1155> }) => {
                 fontFamily={"QtOpt"}
                 height={120}
                 mt={1}
+                noOfLines={[1, 2, 3]}
             >
                 {item.metadata.description}
             </Text>
-            <Button
-                w={"100%"}
-                minH={"74px"}
-                borderRadius={0}
-                color={"#fff"}
-                fontSize={"20px"}
-                fontWeight={700}
-                fontFamily={"Inter"}
-                bg={
-                    "radial-gradient(43.08% 63.75% at 50% 50%, rgba(157, 184, 200, 0.5) 0%, rgba(156, 183, 199, 0) 100%), #748E9C"
-                }
-            >
-                Succeed by {item.owner}
-            </Button>
+            <InipButton>Fulfill a Dream</InipButton>
         </Box>
     );
 };

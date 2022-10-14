@@ -1,11 +1,16 @@
 import { DreamHeader } from "@components/header";
-import React, {useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-export default function DreamsLayout({ children, setBgImg }: { children: React.ReactNode, setBgImg: boolean }) {
-
+export default function DreamsLayout({
+    children,
+    setBgImg,
+}: {
+    children: React.ReactNode;
+    setBgImg: boolean;
+}) {
     return (
         <>
-            <DreamHeader setBgImg/>
+            <DreamHeader setBgImg />
             <main>{children}</main>
         </>
     );

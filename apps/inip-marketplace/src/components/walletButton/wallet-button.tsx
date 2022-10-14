@@ -43,7 +43,7 @@ export const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({
     };
     const WalletMenuItemsButton = () => {
         return (
-            <MenuList>
+            <MenuList color={"black"}>
                 {address ? (
                     <>
                         <MenuGroup title="Address">
